@@ -156,7 +156,7 @@
 
 (:durative-action apply-patch
     :parameters (?e - egobot ?pa - patch ?pn - panel ?l - location)
-    :duration (= ?duration 1)
+    :duration (= ?duration 10)
     :condition (and 
         (at start (and 
             (holding ?e ?pa)
@@ -183,7 +183,7 @@
 
 (:durative-action weld
     :parameters (?e - egobot ?w - welder ?pn - panel ?l - location)
-    :duration (= ?duration 1)
+    :duration (= ?duration 10)
     :condition (and 
         (at start (and 
             (camera-free ?e)
