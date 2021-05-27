@@ -113,6 +113,8 @@
     (is-inspected pn142)
     (is-inspected pn143)
     (is-inspected pn144)
+
+    (hands-free ego1)
 ))
 
 ;un-comment the following line if metric is needed

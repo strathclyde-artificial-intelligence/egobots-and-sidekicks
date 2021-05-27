@@ -197,6 +197,8 @@
     (is-inspected pn342)
     (is-inspected pn343)
     (is-inspected pn344)
+
+    (hands-free ego3)
 ))
 
 ;un-comment the following line if metric is needed

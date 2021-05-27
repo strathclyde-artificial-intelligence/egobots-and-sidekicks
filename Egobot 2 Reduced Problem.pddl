@@ -113,6 +113,8 @@
     (is-inspected pn242)
     (is-inspected pn243)
     (is-inspected pn244)
+
+    (hands-free ego2)
 ))
 
 ;un-comment the following line if metric is needed

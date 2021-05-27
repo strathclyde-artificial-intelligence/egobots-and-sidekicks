@@ -269,6 +269,11 @@
     (is-inspected pn442)
     (is-inspected pn443)
     (is-inspected pn444)
+
+    (hands-free ego1)
+    (hands-free ego2)
+    (hands-free ego3)
+    (hands-free ego4)
 ))
 
 ;un-comment the following line if metric is needed
