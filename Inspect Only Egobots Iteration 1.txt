@@ -1,0 +1,130 @@
+maintenance-domain.pddl Egobot 1 Problem.pddl
+
+; Plan found with metric 13.008
+; States evaluated so far: 63
+; States pruned based on pre-heuristic cost lower bound: 0
+; Time 0.63
+0.000: (inspect ego1 pn124 l12)  [1.000]
+0.000: (sidekick-move sid lsid l44)  [1.000]
+1.001: (inspect ego1 pn123 l12)  [1.000]
+1.001: (sidekick-move sid l44 l11)  [1.000]
+2.002: (inspect ego1 pn122 l12)  [1.000]
+2.002: (inspect sid pn114 l11)  [1.000]
+3.003: (inspect ego1 pn121 l12)  [1.000]
+3.003: (inspect sid pn113 l11)  [1.000]
+4.003: (egobot-move ego1 l12 l13)  [1.000]
+4.003: (sidekick-move sid l11 l12)  [1.000]
+5.003: (inspect ego1 pn134 l13)  [1.000]
+5.004: (sidekick-move sid l12 l11)  [1.000]
+6.004: (inspect ego1 pn133 l13)  [1.000]
+6.004: (inspect sid pn112 l11)  [1.000]
+7.005: (inspect ego1 pn132 l13)  [1.000]
+7.005: (inspect sid pn111 l11)  [1.000]
+8.005: (sidekick-move sid l11 l12)  [1.000]
+8.006: (inspect ego1 pn131 l13)  [1.000]
+9.006: (egobot-move ego1 l13 l14)  [1.000]
+9.006: (sidekick-move sid l12 l13)  [1.000]
+10.006: (inspect ego1 pn144 l14)  [1.000]
+10.007: (sidekick-move sid l13 l14)  [1.000]
+11.007: (inspect ego1 pn143 l14)  [1.000]
+11.007: (inspect sid pn142 l14)  [1.000]
+12.008: (inspect ego1 pn141 l14)  [1.000]
+
+
+maintenance-domain.pddl Egobot 2 Problem.pddl
+
+; Plan found with metric 15.008
+; States evaluated so far: 136
+; States pruned based on pre-heuristic cost lower bound: 0
+; Time 0.96
+0.000: (inspect ego2 pn224 l22)  [1.000]
+0.000: (sidekick-move sid lsid l44)  [1.000]
+1.001: (inspect ego2 pn223 l22)  [1.000]
+1.001: (sidekick-move sid l44 l11)  [1.000]
+2.002: (inspect ego2 pn222 l22)  [1.000]
+2.002: (sidekick-move sid l11 l12)  [1.000]
+3.003: (inspect ego2 pn221 l22)  [1.000]
+3.003: (sidekick-move sid l12 l13)  [1.000]
+4.003: (egobot-move ego2 l22 l21)  [1.000]
+4.004: (sidekick-move sid l13 l14)  [1.000]
+5.003: (inspect ego2 pn214 l21)  [1.000]
+5.005: (sidekick-move sid l14 l21)  [1.000]
+6.003: (egobot-move ego2 l21 l22)  [1.000]
+6.006: (inspect sid pn213 l21)  [1.000]
+7.004: (egobot-move ego2 l22 l23)  [1.000]
+7.007: (inspect sid pn212 l21)  [1.000]
+8.004: (inspect ego2 pn234 l23)  [1.000]
+8.008: (inspect sid pn211 l21)  [1.000]
+9.005: (inspect ego2 pn233 l23)  [1.000]
+9.008: (sidekick-move sid l21 l22)  [1.000]
+10.006: (inspect ego2 pn232 l23)  [1.000]
+10.009: (sidekick-move sid l22 l23)  [1.000]
+11.007: (inspect ego2 pn231 l23)  [1.000]
+11.010: (sidekick-move sid l23 l24)  [1.000]
+12.007: (egobot-move ego2 l23 l24)  [1.000]
+12.010: (inspect sid pn244 l24)  [1.000]
+13.007: (inspect ego2 pn243 l24)  [1.000]
+13.011: (inspect sid pn242 l24)  [1.000]
+14.008: (inspect ego2 pn241 l24)  [1.000]
+
+
+maintenance-domain.pddl Egobot 3 Problem.pddl
+
+; Plan found with metric 13.008
+; States evaluated so far: 129
+; States pruned based on pre-heuristic cost lower bound: 0
+; Time 0.91
+0.000: (inspect ego3 pn324 l32)  [1.000]
+0.000: (sidekick-move sid lsid l44)  [1.000]
+1.001: (inspect ego3 pn323 l32)  [1.000]
+1.001: (sidekick-move sid l44 l43)  [1.000]
+2.002: (inspect ego3 pn322 l32)  [1.000]
+2.002: (sidekick-move sid l43 l42)  [1.000]
+3.003: (inspect ego3 pn321 l32)  [1.000]
+3.003: (sidekick-move sid l42 l41)  [1.000]
+4.003: (egobot-move ego3 l32 l31)  [1.000]
+4.004: (sidekick-move sid l41 l34)  [1.000]
+5.003: (inspect ego3 pn314 l31)  [1.000]
+5.005: (inspect sid pn344 l34)  [1.000]
+6.004: (inspect ego3 pn313 l31)  [1.000]
+6.006: (inspect sid pn343 l34)  [1.000]
+7.005: (inspect ego3 pn312 l31)  [1.000]
+7.007: (inspect sid pn342 l34)  [1.000]
+8.006: (inspect ego3 pn311 l31)  [1.000]
+8.008: (inspect sid pn341 l34)  [1.000]
+9.006: (egobot-move ego3 l31 l32)  [1.000]
+9.008: (sidekick-move sid l34 l33)  [1.000]
+10.007: (egobot-move ego3 l32 l33)  [1.000]
+10.008: (inspect sid pn334 l33)  [1.000]
+11.007: (inspect ego3 pn333 l33)  [1.000]
+11.009: (inspect sid pn332 l33)  [1.000]
+12.008: (inspect ego3 pn331 l33)  [1.000]
+
+
+maintenance-domain.pddl Egobot 4 Problem.pddl
+
+; Plan found with metric 11.006
+; States evaluated so far: 50
+; States pruned based on pre-heuristic cost lower bound: 0
+; Time 0.57
+0.000: (inspect ego4 pn424 l42)  [1.000]
+0.000: (sidekick-move sid lsid l44)  [1.000]
+1.001: (inspect sid pn444 l44)  [1.000]
+1.001: (inspect ego4 pn423 l42)  [1.000]
+2.002: (inspect ego4 pn422 l42)  [1.000]
+2.002: (inspect sid pn443 l44)  [1.000]
+3.002: (sidekick-move sid l44 l43)  [1.000]
+3.003: (inspect ego4 pn421 l42)  [1.000]
+4.002: (inspect sid pn434 l43)  [1.000]
+4.003: (egobot-move ego4 l42 l41)  [1.000]
+5.003: (inspect sid pn433 l43)  [1.000]
+5.003: (inspect ego4 pn414 l41)  [1.000]
+6.004: (inspect sid pn432 l43)  [1.000]
+6.004: (inspect ego4 pn413 l41)  [1.000]
+7.005: (inspect sid pn431 l43)  [1.000]
+7.005: (inspect ego4 pn412 l41)  [1.000]
+8.005: (sidekick-move sid l43 l44)  [1.000]
+8.006: (inspect ego4 pn411 l41)  [1.000]
+9.005: (inspect sid pn442 l44)  [1.000]
+9.006: (egobot-move ego4 l41 l42)  [1.000]
+10.006: (inspect sid pn441 l44)  [1.000]
