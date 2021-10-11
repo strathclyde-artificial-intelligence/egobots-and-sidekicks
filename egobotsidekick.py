@@ -4,6 +4,7 @@
 # This file generates files for each intermediate plan and problem.
 # This file generates the final plans.
 # This file can currently only handle inspect goals.
+# This file requires that none of the auto-generated file names are already in use.
 
 import os
 
@@ -18,14 +19,14 @@ sidpt1 = 'sidekick-problem-'
 sidpt2 = 'Sidekick-Iteration-'
 
 # Here the empty sidekick problem is named.
-sidfileempty = 'sidekick-problem-empty.pddl'
+sidfileempty = 'sidekick-problem-empty-2.pddl'
 f = open(sidfileempty,'r')
 sidempty = f.read()
 f.close()
 
 # Here the domains are named.
 egodomain = 'maintenance-domain.pddl'
-siddomain = 'sidekick-domain-1.pddl'
+siddomain = 'sidekick-domain-2.pddl'
 
 # Here the planner is named.
 planner = 'optic-cplex -n'
@@ -63,9 +64,7 @@ for x in egobotproblemfiles:
     i = i+1
 
 # Here the first set of egobot plans are parsed.
-egoinspdemands = [] # These are lists of lists.
-egowelddemands = []
-egoptchdemands = []
+egodemands = [] # These are lists of lists.
 for i, x in enumerate(egoplan):
     tempstr1 = x.split('0.000:')
     tempstr2 = tempstr1[-1]
@@ -81,29 +80,12 @@ for i, x in enumerate(egoplan):
     else:
         tempstr6 = []
         for y in tempstr5:
-            if 'inspect' in y:
+            if 'inspect' or 'drop' in y:
                 tempstr6.append(y)
 
-        egoinspdemands.append(tempstr6)
+        egodemands.append(tempstr6)
 
-        tempstr7 = []
-        for y in tempstr5:
-            if 'drop' in y:
-                tempstr7.append(y)
-
-        tempstr8 = []
-        for y in tempstr7:
-            if 'w' in y:
-                tempstr8.append(y)
-
-        egowelddemands.append(tempstr8)
-
-        tempstr9 = []
-        for y in tempstr7:
-            if 'pa' in y:
-                tempstr9.append(y)
-
-        egoptchdemands.append(tempstr9)
+# Add parsing for where welders and patches end up
 
 if all(egosuccess): # In theory if there are any 0s in the list, it should return False
     success = 1
@@ -112,27 +94,41 @@ if all(egosuccess): # In theory if there are any 0s in the list, it should retur
 while success == 0:
     # Here the inspect demands are formatted for the sidekick.
     tempstr2 = '\n'
-    for x in egoinspdemands:
+    for x in egodemands:
         tempstr1 = x[-1].partition(':')
         deadline = tempstr1[0]
         for y in x:
-            tempstr3 = y.partition('pn')
-            tempstr4 = tempstr3[2].partition(' ')
-            panel = tempstr3[1]+tempstr4[0]
-            tempstr5 = '\n'+'(= (ingoal '+panel+') 1)'+'\n'+'(is-not-inspected '+panel+')'+'\n'+'(at '+deadline+' (not (is-not-inspected '+panel+')))'
-            tempstr2 = tempstr2 + tempstr5
-    allinspdemandspddl = tempstr2
+            if 'inspect' in y:
+                tempstr3 = y.partition('pn')
+                tempstr4 = tempstr3[2].partition(' ')
+                panel = tempstr3[1]+tempstr4[0]
+                tempstr5 = '\n'+'(= (ingoal '+panel+') 1)'+'\n'+'(is-not-inspected '+panel+')'+'\n'+'(at '+deadline+' (not (is-not-inspected '+panel+')))'
+                tempstr2 = tempstr2 + tempstr5
+            elif 'drop' in y:
+                if 'w' in y:
+                    tempstr3 = y.partition(' l') # partition at location
+                    tempstr4 = tempstr3[2].partition(')')
+                    droplocation = 'l'+tempstr4[0]
+                    tempstr5 = '\n'+'(= (wegoal '+droplocation+') 10)'+'\n'+'(welder-drop-needed '+droplocation+')'+'\n'+'(at '+deadline+' (not (welder-drop-needed '+droplocation+')))'
+                if 'pa' in y: #currently just same as welder, must be updated
+                    tempstr3 = y.partition(' l') # partition at location
+                    tempstr4 = tempstr3[2].partition(')')
+                    droplocation = 'l'+tempstr4[0]
+                    tempstr5 = '\n'+'(= (wegoal '+droplocation+') 10)'+'\n'+'(welder-drop-needed '+droplocation+')'+'\n'+'(at '+deadline+' (not (welder-drop-needed '+droplocation+')))'
+    alldemandspddl = tempstr2
+
+    # Add welder and patch demands here.
 
     # Here the empty sidekick problem is modified to include inspect requests.
     tempstr1 = sidempty.partition('(deadline-open)')
     tempstr2 = tempstr1[2].partition('(> (score) ')
     tempstr3 = tempstr2[2].partition('0')
     tempint1 = []
-    for x in egoinspdemands:
+    for x in egodemands:
         tempint1.append(len(x))
     minscore = max(tempint1) - 1
     minscorestr = str(minscore)
-    tempstr4 = tempstr1[0]+tempstr1[1]+allinspdemandspddl+tempstr2[0]+tempstr2[1]+tempstr3[0]+minscorestr+tempstr3[2]
+    tempstr4 = tempstr1[0]+tempstr1[1]+alldemandspddl+tempstr2[0]+tempstr2[1]+tempstr3[0]+minscorestr+tempstr3[2]
     sidproblem = tempstr4
 
     # Here the sidekick problem is saved as a file.
@@ -232,6 +228,8 @@ while success == 0:
         print('egopanels ' + str(i) + ' is: ')
         for z in egopanels[i]:
             print(z)
+    
+    # Add parsing for weld drops and patch drops
 
     # Here the egobot problems are adjusted
     for i, x in enumerate(egobotproblemfiles):
@@ -278,49 +276,26 @@ while success == 0:
             egoplan[i] = []
     
     # Here the egobot problems are parsed.
-
-    egoinspdemands = [] # These are lists of lists.
-    egowelddemands = []
-    egoptchdemands = []
+    egodemands = [] # These are lists of lists.
     for i, x in enumerate(egoplan):
-        if isinstance(x, str):
-            tempstr1 = x.split('0.000:')
-            tempstr2 = tempstr1[-1]
-            tempstr3 = '0.000:'+tempstr2
-            tempstr4 = tempstr3.splitlines()
-            tempstr5 = []
-            for y in tempstr4:
-                if 'sid' in y:
-                    tempstr5.append(y)
+        tempstr1 = x.split('0.000:')
+        tempstr2 = tempstr1[-1]
+        tempstr3 = '0.000:'+tempstr2
+        tempstr4 = tempstr3.splitlines()
+        tempstr5 = []
+        for y in tempstr4:
+            if 'sid' in y:
+                tempstr5.append(y)
 
-            if tempstr5 == []:
-                egosuccess[i] = 1
-            else:
-                tempstr6 = []
-                for y in tempstr5:
-                    if 'inspect' in y:
-                        tempstr6.append(y)
+        if tempstr5 == []:
+            egosuccess[i] = 1
+        else:
+            tempstr6 = []
+            for y in tempstr5:
+                if 'inspect' or 'drop' in y:
+                    tempstr6.append(y)
 
-                egoinspdemands.append(tempstr6)
-
-                tempstr7 = []
-                for y in tempstr5:
-                    if 'drop' in y:
-                        tempstr7.append(y)
-
-                tempstr8 = []
-                for y in tempstr7:
-                    if 'w' in y:
-                        tempstr8.append(y)
-
-                egowelddemands.append(tempstr8)
-
-                tempstr9 = []
-                for y in tempstr7:
-                    if 'pa' in y:
-                        tempstr9.append(y)
-
-                egoptchdemands.append(tempstr9)
+            egodemands.append(tempstr6)
 
     if all(egosuccess): # In theory if there are any 0s in the list, it should return False
         success = 1
