@@ -168,6 +168,10 @@ while success == 0:
     tempstr6 = []
     tempstr7 = []
     tempstr8 = []
+    tempwelderdrops1 = []
+    tempwelderdrops2 = []
+    tempwelderdrops3 = []
+    tempwelderdrops4 = []
     for x in tempstr4:
         if 'pn1' in x: # This if statement should be refined to handle n many egobots
             # tempdict['pn1'] = [] # if its not created yet.
@@ -179,6 +183,15 @@ while success == 0:
             tempstr7.append(x)
         elif 'pn4' in x:
             tempstr8.append(x)
+        elif 'w' and 'drop' in x:
+            if 'l1' in x:
+                tempwelderdrops1.append(x)
+            elif 'l2' in x:
+                tempwelderdrops2.append(x)
+            elif 'l3' in x:
+                tempwelderdrops3.append(x)
+            elif 'l4' in x:
+                tempwelderdrops4.append(x)
     
     #print('tempstr5 is: ')
     #for x in tempstr5:
