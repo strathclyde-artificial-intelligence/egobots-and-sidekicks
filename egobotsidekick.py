@@ -161,7 +161,7 @@ while success == 0:
     for x in tempstr3b:
         if ': (' in x:
             tempstr3c = tempstr3c + '\n'+ x + '[1.000]'
-    print('tempstr3c is: ' +tempstr3c)
+    #print('tempstr3c is: ' +tempstr3c)
     tempstr4 = tempstr3c.splitlines()
 
     tempstr5 = []
@@ -180,38 +180,38 @@ while success == 0:
         elif 'pn4' in x:
             tempstr8.append(x)
     
-    print('tempstr5 is: ')
-    for x in tempstr5:
-        print(x)
-    print('tempstr6 is: ')
-    for x in tempstr6:
-        print(x)
-    print('tempstr7 is: ')
-    for x in tempstr7:
-        print(x)
-    print('tempstr8 is: ')
-    for x in tempstr8:
-        print(x)
+    #print('tempstr5 is: ')
+    #for x in tempstr5:
+    #    print(x)
+    #print('tempstr6 is: ')
+    #for x in tempstr6:
+    #    print(x)
+    #print('tempstr7 is: ')
+    #for x in tempstr7:
+    #    print(x)
+    #print('tempstr8 is: ')
+    #for x in tempstr8:
+    #    print(x)
 
     tempstr9 = tempstr4[-1].partition(':')
-    print('tempstr9 is: ')
-    for x in tempstr9:
-        print(x)
+    #print('tempstr9 is: ')
+    #for x in tempstr9:
+    #    print(x)
     tempstr10 = tempstr9[0] # extracting the time the final action begins
-    print('tempstr10 is: ' + tempstr10)
+    #print('tempstr10 is: ' + tempstr10)
     tempstr11 = tempstr4[-1].partition('l') # cutting at the sidekick's final location
-    print('tempstr11 is: ')
-    for x in tempstr11:
-        print(x)
+    #print('tempstr11 is: ')
+    #for x in tempstr11:
+    #    print(x)
     tempstr12 = tempstr11[2].partition(' ') # cutting off all data except location data
-    print('tempstr12 is: ')
-    for x in tempstr12:
-        print(x)
+    #print('tempstr12 is: ')
+    #for x in tempstr12:
+    #    print(x)
     tempstr13 = tempstr11[1]+tempstr12[0] # extracting final location
-    print('tempstr13 is: ' + tempstr13)
+    #print('tempstr13 is: ' + tempstr13)
 
     sidplanend = str(float(tempstr10) + 1.0 + timeoffset) # add 1.0 because all actions take 1.0, this will need to be improved
-    print('sidplanend is: ' + sidplanend)
+    #print('sidplanend is: ' + sidplanend)
     sidplanloc = tempstr13
     timeoffset = float(sidplanend)
 
