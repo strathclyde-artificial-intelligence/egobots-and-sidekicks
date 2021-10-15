@@ -168,10 +168,10 @@ while success == 0:
     tempstr6 = []
     tempstr7 = []
     tempstr8 = []
-    tempwelderdrops1 = []
-    tempwelderdrops2 = []
-    tempwelderdrops3 = []
-    tempwelderdrops4 = []
+    tempwelderdrops1 = [''] #this might avoid formatting errors later, as there is always a string for the in command to refer to
+    tempwelderdrops2 = ['']
+    tempwelderdrops3 = ['']
+    tempwelderdrops4 = ['']
     for x in tempstr4:
         if 'pn1' in x: # This if statement should be refined to handle n many egobots
             # tempdict['pn1'] = [] # if its not created yet.
@@ -238,33 +238,45 @@ while success == 0:
             tempstr3 = tempstr2[2].partition(' ')
             tempstr1.append(tempstr2[1]+tempstr3[0])
         egopanels[i] = tempstr1
-        print('egopanels ' + str(i) + ' is: ')
-        for z in egopanels[i]:
-            print(z)
+        #print('egopanels ' + str(i) + ' is: ')
+        #for z in egopanels[i]:
+        #    print(z)
     
-    # Add parsing for weld drops and patch drops
+    egowelder = [tempwelderdrops1, tempwelderdrops2, tempwelderdrops3, tempwelderdrops4]
+    egowelderdroploc = [[],[],[],[]]
+
+    for i, x in enumerate(egowelder):
+        tempstr1 = []
+        for y in x:
+            if 'w' in y:
+                tempstr2 = y.partition(' l') # partition at location
+                tempstr3 = tempstr2[2].partition(')')
+                droplocation = 'l'+tempstr3[0]
+                tempstr1.append(droplocation)
+        egowelderdroploc[i] = tempstr1 #unsure if this will break whenever there are no welder drops or not
+    # Add parsing for  patch drops
 
     # Here the egobot problems are adjusted
     for i, x in enumerate(egobotproblemfiles):
         f = open(x, 'r')
         tempstr1 = f.read()
         f.close()
-        print('tempstr1 is: ' + tempstr1)
+        #print('tempstr1 is: ' + tempstr1)
         
         tempstr2 = tempstr1.splitlines(True)
         tempstr3 = ''
         for y in tempstr2:
             if '(at sid ' in y:
                 y = '(at '+sidplanend+' (at sid '+sidplanloc+')\n'
-                print('Line changed to:' + y)
+                #print('Line changed to:' + y)
             for z in egopanels[i]:
                 if z in y: # if panel is in line of egobot problem
                     if 'is-inspected' in y:
                         y = ';' + y
-                        print('Line changed to:' + y)
+                        #print('Line changed to:' + y)
             tempstr3 = tempstr3 + y
 
-        print('tempstr3 is ' + tempstr3)
+        #print('tempstr3 is ' + tempstr3)
 
         egobotproblemfiles[i] = egopt1+egolist[i]+egopt2+iterstr+'.pddl'
         egobotplanfiles[i] = egopt3+egolist[i]+egopt4+iterstr+'.txt'
