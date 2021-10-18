@@ -74,37 +74,40 @@ for i, x in enumerate(sidtoego):
     sidtoego[i].actions[2].set_parsing([' l',' '])
     sidtoego[i].actions[2].set_function('addpatchdrop')
 
-def addinspectrequest(file, additions): #I cannot alter file and additions inside the function, as the function handles duplicates. These may need to be saved using a container class that I can modify.
+#Any time one of these functions is called, it ought to be followed by:
+#file = newfile
+#additions = additions + newaddition
+def addinspectrequest(file, panel, deadline):
+    newfile = file
+    newaddition = '\n'+'(= (ingoal '+panel+') 1)'+'\n'+'(is-not-inspected '+panel+')'+'\n'+'(at '+deadline+' (not (is-not-inspected '+panel+')))'
+    return newfile, newaddition
+
+def addwelderrequest(file, location, deadline):
     newfile = file
     newaddition = ''
     return newfile, newaddition
 
-def addwelderrequest(file, additions):
+def addpatchrequest(file, location, deadline):
     newfile = file
     newaddition = ''
     return newfile, newaddition
 
-def addpatchrequest(file, additions):
+def addegowelderdrop(file, location, time):
     newfile = file
     newaddition = ''
     return newfile, newaddition
 
-def addegowelderdrop(file, additions):
+def modifyinspectgoal(file):
     newfile = file
     newaddition = ''
     return newfile, newaddition
 
-def modifyinspectgoal(file,additions):
+def addwelderdrop(file):
     newfile = file
     newaddition = ''
     return newfile, newaddition
 
-def addwelderdrop(file,additions):
-    newfile = file
-    newaddition = ''
-    return newfile, newaddition
-
-def addpatchdrop(file,additions):
+def addpatchdrop(file):
     newfile = file
     newaddition = ''
     return newfile, newaddition
