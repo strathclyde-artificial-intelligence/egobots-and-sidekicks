@@ -4,18 +4,12 @@
 # This file will use a class of objects with an object instance for each sidekick, that object will include the parsing rules.
 
 class Agent:
-    def __init__(self, identifier, *listactions):
-        self.identifier = identifier #the string which refers to this agent in PDDL
+    def __init__(self, name = 'undefined', *listactions):
+        self.name = name
         self.actions = []
         for x in listactions:
             obj = self.Action(x)
             self.actions.append(obj)
-    
-    def add_global_parse(self, *listevents): #these are events like a tool being dropped which are relevant to the sidekick, even though the sidekick has not taken the action
-        self.events = []
-        for x in listevents:
-            obj = self.Event(x)
-            self.events.append(obj)
     
     def get_data(self):
         print('This Agent has ' + str(len(self.actions)) + ' actions, listed below.')
@@ -23,33 +17,59 @@ class Agent:
             print(self.actions[i].get_data())
 
     class Action:
-        def __init__(self, name = 'undefined', identifier = 'undefined', parsing = [['undefined','undefined']], addline = 'undefined', modifyline = 'undefined'):
+        def __init__(self, name = 'undefined'):
             self.name = name #a name
-            self.identifier = identifier #the string which will only appear in a Sidekick's Action (in the Egobot's plan) when this Action is being taken
-            self.parsing = parsing #a list of pairs of strings which can be used to isolate any pieces of information which must be recorded
-            self.addline = addline #the name of a function that creates a line to be added based on this action (replace this and similar with class methods? i don't think so, because I need specific functions for each Action)
-            self.modifyline = modifyline #the name of a function that parses for and modifies lines based on this action
+            self.identifiers = 'undefined'
+            self.parsing = [['undefined','undefined']]
+            self.function = 'undefined'
         
+        def set_identifiers(self, *identifiers):
+            self.identifiers = identifiers
+        
+        def set_parsing(self, parsing = [['undefined','undefined']]):
+            self.parsing = parsing
+
+        def set_function(self, *functionnames):
+            self.function = functionnames
+
         def get_data(self):
             print('Action: ' + self.name)
-            print('Identifier: ' + self.identifier)
+            print('Identifier: ' + str(self.identifiers))
             print('Parsing Borders: ' + str(self.parsing))
-            print('Add Line Function: ' + self.addline)
-            print('Modify Line Function: ' + self.modifyline)
-    
-    class Event:
-        def __init__(self, name = 'undefined', identifier = 'undefined', parsing = [['undefined','undefined']], addline = 'undefined', modifyline = 'undefined'):
-            self.name = name #a name
-            self.identifier = identifier #the string which identifies this effect has occurred
-            self.parsing = parsing #a list of pairs of strings which can be used to isolate any pieces of information which must be recorded
-            self.addline = addline #the name of a function that creates a line to be added based on this action
-            self.modifyline = modifyline #the name of a function that parses for and modifies lines based on this action
+            print('Function Names: ' + str(self.function))
 
-sid = Agent('inspect','dropwelder','droppatch')
-sid.actions[0].identifier = 'inspect'
-sid.actions[0].parsing = ['pn',' ']
-sid.actions[0].addline = 'addinspectline()'
-sid.get_data()
-#gavin = sid.actions[0]
-#gavin = Action(gavin)
-#sid.create_actions()
+egotosid = Agent('sid','inspect','dropwelder','droppatch','egodropwelder')
+
+egotosid.actions[0].set_identifiers('sid','inspect')
+egotosid.actions[0].set_parsing([' pn',' '])
+egotosid.actions[0].set_function('addinspectrequest')
+
+egotosid.actions[1].set_identifiers('sid','dropwelder')
+egotosid.actions[1].set_parsing([' l',' '])
+egotosid.actions[1].set_function('addwelderrequest')
+
+egotosid.actions[2].set_identifiers('sid','droppatch')
+egotosid.actions[2].set_parsing([' l',' '])
+egotosid.actions[2].set_function('addpatchrequest')
+
+egotosid.actions[3].set_identifiers('ego','dropwelder')
+egotosid.actions[3].set_parsing([' l',' '])
+egotosid.actions[3].set_function('addegowelderdrop')
+
+#sid.get_data()
+
+sidtoego = [1,2,3,4]
+for i, x in enumerate(sidtoego):
+    sidtoego[i] = Agent('ego'+str(x),'inspect','dropwelder','droppatch')
+
+    sidtoego[i].actions[0].set_identifiers('sid','inspect')
+    sidtoego[i].actions[0].set_parsing([' pn',' '])
+    sidtoego[i].actions[0].set_function('modifyinspectgoal')
+
+    sidtoego[i].actions[1].set_identifiers('sid','dropwelder')
+    sidtoego[i].actions[1].set_parsing([' l',' '])
+    sidtoego[i].actions[1].set_function('addwelderdrop')
+
+    sidtoego[i].actions[2].set_identifiers('sid','droppatch')
+    sidtoego[i].actions[2].set_parsing([' l',' '])
+    sidtoego[i].actions[2].set_function('addpatchdrop')
