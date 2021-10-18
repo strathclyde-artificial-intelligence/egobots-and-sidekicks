@@ -19,9 +19,9 @@ class Agent:
     class Action:
         def __init__(self, name = 'undefined'):
             self.name = name #a name
-            self.identifiers = 'undefined'
-            self.parsing = [['undefined','undefined']]
-            self.function = 'undefined'
+            self.identifiers = 'undefined' #the strings which identify this action is in a plan
+            self.parsing = [['undefined','undefined']] #a list of pairs of strings which can be used to isolate any pieces of information which must be recorded
+            self.function = 'undefined' #the names of any functions used to add or modify the next problem file based on reading this action in the previous plan
         
         def set_identifiers(self, *identifiers):
             self.identifiers = identifiers
