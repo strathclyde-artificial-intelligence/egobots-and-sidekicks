@@ -11,6 +11,12 @@ class Sidekick:
             obj = self.Action(x)
             self.actions.append(obj)
     
+    def add_global_parse(self, *listeffects):
+        self.globaleffects = []
+        for x in listeffects:
+            obj = self.GlobalEffect(x)
+            self.globaleffects.append(obj)
+    
     def get_data(self):
         print('This Sidekick has ' + str(len(self.actions)) + ' actions, listed below.')
         for i, x in enumerate(self.actions):
@@ -21,7 +27,7 @@ class Sidekick:
             self.name = name #a name
             self.identifier = identifier #the string which will only appear in a Sidekick's Action (in the Egobot's plan) when this Action is being taken
             self.parsing = parsing #a list of pairs of strings which can be used to isolate any pieces of information which must be recorded
-            self.addline = addline #the name of a function that creates a line to be added based on this action
+            self.addline = addline #the name of a function that creates a line to be added based on this action (replace this and similar with nested functions?)
             self.modifyline = modifyline #the name of a function that parses for and modifies lines based on this action
         
         def get_data(self):
@@ -30,6 +36,14 @@ class Sidekick:
             print('Parsing Borders: ' + str(self.parsing))
             print('Add Line Function: ' + self.addline)
             print('Modify Line Function: ' + self.modifyline)
+    
+    class GlobalEffect:
+        def __init__(self, name = 'undefined', identifier = 'undefined', parsing = [['undefined','undefined']], addline = 'undefined', modifyline = 'undefined'):
+            self.name = name #a name
+            self.identifier = identifier #the string which identifies this effect has occurred
+            self.parsing = parsing #a list of pairs of strings which can be used to isolate any pieces of information which must be recorded
+            self.addline = addline #the name of a function that creates a line to be added based on this action
+            self.modifyline = modifyline #the name of a function that parses for and modifies lines based on this action
 
 sid = Sidekick('inspect','dropwelder','droppatch')
 sid.actions[0].identifier = 'inspect'
