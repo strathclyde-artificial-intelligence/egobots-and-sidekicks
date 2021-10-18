@@ -82,9 +82,9 @@ def addinspectrequest(file, panel, deadline):
     newaddition = '\n'+'(= (ingoal '+panel+') 1)'+'\n'+'(is-not-inspected '+panel+')'+'\n'+'(at '+deadline+' (not (is-not-inspected '+panel+')))'
     return newfile, newaddition
 
-def addwelderrequest(file, location, deadline):
+def addwelderrequest(file, droplocation, deadline):
     newfile = file
-    newaddition = ''
+    newaddition = '\n'+'(= (wegoal '+droplocation+') 10)'+'\n'+'(welder-drop-needed '+droplocation+')'+'\n'+'(at '+deadline+' (not (welder-drop-needed '+droplocation+')))'
     return newfile, newaddition
 
 def addpatchrequest(file, location, deadline):
