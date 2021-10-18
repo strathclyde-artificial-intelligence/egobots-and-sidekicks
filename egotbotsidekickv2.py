@@ -73,3 +73,38 @@ for i, x in enumerate(sidtoego):
     sidtoego[i].actions[2].set_identifiers('sid','droppatch')
     sidtoego[i].actions[2].set_parsing([' l',' '])
     sidtoego[i].actions[2].set_function('addpatchdrop')
+
+def addinspectrequest(file, additions): #I cannot alter file and additions inside the function, as the function handles duplicates. These may need to be saved using a container class that I can modify.
+    newfile = file
+    newaddition = ''
+    return newfile, newaddition
+
+def addwelderrequest(file, additions):
+    newfile = file
+    newaddition = ''
+    return newfile, newaddition
+
+def addpatchrequest(file, additions):
+    newfile = file
+    newaddition = ''
+    return newfile, newaddition
+
+def addegowelderdrop(file, additions):
+    newfile = file
+    newaddition = ''
+    return newfile, newaddition
+
+def modifyinspectgoal(file,additions):
+    newfile = file
+    newaddition = ''
+    return newfile, newaddition
+
+def addwelderdrop(file,additions):
+    newfile = file
+    newaddition = ''
+    return newfile, newaddition
+
+def addpatchdrop(file,additions):
+    newfile = file
+    newaddition = ''
+    return newfile, newaddition
