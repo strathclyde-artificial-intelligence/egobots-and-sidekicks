@@ -4,7 +4,8 @@
 # This file will use a class of objects with an object instance for each sidekick, that object will include the parsing rules.
 
 class Sidekick:
-    def __init__(self, *listactions):
+    def __init__(self, identifier, *listactions):
+        self.identifier = identifier #the string which refers to this agent in PDDL
         self.actions = []
         for x in listactions:
             obj = self.Action(x)
