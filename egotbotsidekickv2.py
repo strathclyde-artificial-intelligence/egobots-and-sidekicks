@@ -121,3 +121,37 @@ def addpatchdrop(file):
     newfile = file
     newaddition = ''
     return newfile, newaddition
+
+def outputparser(file): # this function extracts a plan from a planner's output log
+    splitbyplan = file.split('[0.000]:')
+    lastplan = splitbyplan[-1]
+    lastplanlines = lastplan.splitlines()
+    plan = ''
+    for line in lastplanlines:
+        if ': (' in line:
+            plan = plan + '\n' + line
+    return plan
+
+def planparser(plan, identifiers, parsing): # this function parses a plan string for information contained in the parsing pairs on lines identified by identifiers
+    planlines = plan.splitline()
+    relevantlines = []
+    keyinfo = []
+    keyinfo[0] = []
+    for line in planlines():
+        if all(key in line for key in identifiers): # the line must contain every identifier string to be accepted
+            relevantlines.append(line)
+    for line in relevantlines:
+        for i, pair in enumerate(parsing): # parsing is a list of lists of strings, each list of strings has two strings
+            sep1 = line.partition(pair[0]) # cut off the part of the line before the info to be parsed
+            sep2 = sep1[2].partition(pair[1]) # cut off the part of the line after the info to be parsed
+            keydatum = sep1[1]+sep2[0]+sep2[1] # combine the parsing strings with the contained string
+            keyinfo[i].append(keydatum.strip()) # the spaces used in the parsing strings are removed by the .strip()
+    lastrelevantline = relevantlines[-1]
+    timesep1 = lastrelevantline.partition(':') # extract starting time of the last line
+    timesep2a = timesep1.partition(' [') # extract duration of the first time
+    timesep2b = timesep2a.partition(']') # trim square bracket off the duration
+    lastlinestart = timesep1[0]
+    lastlinedur = timesep2b[0]
+    deadline = str(float(lastlinestart)+float(lastlinedur))
+    return keyinfo, deadline # a list of lists of strings such as panels and a string giving the end time of the last request
+            
