@@ -78,28 +78,27 @@ for i, x in enumerate(sidtoego):
 
 # These are the file modification functions
 
-#Any time one of these functions is called, it ought to be followed by:
-#file = newfile
-#additions = additions + newaddition
-def addinspectrequest(file, panel, deadline):
-    newfile = file
-    newaddition = '\n'+'(= (ingoal '+panel+') 1)'+'\n'+'(is-not-inspected '+panel+')'+'\n'+'(at '+deadline+' (not (is-not-inspected '+panel+')))'
-    return newfile, newaddition
+def addinspectrequest(file, panels, deadline):
+    sep1 = file.partition(';inspectrequests')
+    newfile = sep1[0]+sep1[1]
+    for panel in panels:
+        newfile = newfile + '\n'+'(= (ingoal '+panel+') 1)'+'\n'+'(is-not-inspected '+panel+')'+'\n'+'(at '+deadline+' (not (is-not-inspected '+panel+')))'
+    return newfile
 
-def addwelderrequest(file, droplocation, deadline):
-    newfile = file
-    newaddition = '\n'+'(= (wegoal '+droplocation+') 10)'+'\n'+'(welder-drop-needed '+droplocation+')'+'\n'+'(at '+deadline+' (not (welder-drop-needed '+droplocation+')))'
-    return newfile, newaddition
+def addwelderrequest(file, droplocations, deadline):
+    sep1 = file.partition(';welderdroprequests')
+    newfile = sep1[0]+sep1[1]
+    for droplocation in droplocations:
+        newfile = newfile + '\n'+'(= (wegoal '+droplocation+') 10)'+'\n'+'(welder-drop-needed '+droplocation+')'+'\n'+'(at '+deadline+' (not (welder-drop-needed '+droplocation+')))'
+    return newfile
 
-def addpatchrequest(file, droplocation, deadline):
+def addpatchrequest(file, droplocations, deadline):
     newfile = file
-    newaddition = ''
-    return newfile, newaddition
+    return newfile
 
-def addegowelderdrop(file, location, time):
+def addegowelderdrop(file, locations, times):
     newfile = file
-    newaddition = ''
-    return newfile, newaddition
+    return newfile
 
 def modifyinspectgoal(file, panels): # this function takes in a list of all the panels, if you do only one panel at a time it will be slower
     sep1 = file.partition(';goalstart') # this comment must be located at the start of the egobot's goals
@@ -113,25 +112,21 @@ def modifyinspectgoal(file, panels): # this function takes in a list of all the 
             else:
                 newgoals = newgoals + '\n'+line
     newfile = sep1[0]+sep1[1]+newgoals+'\n'+sep2[1]+sep2[2]
-    newaddition = ''
-    return newfile, newaddition
+    return newfile
 
 def addwelderdrop(file):
     newfile = file
-    newaddition = ''
-    return newfile, newaddition
+    return newfile
 
 def addpatchdrop(file):
     newfile = file
-    newaddition = ''
-    return newfile, newaddition
+    return newfile
 
 def modifysidekicklocation(file, sidloc, sidtime):
     sep1 = file.partition(';sidlocstart') # this comment must be placed before the sidekick's starting location in the egobot problem file
     sep2 = file.partition(';sidlocend') # this comment must be placed after
     newfile = sep1[0]+sep1[1]+ '\n'+'(at '+sidtime+' (at sid '+sidloc+')\n'+sep2[1]+sep2[2]
     return newfile
-
 
 # These are the parser functions
 
