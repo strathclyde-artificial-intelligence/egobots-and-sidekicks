@@ -97,8 +97,18 @@ def addegowelderdrop(file, location, time):
     newaddition = ''
     return newfile, newaddition
 
-def modifyinspectgoal(file):
-    newfile = file
+def modifyinspectgoal(file, panels): # this function takes in a list of all the panels, if you do only one panel at a time it will be slower
+    sep1 = file.partition(';goalstart') # this comment must be located at the start of the egobot's goals
+    sep2 = sep1.partition(';goalend') # this comment must be located at the end of the egobot's goals
+    sep3 = sep2.splitlines()
+    newgoals = ''
+    for line in sep3:
+        for panel in panels:
+            if panel in line:
+                newgoals = newgoals + '\n'+';'+line
+            else:
+                newgoals = newgoals + '\n'+line
+    newfile = sep1[0]+sep1[1]+newgoals+'\n'+sep2[1]+sep2[2]
     newaddition = ''
     return newfile, newaddition
 
