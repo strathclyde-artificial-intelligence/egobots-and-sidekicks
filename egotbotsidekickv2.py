@@ -5,6 +5,8 @@
 # This file uses general functions for parsing plans. These parsing functions must be tweaked to suit the output format of a planner.
 # This file uses separate functions for each modification to or addition of a line to a problem file.
 
+import os
+
 class Agent:
     def __init__(self, name = 'undefined', *listactions):
         self.name = name
@@ -185,3 +187,15 @@ def endlocationparser(plan):
     endloc = locsep1[1]+locsep2[0]
     endloc = endloc.strip()
     return endtime, endloc
+
+# This function calls a planner
+
+def callplanner(planner,domain,problem,planfile,timeout): # all as strings, give full file names for domain, problem, and planfile. include modifiers like -n in planner
+    f = open(planfile,'x')
+    f.close()
+    arg = 'timeout '+timeout+' '+'./'+planner+' '+domain+' '+problem+' > '+planfile
+    os.system(arg)
+    f = open(planfile,'r')
+    outputlog = f.read()
+    f.close()
+    return outputlog
