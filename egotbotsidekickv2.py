@@ -1,7 +1,9 @@
 # egobotsidekickv2.py
 # This file is a work in progress.
 # This file aims to achieve the full functionality of egobotsidekick.py, but with a better framework that allows new parsing rules to be added more easily.
-# This file will use a class of objects with an object instance for each sidekick, that object will include the parsing rules.
+# This file uses the Agent class and the Action subclass to define rules for how to parse a plan.
+# This file uses general functions for parsing plans. These parsing functions must be tweaked to suit the output format of a planner.
+# This file uses separate functions for each modification to or addition of a line to a problem file.
 
 class Agent:
     def __init__(self, name = 'undefined', *listactions):
@@ -12,7 +14,7 @@ class Agent:
             self.actions.append(obj)
     
     def get_data(self):
-        print('This Agent has ' + str(len(self.actions)) + ' actions, listed below.')
+        print('This Agent has ' + str(len(self.actions)) + ' parsing-relevant actions, listed below.')
         for i, x in enumerate(self.actions):
             print(self.actions[i].get_data())
 
