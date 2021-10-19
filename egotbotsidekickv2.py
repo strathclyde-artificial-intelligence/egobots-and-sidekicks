@@ -132,8 +132,10 @@ def outputparser(file): # this function extracts a plan from a planner's output 
             plan = plan + '\n' + line
     return plan
 
-def planparser(plan, identifiers, parsing): # this function parses a plan string for information contained in the parsing pairs on lines identified by identifiers
+def planparser(plan, action): # this function parses a plan string for information contained in the parsing pairs on lines identified by identifiers
     planlines = plan.splitline()
+    identifiers = action.identifiers
+    parsing = action.parsing
     relevantlines = []
     keyinfo = []
     keyinfo[0] = []
