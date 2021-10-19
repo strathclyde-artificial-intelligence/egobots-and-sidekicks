@@ -124,8 +124,14 @@ def addpatchdrop(file):
 
 def modifysidekicklocation(file, sidloc, sidtime):
     sep1 = file.partition(';sidlocstart') # this comment must be placed before the sidekick's starting location in the egobot problem file
-    sep2 = file.partition(';sidlocend') # this comment must be placed after
+    sep2 = sep1.partition(';sidlocend') # this comment must be placed after
     newfile = sep1[0]+sep1[1]+ '\n'+'(at '+sidtime+' (at sid '+sidloc+')\n'+sep2[1]+sep2[2]
+    return newfile
+
+def modifysidekickgoal(file, minscore): # minscore must be a string
+    sep1 = file.partition(';goalstart')
+    sep2 = sep1.partition(';goalend')
+    newfile = sep1[0]+sep1[1]+'\n'+'(> (score) '+minscore+')'+'\n'+sep2[1]+sep2[2]
     return newfile
 
 # These are the parser functions
