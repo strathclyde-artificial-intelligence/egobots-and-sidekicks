@@ -124,6 +124,12 @@ def addpatchdrop(file):
     newaddition = ''
     return newfile, newaddition
 
+def modifysidekicklocation(file, sidloc, sidtime):
+    sep1 = file.partition(';sidlocstart') # this comment must be placed before the sidekick's starting location in the egobot problem file
+    sep2 = file.partition(';sidlocend') # this comment must be placed after
+    newfile = sep1[0]+sep1[1]+ '\n'+'(at '+sidtime+' (at sid '+sidloc+')\n'+sep2[1]+sep2[2]
+    return newfile
+
 def outputparser(file): # this function extracts a plan from a planner's output log
     splitbyplan = file.split('[0.000]:')
     lastplan = splitbyplan[-1]
@@ -158,4 +164,3 @@ def planparser(plan, action): # this function parses a plan string for informati
     lastlinedur = timesep2b[0]
     deadline = str(float(lastlinestart)+float(lastlinedur))
     return keyinfo, deadline # a list of lists of strings such as panels and a string giving the end time of the last request
-            
