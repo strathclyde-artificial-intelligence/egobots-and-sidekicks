@@ -76,6 +76,8 @@ for i, x in enumerate(sidtoego):
     sidtoego[i].actions[2].set_parsing([' l',' '])
     sidtoego[i].actions[2].set_function('addpatchdrop')
 
+# These are the file modification functions
+
 #Any time one of these functions is called, it ought to be followed by:
 #file = newfile
 #additions = additions + newaddition
@@ -89,7 +91,7 @@ def addwelderrequest(file, droplocation, deadline):
     newaddition = '\n'+'(= (wegoal '+droplocation+') 10)'+'\n'+'(welder-drop-needed '+droplocation+')'+'\n'+'(at '+deadline+' (not (welder-drop-needed '+droplocation+')))'
     return newfile, newaddition
 
-def addpatchrequest(file, location, deadline):
+def addpatchrequest(file, droplocation, deadline):
     newfile = file
     newaddition = ''
     return newfile, newaddition
@@ -130,6 +132,9 @@ def modifysidekicklocation(file, sidloc, sidtime):
     newfile = sep1[0]+sep1[1]+ '\n'+'(at '+sidtime+' (at sid '+sidloc+')\n'+sep2[1]+sep2[2]
     return newfile
 
+
+# These are the parser functions
+
 def outputparser(file): # this function extracts a plan from a planner's output log
     splitbyplan = file.split('[0.000]:')
     lastplan = splitbyplan[-1]
@@ -158,9 +163,24 @@ def planparser(plan, action): # this function parses a plan string for informati
             keyinfo[i].append(keydatum.strip()) # the spaces used in the parsing strings are removed by the .strip()
     lastrelevantline = relevantlines[-1]
     timesep1 = lastrelevantline.partition(':') # extract starting time of the last line
-    timesep2a = timesep1.partition(' [') # extract duration of the first time
-    timesep2b = timesep2a.partition(']') # trim square bracket off the duration
+    #timesep2a = timesep1[2].partition(' [') # extract duration of the last line
+    #timesep2b = timesep2a[2].partition(']') # trim square bracket off the duration
+    lastlinestart = timesep1[0]
+    #lastlinedur = timesep2b[0]
+    deadline = str(float(lastlinestart))#+float(lastlinedur))
+    return keyinfo, deadline # a list of lists of strings such as panels and a string giving the start time of the last request
+
+def endlocationparser(plan):
+    planlines = plan.splitlines()
+    lastline = planlines[-1]
+    timesep1 = lastline.partition(':') # extract the starting time of the last line
+    timesep2a = timesep1[2].partition(' [') # extract duration of last line
+    timesep2b = timesep2a[2].partition(']') # trim square bracket off the duration
     lastlinestart = timesep1[0]
     lastlinedur = timesep2b[0]
-    deadline = str(float(lastlinestart)+float(lastlinedur))
-    return keyinfo, deadline # a list of lists of strings such as panels and a string giving the end time of the last request
+    endtime = str(float(lastlinestart)+float(lastlinedur))
+    locsep1 = lastline.partition(' l') # cut off the part of the last line before the location in that final action (this might be inaccurate for a move action)
+    locsep2 = locsep1[2].partition(' ') # cut off the part of the last line after the location
+    endloc = locsep1[1]+locsep2[0]
+    endloc = endloc.strip()
+    return endtime, endloc
