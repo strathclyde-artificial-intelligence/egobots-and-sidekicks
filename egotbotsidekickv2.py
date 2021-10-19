@@ -42,42 +42,6 @@ class Agent:
             print('Parsing Borders: ' + str(self.parsing))
             print('Function Names: ' + str(self.function))
 
-egotosid = Agent('sid','inspect','dropwelder','droppatch','egodropwelder')
-
-egotosid.actions[0].set_identifiers('sid','inspect')
-egotosid.actions[0].set_parsing([' pn',' '])
-egotosid.actions[0].set_function('addinspectrequest')
-
-egotosid.actions[1].set_identifiers('sid','dropwelder')
-egotosid.actions[1].set_parsing([' l',' '])
-egotosid.actions[1].set_function('addwelderrequest')
-
-egotosid.actions[2].set_identifiers('sid','droppatch')
-egotosid.actions[2].set_parsing([' l',' '])
-egotosid.actions[2].set_function('addpatchrequest')
-
-egotosid.actions[3].set_identifiers('ego','dropwelder')
-egotosid.actions[3].set_parsing([' l',' '])
-egotosid.actions[3].set_function('addegowelderdrop')
-
-#sid.get_data()
-
-sidtoego = [1,2,3,4]
-for i, x in enumerate(sidtoego):
-    sidtoego[i] = Agent('ego'+str(x),'inspect','dropwelder','droppatch')
-
-    sidtoego[i].actions[0].set_identifiers('sid','inspect')
-    sidtoego[i].actions[0].set_parsing([' pn',' '])
-    sidtoego[i].actions[0].set_function('modifyinspectgoal')
-
-    sidtoego[i].actions[1].set_identifiers('sid','dropwelder')
-    sidtoego[i].actions[1].set_parsing([' l',' '])
-    sidtoego[i].actions[1].set_function('addwelderdrop')
-
-    sidtoego[i].actions[2].set_identifiers('sid','droppatch')
-    sidtoego[i].actions[2].set_parsing([' l',' '])
-    sidtoego[i].actions[2].set_function('addpatchdrop')
-
 # These are the file modification functions
 
 def addinspectrequest(file, panels, deadline):
@@ -127,7 +91,13 @@ def addpatchdrop(file):
 def modifysidekicklocation(file, sidloc, sidtime):
     sep1 = file.partition(';sidlocstart') # this comment must be placed before the sidekick's starting location in the egobot problem file
     sep2 = sep1.partition(';sidlocend') # this comment must be placed after
-    newfile = sep1[0]+sep1[1]+ '\n'+'(at '+sidtime+' (at sid '+sidloc+')\n'+sep2[1]+sep2[2]
+    newfile = sep1[0]+sep1[1]+ '\n'+'(at '+sidtime+' (at sid '+sidloc+'))\n'+sep2[1]+sep2[2]
+    return newfile
+
+def modifysidekickstart(file, sidloc):
+    sep1 = file.partition(';sidlocstart') # this comment must be placed before the sidekick's starting location in the empty sidekick problem file
+    sep2 = sep1.partition(';sidlocend') # this comment must be placed after
+    newfile = sep1[0]+sep1[1]+ '\n'+' (at sid '+sidloc+')\n'+sep2[1]+sep2[2]
     return newfile
 
 def modifysidekickgoal(file, minscore): # minscore must be a string
@@ -183,7 +153,7 @@ def endlocationparser(plan):
     lastlinedur = timesep2b[0]
     endtime = str(float(lastlinestart)+float(lastlinedur))
     locsep1 = lastline.partition(' l') # cut off the part of the last line before the location in that final action (this might be inaccurate for a move action)
-    locsep2 = locsep1[2].partition(' ') # cut off the part of the last line after the location
+    locsep2 = locsep1[2].partition(')') # cut off the part of the last line after the location
     endloc = locsep1[1]+locsep2[0]
     endloc = endloc.strip()
     return endtime, endloc
@@ -199,3 +169,179 @@ def callplanner(planner,domain,problem,planfile,timeout): # all as strings, give
     outputlog = f.read()
     f.close()
     return outputlog
+
+# Here strings are defined which are used to find and create files.
+egopt1 = 'egobot-'
+egopt2 = '-problem-'
+egopt3 = 'Egobot-'
+egopt4 = '-Iteration-'
+egolist = ['1','2','3','4']
+
+sidpt1 = 'sidekick-problem-'
+sidpt2 = 'Sidekick-Iteration-'
+
+# Here the empty sidekick problem is named.
+sidfileempty = 'sidekick-problem-empty-2.pddl'
+f = open(sidfileempty,'r')
+sidempty = f.read()
+f.close()
+
+# Here the domains are named.
+egodomain = 'maintenance-domain.pddl'
+siddomain = 'sidekick-domain-2.pddl'
+
+# Here the planner is named.
+planner = 'optic-cplex -n'
+
+# Here the iteration counting variable and the success variable are made.
+iter = 1
+iterstr = str(iter)
+success = 0
+egosuccess = []
+for x in egolist:
+    egosuccess.append(0)
+
+timeoffset = 0.0
+
+# Here the egobot input file names are found.
+egobotproblemfiles = []
+egobotplanfiles = []
+for egobotnum in egolist:
+    egobotproblemfiles.append(egopt1+egobotnum+egopt2+iterstr+'.pddl')
+    egobotplanfiles.append(egopt3+egobotnum+egopt4+iterstr+'.txt')
+
+# Here the agents and actions are created.
+egotosid = Agent('sid','inspect','dropwelder','droppatch','egodropwelder')
+
+egotosid.actions[0].set_identifiers('sid','inspect')
+egotosid.actions[0].set_parsing([' pn',' '])
+egotosid.actions[0].set_function('addinspectrequest')
+
+egotosid.actions[1].set_identifiers('sid','dropwelder')
+egotosid.actions[1].set_parsing([' l',' '])
+egotosid.actions[1].set_function('addwelderrequest')
+
+egotosid.actions[2].set_identifiers('sid','droppatch')
+egotosid.actions[2].set_parsing([' l',' '])
+egotosid.actions[2].set_function('addpatchrequest')
+
+egotosid.actions[3].set_identifiers('ego','dropwelder')
+egotosid.actions[3].set_parsing([' l',' '])
+egotosid.actions[3].set_function('addegowelderdrop')
+
+#sid.get_data()
+sidtoego = []
+for i, x in enumerate(egolist):
+    sidtoego[i] = Agent('ego'+x,'inspect','dropwelder','droppatch')
+
+    sidtoego[i].actions[0].set_identifiers('sid','inspect')
+    sidtoego[i].actions[0].set_parsing([' pn',' '])
+    sidtoego[i].actions[0].set_function('modifyinspectgoal')
+
+    sidtoego[i].actions[1].set_identifiers('sid','dropwelder')
+    sidtoego[i].actions[1].set_parsing([' l',' '])
+    sidtoego[i].actions[1].set_function('addwelderdrop')
+
+    sidtoego[i].actions[2].set_identifiers('sid','droppatch')
+    sidtoego[i].actions[2].set_parsing([' l',' '])
+    sidtoego[i].actions[2].set_function('addpatchdrop')
+
+# Here the egobot problems are run for the first time.
+egoplan = []
+timeout = '10'
+for i, problem in enumerate(egobotproblemfiles):
+    egoplan.append(callplanner(planner,egodomain,problem,egobotplanfiles[i],timeout))
+
+# Here the first set of egobot plans are parsed.
+for i, output in egoplan:
+    egoplan[i] = outputparser(output)
+
+f = open(sidempty, 'r')
+newsidproblem = f.read()
+f.close()
+
+for i, plan in enumerate(egoplan):
+    tempsuccesscheck = 1
+    for action in egotosid.actions:
+        parsedinfo, deadline = planparser(plan,action)
+        if parsedinfo != [[]]:
+            function = action.function
+            newsidproblem = eval(function+'(parsedinfo[0],deadline)') # the 0 is a temporary workaround because parsedinfo is a list of lists
+            tempsuccesscheck = 0
+    if tempsuccesscheck == 1:
+        egosuccess[i] = 1
+
+if all(i in egosuccess == 1):
+    success = 1
+
+# Here the looping starts
+while success == 0:
+    sidproblemfile = sidpt1 + iterstr + '.pddl'
+    f = open(sidproblemfile,'x')
+    f.write(newsidproblem) #currently missing using the score change function
+    f.close()
+
+    # Here the sidekick problem is run
+    sidplanfile = sidpt2+iterstr+'.txt'
+    timeout = '20'
+    sidplan = callplanner(planner,siddomain,sidproblemfile,sidplanfile,timeout)
+
+    # Here the iteration number is increased
+    iter = iter+1
+    iterstr = str(iter)
+
+    # Here the sidekick problem is parsed
+    sidplan = outputparser(sidplan)
+    sidloc, sidtime = endlocationparser(sidplan)
+    timeoffset = timeoffset+float(sidtime)
+    egobotproblem = []
+    for i, problemfile in egobotproblemfiles:
+        f = open(problemfile, 'r')
+        egobotproblem.append(f.read())
+        f.close()
+        for action in sidtoego[i].actions:
+            parsedinfo, redundant = planparser(sidplan)
+            if parsedinfo != [[]]:
+                function = action.function
+                egobotproblem[i] = eval(function+'(parsedinfo[0],deadline)')
+        egobotproblem[i] = modifysidekicklocation(egobotproblem[i],sidloc,sidtime)
+        egobotproblemfiles[i] = egopt1+egolist[i]+egopt2+iterstr+'.pddl'
+        egobotplanfiles[i] = egopt3+egolist[i]+egopt4+iterstr+'.txt'
+        f = open(egobotproblemfiles[i], 'x')
+        f.write(egobotproblem[i])
+        f.close()
+    
+    # Here the egobot problems are run.
+    timeout = '10'
+    for i, problem in enumerate(egobotproblemfiles):
+        if egosuccess[i] == 0:
+            egoplan.append(callplanner(planner,egodomain,problem,egobotplanfiles[i],timeout))
+        else:
+            egoplan[i] = []
+    
+    # Here the egobot problems are parsed.
+    for i, output in egoplan:
+        if egosuccess[i] == 0:
+            egoplan[i] = outputparser(output)
+
+    f = open(sidempty, 'r')
+    newsidproblem = f.read()
+    f.close()
+
+    for i, plan in enumerate(egoplan):
+        if egosuccess[i] == 0:
+            tempsuccesscheck = 1
+            for action in egotosid.actions:
+                parsedinfo, deadline = planparser(plan,action)
+                deadline = str(float(deadline)-timeoffset)
+                if parsedinfo != [[]]:
+                    function = action.function
+                    newsidproblem = eval(function+'(parsedinfo[0],deadline)') # the 0 is a temporary workaround because parsedinfo is a list of lists
+                    tempsuccesscheck = 0
+            if tempsuccesscheck == 1:
+                egosuccess[i] = 1
+
+    if all(i in egosuccess == 1):
+        success = 1
+    
+    newsidproblem = modifysidekickstart(newsidproblem,sidloc)
