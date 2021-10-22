@@ -148,6 +148,7 @@
         (at end (dropped ?w ?l))
         (at end (camera-free ?r))
         (at end (hands-free ?r))
+        (at end (increase (score) (wegoal ?l)))
     )
 )
 
