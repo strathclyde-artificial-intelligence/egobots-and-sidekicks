@@ -55,6 +55,8 @@ def addinspectrequest(file, panels, deadline):
 def addwelderrequest(file, droplocations, deadline):
     sep1 = file.partition(';welderdroprequests') # this comment must be added in the :init section of the empty sidekick problem
     newfile = sep1[0]+sep1[1]
+    if not '(welder-drop-needed)' in sep1[2]:
+        newfile = newfile + '\n(welder-drop-needed)'
     for droplocation in droplocations:
         newfile = newfile + '\n'+'(= (wegoal '+droplocation+') 10)'+'\n'+'(welder-drop-needed '+droplocation+')'+'\n'+'(at '+deadline+' (not (welder-drop-needed '+droplocation+')))'
     newfile = newfile+sep1[2]
@@ -81,7 +83,7 @@ def modifyinspectgoal(file, panels, placeholder): # this function takes in a lis
     newfile = sep1[0]+sep1[1]+newgoals+'\n'+sep2[1]+sep2[2]
     return newfile
 
-def addwelderdrop(file, placeholder, placeholder2):
+def addwelderdrop(file, locations, droptimes):
     newfile = file
     return newfile
 
@@ -126,6 +128,7 @@ def planparser(plan, action): # this function parses a plan string for informati
     relevantlines = []
     keyinfo = []
     keyinfo.append([])
+    deadlines = []
     for line in planlines:
         if all(key in line for key in identifiers): # the line must contain every identifier string to be accepted
             relevantlines.append(line)
@@ -134,19 +137,21 @@ def planparser(plan, action): # this function parses a plan string for informati
             sep1 = line.partition(pair[0]) # cut off the part of the line before the info to be parsed
             sep2 = sep1[2].partition(pair[1]) # cut off the part of the line after the info to be parsed
             keydatum = sep1[1]+sep2[0]+sep2[1] # combine the parsing strings with the contained string
-            keyinfo[i].append(keydatum.strip()) # the spaces used in the parsing strings are removed by the .strip()
-    if relevantlines:
-        lastrelevantline = relevantlines[-1]
-        timesep1 = lastrelevantline.partition(':') # extract starting time of the last line
-        #timesep2a = timesep1[2].partition(' [') # extract duration of the last line
-        #timesep2b = timesep2a[2].partition(']') # trim square bracket off the duration
-        lastlinestart = timesep1[0]
-        #lastlinedur = timesep2b[0]
-        deadline = str(float(lastlinestart)+0.005)#+float(lastlinedur))
-        # 0.005 second buffer has been added due to an error which occured when the sidekick had only one request to deal with and that request was at its starting location, thus having a deadline of 0.001 seconds
-    else:
-        deadline = 0
-    return keyinfo, deadline # a list of lists of strings such as panels and a string giving the start time of the last request
+            keyinfo[i].append(keydatum.strip()) # the spaces used in the parsing strings are removed by the .strip() #i think this will cause errors when i > 1
+        timesep1 = line.partition(':')
+        deadlines.append(str(float(timesep1[0])+0.005))
+    #if relevantlines:
+    #    lastrelevantline = relevantlines[-1]
+    #    timesep1 = lastrelevantline.partition(':') # extract starting time of the last line
+    #    #timesep2a = timesep1[2].partition(' [') # extract duration of the last line
+    #    #timesep2b = timesep2a[2].partition(']') # trim square bracket off the duration
+    #    lastlinestart = timesep1[0]
+    #    #lastlinedur = timesep2b[0]
+    #    deadline = str(float(lastlinestart)+0.005)#+float(lastlinedur))
+    #    # 0.005 second buffer has been added due to an error which occured when the sidekick had only one request to deal with and that request was at its starting location, thus having a deadline of 0.001 seconds
+    #else:
+    #    deadline = 0
+    return keyinfo, deadlines # a list of lists of strings such as panels and a list of strings giving the start time of the each request
 
 def endlocationparser(plan):
     planlines = plan.splitlines()
@@ -271,7 +276,9 @@ newsidproblem = sidempty
 for i, plan in enumerate(egoplan):
     tempsuccesscheck = 1
     for action in egotosid.actions:
-        parsedinfo, deadline = planparser(plan,action)
+        parsedinfo, deadlines = planparser(plan,action)
+        if deadlines:
+            deadline = deadlines[-1]
         if parsedinfo != [[]]:
             function = action.function
             newsidproblem = eval(function+'(newsidproblem,parsedinfo[0],deadline)') # the 0 is a temporary workaround because parsedinfo is a list of lists
@@ -314,10 +321,10 @@ while success == 0:
         egobotproblem.append(f.read())
         f.close()
         for action in sidtoego[i].actions:
-            parsedinfo, redundant = planparser(sidplan, action)
+            parsedinfo, deadlines = planparser(sidplan, action)
             if parsedinfo != [[]]:
                 function = action.function
-                egobotproblem[i] = eval(function+'(egobotproblem[i],parsedinfo[0],deadline)')
+                egobotproblem[i] = eval(function+'(egobotproblem[i],parsedinfo[0],deadlines)')
         egobotproblem[i] = modifysidekicklocation(egobotproblem[i],sidloc,str(timeoffset))
         egobotproblemfiles[i] = egopt1+egolist[i]+egopt2+iterstr+'.pddl'
         egobotplanfiles[i] = egopt3+egolist[i]+egopt4+iterstr+'.txt'
@@ -346,7 +353,9 @@ while success == 0:
         if egosuccess[i] == 0:
             tempsuccesscheck = 1
             for action in egotosid.actions:
-                parsedinfo, deadline = planparser(plan,action)
+                parsedinfo, deadlines = planparser(plan,action)
+                if deadlines:
+                    deadline = deadlines[-1]
                 deadline = str(float(deadline)-timeoffset)
                 if parsedinfo != [[]]:
                     function = action.function

@@ -145,6 +145,7 @@
         (at start (not (holding ?r ?w)))
         (at start (not (camera-free ?r)))
         (at start (not (hands-free ?r)))
+        (at start (not (welder-pick-up-valid ?l)))
         (at end (dropped ?w ?l))
         (at end (camera-free ?r))
         (at end (hands-free ?r))
