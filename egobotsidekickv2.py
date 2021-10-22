@@ -185,6 +185,8 @@ egolist = ['1','2','3','4']
 sidpt1 = 'sidekick-problem-'
 sidpt2 = 'Sidekick-Iteration-'
 
+finalplanfile = 'Final-Plan.txt'
+
 # Here the empty sidekick problem is named.
 sidfileempty = 'sidekick-problem-empty-3.pddl'
 f = open(sidfileempty,'r')
@@ -259,8 +261,10 @@ for i, problem in enumerate(egobotproblemfiles):
     egoplan.append(callplanner(planner,egodomain,problem,egobotplanfiles[i],timeout))
 
 # Here the first set of egobot plans are parsed.
+egobotplancompile = ''
 for i, output in enumerate(egoplan):
     egoplan[i] = outputparser(output)
+    egobotplancompile = egobotplancompile + 'Egobot ' + egolist[i] + 'Plan:\n' + egoplan[i] + '\n\n'
 
 newsidproblem = sidempty
 
@@ -280,6 +284,9 @@ if all(i == 1 for i in egosuccess):
     success = 1
     print(str(success))
 
+# Here the Sidekick plan compiling string is started
+sidplancompile = 'Sidekick Plan:\n'
+
 # Here the looping starts
 while success == 0:
     sidproblemfile = sidpt1 + iterstr + '.pddl'
@@ -298,6 +305,7 @@ while success == 0:
 
     # Here the sidekick problem is parsed
     sidplan = outputparser(sidplan)
+    sidplancompile = sidplancompile + sidplan + '\n'
     sidtime, sidloc = endlocationparser(sidplan)
     timeoffset = timeoffset+float(sidtime)
     egobotproblem = []
@@ -322,13 +330,15 @@ while success == 0:
     for i, problem in enumerate(egobotproblemfiles):
         if egosuccess[i] == 0:
             egoplan[i] = callplanner(planner,egodomain,problem,egobotplanfiles[i],timeout)
-        else:
-            egoplan[i] = []
+        #else:
+            #egoplan[i] = [] #removed because egosuccess is always(?) checked later down the line and this line messes with compilation
     
     # Here the egobot problems are parsed.
+    egobotplancompile = ''
     for i, output in enumerate(egoplan):
         if egosuccess[i] == 0:
             egoplan[i] = outputparser(output)
+        egobotplancompile = egobotplancompile + 'Egobot ' + egolist[i] + 'Plan:\n' + egoplan[i] + '\n\n'
 
     newsidproblem = sidempty
 
@@ -352,3 +362,7 @@ while success == 0:
         print(str(success))
     
     newsidproblem = modifysidekickstart(newsidproblem,sidloc)
+
+# Here a final output file is generated
+f = open(finalplanfile, 'x')
+f.write(sidplancompile+'\n\n'+egobotplancompile)
