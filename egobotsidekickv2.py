@@ -110,8 +110,8 @@ def modifysidekickgoal(file, minscore): # minscore must be a string
 # These are the parser functions
 
 def outputparser(file): # this function extracts a plan from a planner's output log
-    splitbyplan = file.split('[0.000]:')
-    lastplan = splitbyplan[-1]
+    splitbyplan = file.split('0.000:')
+    lastplan = '0.000:' + splitbyplan[-1]
     lastplanlines = lastplan.splitlines()
     plan = ''
     for line in lastplanlines:
@@ -264,7 +264,7 @@ for i, problem in enumerate(egobotproblemfiles):
 egobotplancompile = ''
 for i, output in enumerate(egoplan):
     egoplan[i] = outputparser(output)
-    egobotplancompile = egobotplancompile + 'Egobot ' + egolist[i] + 'Plan:\n' + egoplan[i] + '\n\n'
+    egobotplancompile = egobotplancompile + 'Egobot ' + egolist[i] + ' Plan:\n' + egoplan[i] + '\n\n'
 
 newsidproblem = sidempty
 
@@ -338,7 +338,7 @@ while success == 0:
     for i, output in enumerate(egoplan):
         if egosuccess[i] == 0:
             egoplan[i] = outputparser(output)
-        egobotplancompile = egobotplancompile + 'Egobot ' + egolist[i] + 'Plan:\n' + egoplan[i] + '\n\n'
+        egobotplancompile = egobotplancompile + 'Egobot ' + egolist[i] + ' Plan:\n' + egoplan[i] + '\n\n'
 
     newsidproblem = sidempty
 
