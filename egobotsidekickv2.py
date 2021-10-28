@@ -44,7 +44,8 @@ class Agent:
 
 # These are the file modification functions
 
-def addinspectrequest(file, panels, deadline):
+def addinspectrequest(file, parsedinfo, deadline):
+    panels = parsedinfo[0]
     sep1 = file.partition(';inspectrequests') # this comment must be added in the :init section of the empty sidekick problem
     newfile = sep1[0]+sep1[1]
     for panel in panels:
@@ -52,25 +53,27 @@ def addinspectrequest(file, panels, deadline):
     newfile = newfile+sep1[2]
     return newfile
 
-def addwelderrequest(file, droplocations, deadline):
+def addwelderrequest(file, parsedinfo, deadlines):
+    droplocations = parsedinfo[0]
     sep1 = file.partition(';welderdroprequests') # this comment must be added in the :init section of the empty sidekick problem
     newfile = sep1[0]+sep1[1]
     if not '(welder-drop-needed)' in sep1[2]:
         newfile = newfile + '\n(welder-drop-needed)'
-    for droplocation in droplocations:
-        newfile = newfile + '\n'+'(= (wegoal '+droplocation+') 10)'+'\n'+'(welder-drop-needed '+droplocation+')'+'\n'+'(at '+deadline+' (not (welder-drop-needed '+droplocation+')))'
+    for i, droplocation in enumerate(droplocations):
+        newfile = newfile + '\n'+'(= (wegoal '+droplocation+') 10)'+'\n'+'(welder-drop-needed '+droplocation+')'+'\n'+'(at '+str(float(deadlines[i])+1)+' (not (welder-drop-needed '+droplocation+')))'
     newfile = newfile+sep1[2]
     return newfile
 
-def addpatchrequest(file, droplocations, deadline):
+def addpatchrequest(file, parsedinfo, deadline):
     newfile = file
     return newfile
 
-def addegowelderdrop(file, locations, times):
+def addegowelderdrop(file, parsedinfo, times):
     newfile = file
     return newfile
 
-def modifyinspectgoal(file, panels, placeholder): # this function takes in a list of all the panels, if you do only one panel at a time it will be slower
+def modifyinspectgoal(file, parsedinfo, placeholder): # this function takes in a list of all the panels, if you do only one panel at a time it will be slower
+    panels = parsedinfo[0]
     sep1 = file.partition(';goalstart') # this comment must be located at the start of the egobot's goals
     sep2 = sep1[2].partition(';goalend') # this comment must be located at the end of the egobot's goals
     sep3 = sep2[0].splitlines()
@@ -83,7 +86,7 @@ def modifyinspectgoal(file, panels, placeholder): # this function takes in a lis
     newfile = sep1[0]+sep1[1]+newgoals+'\n'+sep2[1]+sep2[2]
     return newfile
 
-def addwelderdrop(file, locations, droptimes):
+def addwelderdrop(file, placeholder, placeholder2):
     newfile = file
     return newfile
 
@@ -127,8 +130,9 @@ def planparser(plan, action): # this function parses a plan string for informati
     parsing = action.parsing
     relevantlines = []
     keyinfo = []
-    keyinfo.append([])
-    deadlines = []
+    deadlines =[]
+    for i, pair in enumerate(parsing):
+        keyinfo.append([])
     for line in planlines:
         if all(key in line for key in identifiers): # the line must contain every identifier string to be accepted
             relevantlines.append(line)
@@ -137,7 +141,7 @@ def planparser(plan, action): # this function parses a plan string for informati
             sep1 = line.partition(pair[0]) # cut off the part of the line before the info to be parsed
             sep2 = sep1[2].partition(pair[1]) # cut off the part of the line after the info to be parsed
             keydatum = sep1[1]+sep2[0]+sep2[1] # combine the parsing strings with the contained string
-            keyinfo[i].append(keydatum.strip()) # the spaces used in the parsing strings are removed by the .strip() #i think this will cause errors when i > 1
+            keyinfo[i].append(keydatum.strip()) # the spaces used in the parsing strings are removed by the .strip()
         timesep1 = line.partition(':')
         deadlines.append(str(float(timesep1[0])+0.005))
     #if relevantlines:
@@ -151,7 +155,7 @@ def planparser(plan, action): # this function parses a plan string for informati
     #    # 0.005 second buffer has been added due to an error which occured when the sidekick had only one request to deal with and that request was at its starting location, thus having a deadline of 0.001 seconds
     #else:
     #    deadline = 0
-    return keyinfo, deadlines # a list of lists of strings such as panels and a list of strings giving the start time of the each request
+    return keyinfo, deadlines # a list of lists of strings such as panels and a list of strings giving the start time of each action
 
 def endlocationparser(plan):
     planlines = plan.splitlines()
@@ -252,7 +256,7 @@ for i, x in enumerate(egolist):
     sidtoego[i].actions[0].set_function('modifyinspectgoal')
 
     sidtoego[i].actions[1].set_identifiers('sid','drop-welder')
-    sidtoego[i].actions[1].set_parsing([[' l',' ']])
+    sidtoego[i].actions[1].set_parsing([[' l',' '],['',': ']])
     sidtoego[i].actions[1].set_function('addwelderdrop')
 
     sidtoego[i].actions[2].set_identifiers('sid','drop-patch')
@@ -281,7 +285,7 @@ for i, plan in enumerate(egoplan):
             deadline = deadlines[-1]
         if parsedinfo != [[]]:
             function = action.function
-            newsidproblem = eval(function+'(newsidproblem,parsedinfo[0],deadline)') # the 0 is a temporary workaround because parsedinfo is a list of lists
+            newsidproblem = eval(function+'(newsidproblem,parsedinfo,deadline)')
             tempsuccesscheck = 0
     if tempsuccesscheck == 1:
         egosuccess[i] = 1
@@ -324,7 +328,7 @@ while success == 0:
             parsedinfo, deadlines = planparser(sidplan, action)
             if parsedinfo != [[]]:
                 function = action.function
-                egobotproblem[i] = eval(function+'(egobotproblem[i],parsedinfo[0],deadlines)')
+                egobotproblem[i] = eval(function+'(egobotproblem[i],parsedinfo,deadlines)')
         egobotproblem[i] = modifysidekicklocation(egobotproblem[i],sidloc,str(timeoffset))
         egobotproblemfiles[i] = egopt1+egolist[i]+egopt2+iterstr+'.pddl'
         egobotplanfiles[i] = egopt3+egolist[i]+egopt4+iterstr+'.txt'
@@ -359,7 +363,7 @@ while success == 0:
                 deadline = str(float(deadline)-timeoffset)
                 if parsedinfo != [[]]:
                     function = action.function
-                    newsidproblem = eval(function+'(newsidproblem,parsedinfo[0],deadline)') # the 0 is a temporary workaround because parsedinfo is a list of lists
+                    newsidproblem = eval(function+'(newsidproblem,parsedinfo,deadline)')
                     tempsuccesscheck = 0
             if tempsuccesscheck == 1:
                 egosuccess[i] = 1
