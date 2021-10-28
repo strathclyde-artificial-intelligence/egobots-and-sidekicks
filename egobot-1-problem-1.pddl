@@ -85,8 +85,10 @@
     (camera-free sid)
     (hands-free sid)
 
+    ;welderstart
     (dropped w1 lsid)
     (dropped w2 lsid)
+    ;welderend
     (dropped pa1 lsid)
     (dropped pa2 lsid)
     (dropped pa3 lsid)
