@@ -86,8 +86,20 @@ def modifyinspectgoal(file, parsedinfo, placeholder): # this function takes in a
     newfile = sep1[0]+sep1[1]+newgoals+'\n'+sep2[1]+sep2[2]
     return newfile
 
-def addwelderdrop(file, placeholder, placeholder2):
-    newfile = file
+def addwelderdrop(file, parsedinfo, droptimes):
+    locations = parsedinfo[0]
+    welders = parsedinfo[1]
+    sep1 = file.partition(';welderstart') #these comments must be placed before and after the list of welder locations in the egobot problem files
+    sep2 = sep1[2].partition(';welderend')
+    sep3 = sep2[0].splitlines()
+    for i, welder in enumerate(welders):
+        for j, line in enumerate(sep3):
+            if welder in line:
+                sep3[j] = '(at '+droptimes[i]+' (dropped '+welder+' '+locations[i]+'))' #This doesn't allow a welder to be dropped, used, picked up, dropped elsewhere, and used again
+    newwelders = ''
+    for line in sep3:
+        newwelders = newwelders + line + '\n'
+    newfile = sep1[0]+sep1[1]+newwelders+sep2[1]+sep2[2]
     return newfile
 
 def addpatchdrop(file, placeholder, placeholder2):
@@ -256,7 +268,7 @@ for i, x in enumerate(egolist):
     sidtoego[i].actions[0].set_function('modifyinspectgoal')
 
     sidtoego[i].actions[1].set_identifiers('sid','drop-welder')
-    sidtoego[i].actions[1].set_parsing([[' l',' '],['',': ']])
+    sidtoego[i].actions[1].set_parsing([[' l',' '],[' w','']])
     sidtoego[i].actions[1].set_function('addwelderdrop')
 
     sidtoego[i].actions[2].set_identifiers('sid','drop-patch')
