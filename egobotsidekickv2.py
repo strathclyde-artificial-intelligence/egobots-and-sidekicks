@@ -55,7 +55,7 @@ def addinspectrequest(file, parsedinfo, deadline):
 
 def addwelderrequest(file, parsedinfo, deadlines):
     droplocations = parsedinfo[0]
-    sep1 = file.partition(';welderdroprequests') # this comment must be added in the :init section of the empty sidekick problem
+    sep1 = file.partition(';welderrequests') # this comment must be added in the :init section of the empty sidekick problem
     newfile = sep1[0]+sep1[1]
     if not '(welder-drop-needed)' in sep1[2]:
         newfile = newfile + '\n(welder-drop-needed)'
