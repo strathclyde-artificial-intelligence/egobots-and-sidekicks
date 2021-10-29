@@ -58,9 +58,9 @@ def addwelderrequest(file, parsedinfo, deadlines):
     sep1 = file.partition(';welderrequests') # this comment must be added in the :init section of the empty sidekick problem
     newfile = sep1[0]+sep1[1]
     if not '(welder-drop-needed)' in sep1[2]:
-        newfile = newfile + '\n(welder-drop-needed)'
+        newfile = newfile + '\n(welder-needed)'
     for i, droplocation in enumerate(droplocations):
-        newfile = newfile + '\n'+'(= (wegoal '+droplocation+') 10)'+'\n'+'(welder-drop-needed '+droplocation+')'+'\n'+'(at '+str(float(deadlines[i])+1)+' (not (welder-drop-needed '+droplocation+')))'
+        newfile = newfile + '\n'+'(= (wegoal '+droplocation+' 10)'+'\n'+'(welder-drop-needed '+droplocation+'\n'+'(at '+str(float(deadlines[i])+1)+' (not (welder-drop-needed '+droplocation+'))'
     newfile = newfile+sep1[2]
     return newfile
 
