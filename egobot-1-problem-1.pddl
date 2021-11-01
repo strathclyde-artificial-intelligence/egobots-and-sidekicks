@@ -89,6 +89,7 @@
     (dropped w1 lsid)
     (dropped w2 lsid)
     ;welderend
+    ;patchstart
     (dropped pa1 lsid)
     (dropped pa2 lsid)
     (dropped pa3 lsid)
@@ -97,6 +98,7 @@
     (dropped pa6 lsid)
     (dropped pa7 lsid)
     (dropped pa8 lsid)
+    ;patchend
 
     (panel-at pn111 l11)
     (panel-at pn112 l11)

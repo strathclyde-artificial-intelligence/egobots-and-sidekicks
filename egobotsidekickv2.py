@@ -57,7 +57,7 @@ def addwelderrequest(file, parsedinfo, deadline):
     droplocations = parsedinfo[0]
     sep1 = file.partition(';welderrequests') # this comment must be added in the :init section of the empty sidekick problem
     newfile = sep1[0]+sep1[1]
-    if not '(welder-drop-needed)' in sep1[2]:
+    if not '(welder-needed)' in sep1[2]:
         newfile = newfile + '\n(welder-needed)'
     for i, droplocation in enumerate(droplocations):
         newfile = newfile + '\n'+'(= (wegoal '+droplocation+' 10)'+'\n'+'(welder-drop-needed '+droplocation+'\n'+'(at '+deadline+' (not (welder-drop-needed '+droplocation+'))'
@@ -65,6 +65,13 @@ def addwelderrequest(file, parsedinfo, deadline):
     return newfile
 
 def addpatchrequest(file, parsedinfo, deadline):
+    droplocations = parsedinfo[0]
+    sep1 = file.partition(';patchrequests')
+    newfile = sep1[0]+sep1[1]
+    if not '(patch-needed)' in sep1[2]:
+        newfile = newfile + '\n(patch-needed)'
+    for i, droplocation in enumerate(droplocations):
+        newfile = newfile + '\n'+'(= (pagoal '+droplocation+' 10)'+'\n'+'(patch-drop-needed '+droplocation+'\n'+'(at '+deadline+' (not (patch-drop-needed '+droplocation+'))'
     newfile = file
     return newfile
 
@@ -90,20 +97,35 @@ def addwelderdrop(file, parsedinfo, droptimes):
     locations = parsedinfo[0]
     welders = parsedinfo[1]
     sep1 = file.partition(';welderstart') #these comments must be placed before and after the list of welder locations in the egobot problem files
-    sep2 = sep1[2].partition(';welderend')
-    sep3 = sep2[0].splitlines()
-    for i, welder in enumerate(welders):
-        for j, line in enumerate(sep3):
-            if welder in line:
-                sep3[j] = '(at '+droptimes[i]+' (dropped '+welder+' '+locations[i]+')' #This doesn't allow a welder to be dropped, used, picked up, dropped elsewhere, and used again
     newwelders = ''
-    for line in sep3:
-        newwelders = newwelders + line + '\n'
-    newfile = sep1[0]+sep1[1]+newwelders+sep2[1]+sep2[2]
+    for i, welder in enumerate(welders):
+        newwelders = newwelders + '(at '+droptimes[i]+' (dropped '+welder+' '+locations[i]+')' + '\n'
+    #sep2 = sep1[2].partition(';welderend')
+    #sep3 = sep2[0].splitlines()
+    #for i, welder in enumerate(welders):
+    #    for j, line in enumerate(sep3):
+    #        if welder in line:
+    #            sep3[j] = '(at '+droptimes[i]+' (dropped '+welder+' '+locations[i]+')' #This doesn't allow a welder to be dropped, used, picked up, dropped elsewhere, and used again
+    #newwelders = ''
+    #for line in sep3:
+    #    newwelders = newwelders + line + '\n'
+    newfile = sep1[0]+sep1[1]+newwelders+sep1[2]
     return newfile
 
-def addpatchdrop(file, placeholder, placeholder2):
-    newfile = file
+def addpatchdrop(file, parsedinfo, droptimes):
+    locations = parsedinfo[0]
+    patches = parsedinfo[1]
+    sep1 = file.partition(';patchstart') # these comments must be found in the egobot problem files
+    sep2 = sep1[2].partition(';patchend')
+    sep3 = sep2[0].splitlines()
+    for i, patch in enumerate(patches):
+        for j, line in enumerate(sep3):
+            if patch in line:
+                sep3[j] = '(at '+droptimes[i]+' (dropped '+patch+' '+locations[i]+')'
+    newpatches = ''
+    for line in sep3:
+        newpatches = newpatches + line + '\n'
+    newfile = sep1[0]+sep1[1]+newpatches+sep2[1]+sep2[2]
     return newfile
 
 def modifysidekicklocation(file, sidloc, sidtime):
@@ -274,7 +296,7 @@ for i, x in enumerate(egolist):
     sidtoego[i].actions[1].set_function('addwelderdrop')
 
     sidtoego[i].actions[2].set_identifiers('sid','drop-patch')
-    sidtoego[i].actions[2].set_parsing([[' l',' ']])
+    sidtoego[i].actions[2].set_parsing([[' l',' '],[' pa', ' ']])
     sidtoego[i].actions[2].set_function('addpatchdrop')
 
 # Here the egobot problems are run for the first time.

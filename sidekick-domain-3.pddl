@@ -44,6 +44,7 @@
     (welder-drop-needed ?l - location)
     (welder-pick-up-valid ?l - location)
     (patch-drop-needed ?l - location)
+    (patch-pick-up-valid ?l - location)
     (is-patched ?pn - panel)
     (is-welded ?pn - panel)
 
@@ -150,6 +151,49 @@
         (at end (camera-free ?r))
         (at end (hands-free ?r))
         (at end (increase (score) (wegoal ?l)))
+    )
+)
+
+(:durative-action pick-up-patch
+    :parameters (?r - robot ?p - patch ?l - location)
+    :duration (= ?duration 1)
+    :condition (and 
+        (at start (camera-free ?r))
+        (at start (hands-free ?r))
+        (at start (deadline-open))
+        (at start (dropped ?p ?l))
+        (over all (at ?r ?l))
+        (at start (patch-needed))
+        (at start (patch-pick-up-valid ?l))
+    )
+    :effect (and 
+        (at start (not (dropped ?p ?l)))
+        (at start (not (camera-free ?r)))
+        (at start (not (hands-free ?r)))
+        (at end (holding ?r ?p))
+        (at end (camera-free ?r))
+    )
+)
+
+(:durative-action drop-patch
+    :parameters (?r - robot ?p - patch ?l - location)
+    :duration (= ?duration 1)
+    :condition (and 
+        (at start (camera-free ?r))
+        (at start (deadline-open))
+        (at start (holding ?r ?p))
+        (at start (patch-drop-needed ?l))
+        (over all (at ?r ?l))
+    )
+    :effect (and 
+        (at start (not (holding ?r ?p)))
+        (at start (not (camera-free ?r)))
+        (at start (not (hands-free ?r)))
+        (at start (not (patch-pick-up-valid ?l)))
+        (at end (dropped ?p ?l))
+        (at end (camera-free ?r))
+        (at end (hands-free ?r))
+        (at end (increase (score) (pagoal ?l)))
     )
 )
 

@@ -197,6 +197,8 @@
 
     ;welderrequests
 
+    ;patchrequests
+
     (deadline-open)
 
     (= (score) 0)
