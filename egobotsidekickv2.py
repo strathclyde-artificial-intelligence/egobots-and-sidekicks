@@ -53,14 +53,14 @@ def addinspectrequest(file, parsedinfo, deadline):
     newfile = newfile+sep1[2]
     return newfile
 
-def addwelderrequest(file, parsedinfo, deadlines):
+def addwelderrequest(file, parsedinfo, deadline):
     droplocations = parsedinfo[0]
     sep1 = file.partition(';welderrequests') # this comment must be added in the :init section of the empty sidekick problem
     newfile = sep1[0]+sep1[1]
     if not '(welder-drop-needed)' in sep1[2]:
         newfile = newfile + '\n(welder-needed)'
     for i, droplocation in enumerate(droplocations):
-        newfile = newfile + '\n'+'(= (wegoal '+droplocation+' 10)'+'\n'+'(welder-drop-needed '+droplocation+'\n'+'(at '+str(float(deadlines[i])+1)+' (not (welder-drop-needed '+droplocation+'))'
+        newfile = newfile + '\n'+'(= (wegoal '+droplocation+' 10)'+'\n'+'(welder-drop-needed '+droplocation+'\n'+'(at '+deadline+' (not (welder-drop-needed '+droplocation+'))'
     newfile = newfile+sep1[2]
     return newfile
 
@@ -95,7 +95,7 @@ def addwelderdrop(file, parsedinfo, droptimes):
     for i, welder in enumerate(welders):
         for j, line in enumerate(sep3):
             if welder in line:
-                sep3[j] = '(at '+droptimes[i]+' (dropped '+welder+' '+locations[i]+'))' #This doesn't allow a welder to be dropped, used, picked up, dropped elsewhere, and used again
+                sep3[j] = '(at '+droptimes[i]+' (dropped '+welder+' '+locations[i]+')' #This doesn't allow a welder to be dropped, used, picked up, dropped elsewhere, and used again
     newwelders = ''
     for line in sep3:
         newwelders = newwelders + line + '\n'
@@ -139,6 +139,7 @@ def outputparser(file): # this function extracts a plan from a planner's output 
 def planparser(plan, action): # this function parses a plan string for information contained in the parsing pairs on lines identified by identifiers
     planlines = plan.splitlines()
     identifiers = action.identifiers
+    print(str(identifiers))
     parsing = action.parsing
     relevantlines = []
     keyinfo = []
@@ -148,6 +149,7 @@ def planparser(plan, action): # this function parses a plan string for informati
     for line in planlines:
         if all(key in line for key in identifiers): # the line must contain every identifier string to be accepted
             relevantlines.append(line)
+            print(line)
     for line in relevantlines:
         for i, pair in enumerate(parsing): # parsing is a list of lists of strings, each list of strings has two strings
             sep1 = line.partition(pair[0]) # cut off the part of the line before the info to be parsed
@@ -268,7 +270,7 @@ for i, x in enumerate(egolist):
     sidtoego[i].actions[0].set_function('modifyinspectgoal')
 
     sidtoego[i].actions[1].set_identifiers('sid','drop-welder')
-    sidtoego[i].actions[1].set_parsing([[' l',' '],[' w','']])
+    sidtoego[i].actions[1].set_parsing([[' l',' '],[' w',' ']])
     sidtoego[i].actions[1].set_function('addwelderdrop')
 
     sidtoego[i].actions[2].set_identifiers('sid','drop-patch')
@@ -295,10 +297,11 @@ for i, plan in enumerate(egoplan):
         parsedinfo, deadlines = planparser(plan,action)
         if deadlines:
             deadline = deadlines[-1]
-        if parsedinfo != [[]]:
+        if any(info != [] for info in parsedinfo):
             function = action.function
             newsidproblem = eval(function+'(newsidproblem,parsedinfo,deadline)')
-            tempsuccesscheck = 0
+            if action.identifiers[0] == 'sid':
+                tempsuccesscheck = 0
     if tempsuccesscheck == 1:
         egosuccess[i] = 1
     print(str(egosuccess))
@@ -338,7 +341,7 @@ while success == 0:
         f.close()
         for action in sidtoego[i].actions:
             parsedinfo, deadlines = planparser(sidplan, action)
-            if parsedinfo != [[]]:
+            if any(info != [] for info in parsedinfo):
                 function = action.function
                 egobotproblem[i] = eval(function+'(egobotproblem[i],parsedinfo,deadlines)')
         egobotproblem[i] = modifysidekicklocation(egobotproblem[i],sidloc,str(timeoffset))
@@ -373,10 +376,14 @@ while success == 0:
                 if deadlines:
                     deadline = deadlines[-1]
                 deadline = str(float(deadline)-timeoffset)
-                if parsedinfo != [[]]:
+                #if parsedinfo != [[]]:
+                if any(info != [] for info in parsedinfo):
+                    if i == 2:
+                        print(str(parsedinfo))
                     function = action.function
                     newsidproblem = eval(function+'(newsidproblem,parsedinfo,deadline)')
-                    tempsuccesscheck = 0
+                    if action.identifiers[0] == 'sid':
+                        tempsuccesscheck = 0
             if tempsuccesscheck == 1:
                 egosuccess[i] = 1
             print(str(egosuccess))
