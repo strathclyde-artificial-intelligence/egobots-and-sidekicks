@@ -95,6 +95,28 @@
     (welder-pick-up-valid l42)
     (welder-pick-up-valid l43)
     (welder-pick-up-valid l44)
+
+    (patch-pick-up-valid lsid)
+
+    (patch-pick-up-valid l11)
+    (patch-pick-up-valid l12)
+    (patch-pick-up-valid l13)
+    (patch-pick-up-valid l14)
+
+    (patch-pick-up-valid l21)
+    (patch-pick-up-valid l22)
+    (patch-pick-up-valid l23)
+    (patch-pick-up-valid l24)
+
+    (patch-pick-up-valid l31)
+    (patch-pick-up-valid l32)
+    (patch-pick-up-valid l33)
+    (patch-pick-up-valid l34)
+
+    (patch-pick-up-valid l41)
+    (patch-pick-up-valid l42)
+    (patch-pick-up-valid l43)
+    (patch-pick-up-valid l44)
     
     ;sidlocstart
     (at sid lsid)

@@ -72,7 +72,7 @@ def addpatchrequest(file, parsedinfo, deadline):
         newfile = newfile + '\n(patch-needed)'
     for i, droplocation in enumerate(droplocations):
         newfile = newfile + '\n'+'(= (pagoal '+droplocation+' 10)'+'\n'+'(patch-drop-needed '+droplocation+'\n'+'(at '+deadline+' (not (patch-drop-needed '+droplocation+'))'
-    newfile = file
+    newfile = newfile+sep1[2]
     return newfile
 
 def addegowelderdrop(file, parsedinfo, times):
@@ -87,7 +87,10 @@ def modifyinspectgoal(file, parsedinfo, placeholder): # this function takes in a
     newgoals = ''
     for line in sep3:
         if any(panel in line for panel in panels):
-            newgoals = newgoals + '\n'+';'+line
+            if 'is-inspected' in line:
+                newgoals = newgoals + '\n'+';'+line
+            else:
+                newgoals = newgoals + '\n'+line
         else:
             newgoals = newgoals + '\n'+line
     newfile = sep1[0]+sep1[1]+newgoals+'\n'+sep2[1]+sep2[2]
@@ -97,9 +100,9 @@ def addwelderdrop(file, parsedinfo, droptimes):
     locations = parsedinfo[0]
     welders = parsedinfo[1]
     sep1 = file.partition(';welderstart') #these comments must be placed before and after the list of welder locations in the egobot problem files
-    newwelders = ''
+    newwelders = '\n'
     for i, welder in enumerate(welders):
-        newwelders = newwelders + '(at '+droptimes[i]+' (dropped '+welder+' '+locations[i]+')' + '\n'
+        newwelders = newwelders +'(at '+droptimes[i]+' (dropped '+welder+' '+locations[i]+')' + '\n'
     #sep2 = sep1[2].partition(';welderend')
     #sep3 = sep2[0].splitlines()
     #for i, welder in enumerate(welders):
@@ -355,6 +358,7 @@ while success == 0:
     sidplan = outputparser(sidplan)
     sidplancompile = sidplancompile + sidplan + '\n'
     sidtime, sidloc = endlocationparser(sidplan)
+    timeoffsetold = timeoffset
     timeoffset = timeoffset+float(sidtime)
     egobotproblem = []
     for i, problemfile in enumerate(egobotproblemfiles):
@@ -363,6 +367,9 @@ while success == 0:
         f.close()
         for action in sidtoego[i].actions:
             parsedinfo, deadlines = planparser(sidplan, action)
+            if deadlines:
+                for j, time in enumerate(deadlines):
+                    deadlines[j] = str(float(time)+timeoffsetold)
             if any(info != [] for info in parsedinfo):
                 function = action.function
                 egobotproblem[i] = eval(function+'(egobotproblem[i],parsedinfo,deadlines)')
