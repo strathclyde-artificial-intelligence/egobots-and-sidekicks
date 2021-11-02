@@ -51,7 +51,8 @@ def addinspectrequest(file, parsedinfo, deadline):
     for panel in panels:
         newfile = newfile + '\n'+'(= (ingoal '+panel+') 1)'+'\n'+'(is-not-inspected '+panel+')'+'\n'+'(at '+deadline+' (not (is-not-inspected '+panel+')))'
     newfile = newfile+sep1[2]
-    return newfile
+    score = 1
+    return newfile, score
 
 def addwelderrequest(file, parsedinfo, deadline):
     droplocations = parsedinfo[0]
@@ -62,7 +63,8 @@ def addwelderrequest(file, parsedinfo, deadline):
     for i, droplocation in enumerate(droplocations):
         newfile = newfile + '\n'+'(= (wegoal '+droplocation+' 10)'+'\n'+'(welder-drop-needed '+droplocation+'\n'+'(at '+deadline+' (not (welder-drop-needed '+droplocation+'))'
     newfile = newfile+sep1[2]
-    return newfile
+    score = 10
+    return newfile, score
 
 def addpatchrequest(file, parsedinfo, deadline):
     droplocations = parsedinfo[0]
@@ -73,11 +75,13 @@ def addpatchrequest(file, parsedinfo, deadline):
     for i, droplocation in enumerate(droplocations):
         newfile = newfile + '\n'+'(= (pagoal '+droplocation+' 10)'+'\n'+'(patch-drop-needed '+droplocation+'\n'+'(at '+deadline+' (not (patch-drop-needed '+droplocation+'))'
     newfile = newfile+sep1[2]
-    return newfile
+    score = 10
+    return newfile, score
 
 def addegowelderdrop(file, parsedinfo, times):
     newfile = file
-    return newfile
+    score = 0
+    return newfile, score
 
 def modifyinspectgoal(file, parsedinfo, placeholder): # this function takes in a list of all the panels, if you do only one panel at a time it will be slower
     panels = parsedinfo[0]
@@ -316,7 +320,12 @@ for i, output in enumerate(egoplan):
 
 newsidproblem = sidempty
 
+egoscore = []
+for x in egolist:
+    egoscore.append(0)
+
 for i, plan in enumerate(egoplan):
+    egoscore[i] = 0
     tempsuccesscheck = 1
     for action in egotosid.actions:
         parsedinfo, deadlines = planparser(plan,action)
@@ -324,7 +333,8 @@ for i, plan in enumerate(egoplan):
             deadline = deadlines[-1]
         if any(info != [] for info in parsedinfo):
             function = action.function
-            newsidproblem = eval(function+'(newsidproblem,parsedinfo,deadline)')
+            newsidproblem, score = eval(function+'(newsidproblem,parsedinfo,deadline)')
+            egoscore[i] = egoscore[i]+score
             if action.identifiers[0] == 'sid':
                 tempsuccesscheck = 0
     if tempsuccesscheck == 1:
@@ -340,6 +350,9 @@ sidplancompile = 'Sidekick Plan:\n'
 
 # Here the looping starts
 while success == 0:
+    minscore = str(max(egoscore)-1)
+    newsidproblem = modifysidekickgoal(newsidproblem,minscore)
+
     sidproblemfile = sidpt1 + iterstr + '.pddl'
     f = open(sidproblemfile,'x')
     f.write(newsidproblem) #currently missing using the score change function
@@ -398,6 +411,7 @@ while success == 0:
     newsidproblem = sidempty
 
     for i, plan in enumerate(egoplan):
+        egoscore[i] = 0
         if egosuccess[i] == 0:
             tempsuccesscheck = 1
             for action in egotosid.actions:
@@ -407,15 +421,14 @@ while success == 0:
                 deadline = str(float(deadline)-timeoffset)
                 #if parsedinfo != [[]]:
                 if any(info != [] for info in parsedinfo):
-                    if i == 2:
-                        print(str(parsedinfo))
                     function = action.function
-                    newsidproblem = eval(function+'(newsidproblem,parsedinfo,deadline)')
+                    newsidproblem, score = eval(function+'(newsidproblem,parsedinfo,deadline)')
+                    egoscore[i] = egoscore[i] + score
                     if action.identifiers[0] == 'sid':
                         tempsuccesscheck = 0
             if tempsuccesscheck == 1:
                 egosuccess[i] = 1
-            print(str(egosuccess))
+        print(str(egosuccess))
 
     print(str(egosuccess))
     if all(i == 1 for i in egosuccess):
