@@ -228,16 +228,18 @@ def callplanner(planner,domain,problem,planfile,timeout): # all as strings, give
     return outputlog
 
 # Here strings are defined which are used to find and create files.
-egopt1 = 'egobot-'
+filecode = '' # This should be a unique identifier so that there is no overlap between file names from each time you run the code.
+
+egopt1 = filecode+'egobot-'
 egopt2 = '-problem-'
-egopt3 = 'Egobot-'
+egopt3 = filecode+'Egobot-'
 egopt4 = '-Iteration-'
 egolist = ['1','2','3','4']
 
-sidpt1 = 'sidekick-problem-'
-sidpt2 = 'Sidekick-Iteration-'
+sidpt1 = filecode+'sidekick-problem-'
+sidpt2 = filecode+'Sidekick-Iteration-'
 
-finalplanfile = 'Final-Plan.txt'
+finalplanfile = filecode+'Final-Plan.txt'
 
 # Here the empty sidekick problem is named.
 sidfileempty = 'sidekick-problem-empty-3.pddl'
