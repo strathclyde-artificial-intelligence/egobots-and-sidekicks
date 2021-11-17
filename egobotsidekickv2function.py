@@ -240,7 +240,7 @@ def egobotsidekick(filecode, egolist):
     finalplanfile = filecode+'Final-Plan.txt'
 
     # Here the empty sidekick problem is named.
-    sidfileempty = 'sidekick-problem-empty-3.pddl'
+    sidfileempty = filecode+'sidekick-problem-empty-3.pddl'
     f = open(sidfileempty,'r')
     sidempty = f.read()
     f.close()
