@@ -82,7 +82,7 @@ def addegowelderdrop(file, welders, locations, times):
     sep1 = file.partition(';welderstart')
     newfile = sep1[0]+sep1[1]+'\n'
     sep2 = sep1[2].partition(';welderend')
-    sep3 = sep2.splitlines()
+    sep3 = sep2[0].splitlines()
     for line in sep3:
         linecheck = 0
         for i, welder in enumerate(welders):
@@ -397,7 +397,7 @@ def egobotsidekick(filecode, egolist):
         tempwelderdroptimes = []
         for i, welder in enumerate(welderdrops):
             if welder in tempwelderdrops:
-                j = tempwelderdrops.index[welder]
+                j = tempwelderdrops.index(welder)
                 if float(welderdroptimes[i]) > float(tempwelderdroptimes[j]):
                     tempwelderdroplocations[j] = welderdroplocations[i]
                     tempwelderdroptimes[j] = welderdroptimes[i]
@@ -415,7 +415,7 @@ def egobotsidekick(filecode, egolist):
             if float(adjustedwelderdroptimes[i]) < 0.01:
                 adjustedwelderdroptimes[i] = '0.0'
         
-        newsidproblem = addegowelderdrop(newsidproblem)
+        newsidproblem = addegowelderdrop(newsidproblem,welderdrops,welderdroplocations,adjustedwelderdroptimes)
 
         sidproblemfile = sidpt1 + iterstr + '.pddl'
         f = open(sidproblemfile,'x')
