@@ -16,6 +16,10 @@ def generate(egobots, goals, locations, sidekicks, shape):
     goalsperloc = math.ceil(numgoals/numlocations)
 
     goals = str(goalsperloc*numlocations)
+    if len(goals) == 1:
+        goals = '0'+goals
+    if len(goals) == 2:
+        goals = '0'+goals
     filecode = egobots+goals+locations+sidekicks+shape
     numcomplexgoals = math.floor(numgoals/5)
 
@@ -129,7 +133,7 @@ def generate(egobots, goals, locations, sidekicks, shape):
     
     define = '(define (problem problem_name) (:domain maintenance-domain-gobjects)\n'
 
-    sidobjectstr = '(:objects \n'+objects['locations']+'- location\n'+objects['sidekicks']+'- sidekick\n'+objects['panels']+'- panels\n'+objects['welders']+'- welder\n'+objects['patches']+'- patch\n)\n\n'
+    sidobjectstr = '(:objects \n'+objects['locations']+'- location\n'+objects['sidekicks']+'- sidekick\n'+objects['panels']+'- panel\n'+objects['welders']+'- welder\n'+objects['patches']+'- patch\n)\n\n'
     sidinitstr = '(:init \n'+init['egobot-adjacent']+init['sidekick-adjacent']+init['sid']+init['dropped']+init['panel-at']+'\n;inspectrequests\n\n;welderrequests\n\n;patchrequests\n\n(deadline-open)\n\n(= (score) 0)\n)\n'
     sidgoalstr = '(:goal (and\n;goalstart\n(> (score) 0)\n;goalend\n))\n'
     sidendstr = '\n(:metric maximize (score))\n\n)'
@@ -138,7 +142,7 @@ def generate(egobots, goals, locations, sidekicks, shape):
     f.write(define+sidobjectstr+sidinitstr+sidgoalstr+sidendstr)
     f.close()
 
-    fullobjectstr = '(:objects \n'+objects['locations']+'- location\n'+objects['sidekicks']+'- sidekick\n'+fullego+'- egobot\n'+objects['panels']+'- panels\n'+objects['welders']+'- welder\n'+objects['patches']+'- patch\n)\n\n'
+    fullobjectstr = '(:objects \n'+objects['locations']+'- location\n'+objects['sidekicks']+'- sidekick\n'+fullego+'- egobot\n'+objects['panels']+'- panel\n'+objects['welders']+'- welder\n'+objects['patches']+'- patch\n)\n\n'
     fullinitstr = '(:init \n'+init['egobot-adjacent']+init['sidekick-adjacent']+init['sid']
     for i in range(numegobots):
         fullinitstr = fullinitstr + init['ego'][i]
@@ -154,8 +158,8 @@ def generate(egobots, goals, locations, sidekicks, shape):
     f.close
 
     for i, goal in enumerate(goals):
-        egoobjectstr = '(:objects \n'+objects['locations']+'- location\n'+objects['sidekicks']+'- sidekick\nego'+str(i+1)+' - egobot\n'+objects['panels']+'- panels\n'+objects['welders']+'- welder\n'+objects['patches']+'- patch\n)\n\n'
-        egoinitstr = '(:init \n'+init['egobot-adjacent']+init['sidekick-adjacent']+init['sid']+init['ego'][i]+init['dropped']+init['panel-at']+'\n(deadline-open)\n)\n'
+        egoobjectstr = '(:objects \n'+objects['locations']+'- location\n'+objects['sidekicks']+'- sidekick\nego'+str(i+1)+' - egobot\n'+objects['panels']+'- panel\n'+objects['welders']+'- welder\n'+objects['patches']+'- patch\n)\n\n'
+        egoinitstr = '(:init \n'+init['egobot-adjacent']+init['sidekick-adjacent']+init['sid']+init['ego'][i]+init['dropped']+init['panel-at']+'\n(deadline-open)\n)\n\n'
         egogoalstr = '(:goal (and\n;goalstart\n'+goal+';goalend\n))\n\n'
         egoendstr = ')'
         f = open(egofiles[i],'x')
