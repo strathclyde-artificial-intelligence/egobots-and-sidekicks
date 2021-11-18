@@ -78,10 +78,21 @@ def addpatchrequest(file, parsedinfo, deadline):
     score = 10
     return newfile, score
 
-def addegowelderdrop(file, parsedinfo, times):
-    newfile = file
-    score = 0
-    return newfile, score
+def addegowelderdrop(file, welders, locations, times):
+    sep1 = file.partition(';welderstart')
+    newfile = sep1[0]+sep1[1]+'\n'
+    sep2 = sep1[2].partition(';welderend')
+    sep3 = sep2.splitlines()
+    for line in sep3:
+        linecheck = 0
+        for i, welder in enumerate(welders):
+            if welder in line:
+                newfile = newfile + '(at ' + times[i] + ' (dropped ' + welder + ' ' + locations[i] + '))\n'
+                linecheck = 1
+        if linecheck == 0:
+            newfile = newfile + line + '\n'
+    newfile = newfile + sep2[1] + sep2[2]
+    return newfile
 
 def modifyinspectgoal(file, parsedinfo, placeholder): # this function takes in a list of all the panels, if you do only one panel at a time it will be slower
     panels = parsedinfo[0]
@@ -215,6 +226,26 @@ def endlocationparser(plan):
     endloc = endloc.strip()
     return endtime, endloc
 
+def egowelderdropparser(plan):
+    planlines = plan.splitlines()
+    welders = []
+    locations = []
+    times = []
+    for line in planlines:
+        if 'ego' and 'drop-welder' in line:
+            timesep1 = line.partition(':')
+            timesep2 = timesep1[2].partition(' [')
+            timesep3 = timesep2[2].partition(']')
+            droptime = str(float(timesep1[0])+float(timesep3[0]))
+            times.append(droptime)
+            weldsep1 = line.partition(' w')
+            weldsep2 = weldsep1[2].partition(' ')
+            welders.append('w'+weldsep2[0])
+            locsep1 = line.partition(' l')
+            locsep2 = locsep1[2].partition(')')
+            locations.append('l'+locsep2[0])
+    return welders, locations, times
+
 # This function calls a planner
 
 def callplanner(planner,domain,problem,planfile,timeout): # all as strings, give full file names for domain, problem, and planfile. include modifiers like -n in planner
@@ -271,7 +302,7 @@ def egobotsidekick(filecode, egolist):
         egobotplanfiles.append(egopt3+egobotnum+egopt4+iterstr+'.txt')
 
     # Here the agents and actions are created.
-    egotosid = Agent('sid','inspect','dropwelder','droppatch','egodropwelder')
+    egotosid = Agent('sid','inspect','dropwelder','droppatch')#,'egodropwelder')
 
     egotosid.actions[0].set_identifiers('sid','inspect')
     egotosid.actions[0].set_parsing([[' pn',' ']])
@@ -285,9 +316,9 @@ def egobotsidekick(filecode, egolist):
     egotosid.actions[2].set_parsing([[' l',' ']])
     egotosid.actions[2].set_function('addpatchrequest')
 
-    egotosid.actions[3].set_identifiers('ego','drop-welder')
-    egotosid.actions[3].set_parsing([[' l',' ']])
-    egotosid.actions[3].set_function('addegowelderdrop')
+    #egotosid.actions[3].set_identifiers('ego','drop-welder')
+    #egotosid.actions[3].set_parsing([[' l',' ']])
+    #egotosid.actions[3].set_function('addegowelderdrop')
 
     #sid.get_data()
     sidtoego = []
@@ -324,6 +355,10 @@ def egobotsidekick(filecode, egolist):
     for x in egolist:
         egoscore.append(0)
 
+    welderdrops = []
+    welderdroplocations = []
+    welderdroptimes = []
+
     for i, plan in enumerate(egoplan):
         egoscore[i] = 0
         tempsuccesscheck = 1
@@ -337,6 +372,10 @@ def egobotsidekick(filecode, egolist):
                 egoscore[i] = egoscore[i]+score
                 if action.identifiers[0] == 'sid':
                     tempsuccesscheck = 0
+        tempwelders, templocations, temptimes = egowelderdropparser(plan)
+        welderdrops = welderdrops + tempwelders
+        welderdroplocations = welderdroplocations + templocations
+        welderdroptimes = welderdroptimes + temptimes
         if tempsuccesscheck == 1:
             egosuccess[i] = 1
         print(str(egosuccess))
@@ -352,6 +391,31 @@ def egobotsidekick(filecode, egolist):
     while success == 0:
         minscore = str(max(egoscore)-1)
         newsidproblem = modifysidekickgoal(newsidproblem,minscore)
+
+        tempwelderdrops = []
+        tempwelderdroplocations = []
+        tempwelderdroptimes = []
+        for i, welder in enumerate(welderdrops):
+            if welder in tempwelderdrops:
+                j = tempwelderdrops.index[welder]
+                if float(welderdroptimes[i]) > float(tempwelderdroptimes[j]):
+                    tempwelderdroplocations[j] = welderdroplocations[i]
+                    tempwelderdroptimes[j] = welderdroptimes[i]
+            else:
+                tempwelderdrops.append(welder)
+                tempwelderdroplocations.append(welderdroplocations[i])
+                tempwelderdroptimes.append(welderdroptimes[i])
+        welderdrops = tempwelderdrops
+        welderdroplocations = tempwelderdroplocations
+        welderdroptimes = tempwelderdroptimes
+
+        adjustedwelderdroptimes = welderdroptimes
+        for i, time in enumerate(welderdroptimes):
+            adjustedwelderdroptimes[i] = str(float(time) - timeoffset)
+            if float(adjustedwelderdroptimes[i]) < 0.01:
+                adjustedwelderdroptimes[i] = '0.0'
+        
+        newsidproblem = addegowelderdrop(newsidproblem)
 
         sidproblemfile = sidpt1 + iterstr + '.pddl'
         f = open(sidproblemfile,'x')
@@ -410,6 +474,10 @@ def egobotsidekick(filecode, egolist):
 
         newsidproblem = sidempty
 
+        welderdrops = []
+        welderdroplocations = []
+        welderdroptimes = []
+
         for i, plan in enumerate(egoplan):
             egoscore[i] = 0
             if egosuccess[i] == 0:
@@ -426,6 +494,10 @@ def egobotsidekick(filecode, egolist):
                         egoscore[i] = egoscore[i] + score
                         if action.identifiers[0] == 'sid':
                             tempsuccesscheck = 0
+                tempwelders, templocations, temptimes = egowelderdropparser(plan)
+                welderdrops = welderdrops + tempwelders
+                welderdroplocations = welderdroplocations + templocations
+                welderdroptimes = welderdroptimes + temptimes
                 if tempsuccesscheck == 1:
                     egosuccess[i] = 1
             print(str(egosuccess))
