@@ -61,7 +61,7 @@ def addwelderrequest(file, parsedinfo, deadline):
     if not '(welder-needed)' in sep1[2]:
         newfile = newfile + '\n(welder-needed)'
     for i, droplocation in enumerate(droplocations):
-        newfile = newfile + '\n'+'(= (wegoal '+droplocation+' 10)'+'\n'+'(welder-drop-needed '+droplocation+'\n'+'(at '+deadline+' (not (welder-drop-needed '+droplocation+'))'
+        newfile = newfile + '\n'+'(= (wegoal '+droplocation+' 10)'+'\n'+'(welder-drop-needed '+droplocation+'\n'+'(at '+str(float(deadline)+3.003)+' (not (welder-drop-needed '+droplocation+'))' #hopefully 3.003 makes up for a problem with incorrect welder locations
     newfile = newfile+sep1[2]
     score = 10
     return newfile, score
@@ -144,7 +144,7 @@ def addwelderdrop(file, parsedinfo, droptimes):
     sep1 = file.partition(';welderstart') #these comments must be placed before and after the list of welder locations in the egobot problem files
     newwelders = '\n'
     for i, welder in enumerate(welders):
-        newwelders = newwelders +'(at '+str(float(droptimes[i])+3.003)+' (dropped '+welder+' '+locations[i]+')' + '\n' #added 3.003 to deadline just in case an egobot moves a welder quite far and the sidekick and egobot think the welder is in different places
+        newwelders = newwelders +'(at '+droptimes[i]+' (dropped '+welder+' '+locations[i]+')' + '\n'
     #sep2 = sep1[2].partition(';welderend')
     #sep3 = sep2[0].splitlines()
     #for i, welder in enumerate(welders):
@@ -553,3 +553,6 @@ def egobotsidekick(filecode, egolist):
     f = open(finalplanfile, 'x')
     f.write(sidplancompile+'\n\n'+egobotplancompile)
     return finalplanfile
+
+#egolist = ['1', '2', '3', '4']
+#egobotsidekick('04009031ring',egolist)
