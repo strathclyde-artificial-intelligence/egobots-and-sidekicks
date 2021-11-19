@@ -16,6 +16,7 @@ def generate(egobots, goals, locations, sidekicks, shape):
     goalsperloc = math.ceil(numgoals/numlocations)
 
     goals = str(goalsperloc*numlocations)
+    numgoals = int(goals)
     if len(goals) == 1:
         goals = '0'+goals
     if len(goals) == 2:
