@@ -68,7 +68,18 @@ def addwelderrequest(file, parsedinfo, deadline):
 
 def addpatchrequest(file, parsedinfo, deadline):
     droplocations = parsedinfo[0]
-    sep1 = file.partition(';patchrequests')
+    patches = parsedinfo[1]
+    patchsep1 = file.partition(';patchstart')
+    patchsep2 = patchsep1[2].partition(';patchend')
+    patchsep3 = patchsep2[0].splitlines()
+    newpatches = ''
+    for line in patchsep3:
+        if any(patch in line for patch in patches):
+            newpatches = newpatches + '\n' + line + ';patchbodge'
+        else:
+            newpatches = newpatches + '\n' + line
+    newfile = patchsep1[0]+patchsep1[1]+newpatches+'\n'+patchsep2[1]+patchsep2[2]
+    sep1 = newfile.partition(';patchrequests')
     newfile = sep1[0]+sep1[1]
     if not '(patch-needed)' in sep1[2]:
         newfile = newfile + '\n(patch-needed)'
@@ -101,7 +112,7 @@ def removepatch(file, parsedinfo, placeholder):
     sep3 = sep2[0].splitlines()
     newpatches = ''
     for line in sep3:
-        if any(patch in line for patch in patches):
+        if any(patch in line for patch in patches) and not ';patchbodge' in line:
             newpatches = newpatches + '\n;' + line
         else:
             newpatches = newpatches + '\n' + line
@@ -338,11 +349,11 @@ def egobotsidekick(filecode, egolist):
     egotosid.actions[1].set_function('addwelderrequest')
 
     egotosid.actions[2].set_identifiers('sid','drop-patch')
-    egotosid.actions[2].set_parsing([[' l',' ']])
+    egotosid.actions[2].set_parsing([[' l',' '],[' pa',' ']])
     egotosid.actions[2].set_function('addpatchrequest')
 
     egotosid.actions[3].set_identifiers('ego','apply-patch')
-    egotosid.actions[3].set_parsing([' pa',' '])
+    egotosid.actions[3].set_parsing([[' pa',' ']])
     egotosid.actions[3].set_function('removepatch')
 
     #egotosid.actions[3].set_identifiers('ego','drop-welder')
