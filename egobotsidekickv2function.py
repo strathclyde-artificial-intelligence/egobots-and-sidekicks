@@ -117,7 +117,7 @@ def addwelderdrop(file, parsedinfo, droptimes):
     sep1 = file.partition(';welderstart') #these comments must be placed before and after the list of welder locations in the egobot problem files
     newwelders = '\n'
     for i, welder in enumerate(welders):
-        newwelders = newwelders +'(at '+droptimes[i]+' (dropped '+welder+' '+locations[i]+')' + '\n'
+        newwelders = newwelders +'(at '+str(float(droptimes[i])+3.003)+' (dropped '+welder+' '+locations[i]+')' + '\n' #added 3.003 to deadline just in case an egobot moves a welder quite far and the sidekick and egobot think the welder is in different places
     #sep2 = sep1[2].partition(';welderend')
     #sep3 = sep2[0].splitlines()
     #for i, welder in enumerate(welders):
@@ -136,10 +136,16 @@ def addpatchdrop(file, parsedinfo, droptimes):
     sep1 = file.partition(';patchstart') # these comments must be found in the egobot problem files
     sep2 = sep1[2].partition(';patchend')
     sep3 = sep2[0].splitlines()
+    egobotsep1 = sep1[0].partition(' - egobot')
+    egobotsep2 = egobotsep1[0].partition('ego')
+    egobotnum = egobotsep2[2]
     for i, patch in enumerate(patches):
         for j, line in enumerate(sep3):
             if patch in line:
-                sep3[j] = '(at '+droptimes[i]+' (dropped '+patch+' '+locations[i]+')'
+                if locations[i][1] in egobotnum:
+                    sep3[j] = '(at '+droptimes[i]+' (dropped '+patch+' '+locations[i]+')'
+                else:
+                    sep3[j] = ''
     newpatches = ''
     for line in sep3:
         newpatches = newpatches + line + '\n'
