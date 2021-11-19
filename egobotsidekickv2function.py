@@ -94,6 +94,22 @@ def addegowelderdrop(file, welders, locations, times):
     newfile = newfile + sep2[1] + sep2[2]
     return newfile
 
+def removepatch(file, parsedinfo, placeholder):
+    patches = parsedinfo[0]
+    sep1 = file.partition(';patchstart')
+    sep2 = sep1[2].partition(';patchend')
+    sep3 = sep2[0].splitlines()
+    newpatches = ''
+    for line in sep3:
+        if any(patch in line for patch in patches):
+            newpatches = newpatches + '\n;' + line
+        else:
+            newpatches = newpatches + '\n' + line
+    newfile = sep1[0]+sep1[1]+newpatches+'\n'+sep2[1]+sep2[2]
+    score = 0
+    return newfile, score
+
+
 def modifyinspectgoal(file, parsedinfo, placeholder): # this function takes in a list of all the panels, if you do only one panel at a time it will be slower
     panels = parsedinfo[0]
     sep1 = file.partition(';goalstart') # this comment must be located at the start of the egobot's goals
@@ -311,7 +327,7 @@ def egobotsidekick(filecode, egolist):
         egobotplanfiles.append(egopt3+egobotnum+egopt4+iterstr+'.txt')
 
     # Here the agents and actions are created.
-    egotosid = Agent('sid','inspect','dropwelder','droppatch')#,'egodropwelder')
+    egotosid = Agent('sid','inspect','dropwelder','droppatch','removepatch')#,'egodropwelder')
 
     egotosid.actions[0].set_identifiers('sid','inspect')
     egotosid.actions[0].set_parsing([[' pn',' ']])
@@ -324,6 +340,10 @@ def egobotsidekick(filecode, egolist):
     egotosid.actions[2].set_identifiers('sid','drop-patch')
     egotosid.actions[2].set_parsing([[' l',' ']])
     egotosid.actions[2].set_function('addpatchrequest')
+
+    egotosid.actions[3].set_identifiers('ego','apply-patch')
+    egotosid.actions[3].set_parsing([' pa',' '])
+    egotosid.actions[3].set_function('removepatch')
 
     #egotosid.actions[3].set_identifiers('ego','drop-welder')
     #egotosid.actions[3].set_parsing([[' l',' ']])
