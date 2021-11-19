@@ -231,8 +231,11 @@ def egowelderdropparser(plan):
     welders = []
     locations = []
     times = []
+    requestchecker = 0
     for line in planlines:
-        if 'ego' and 'drop-welder' in line:
+        if 'sid' and 'drop-welder' in line:
+            requestchecker = 1
+        if 'ego' and 'drop-welder' in line and requestchecker == 0:
             timesep1 = line.partition(':')
             timesep2 = timesep1[2].partition(' [')
             timesep3 = timesep2[2].partition(']')
