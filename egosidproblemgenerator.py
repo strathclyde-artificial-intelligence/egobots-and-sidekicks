@@ -134,7 +134,7 @@ def generate(egobots, goals, locations, sidekicks, shape):
     define = '(define (problem problem_name) (:domain maintenance-domain-gobjects)\n'
 
     sidobjectstr = '(:objects \n'+objects['locations']+'- location\n'+objects['sidekicks']+'- sidekick\n'+objects['panels']+'- panel\n'+objects['welders']+'- welder\n'+objects['patches']+'- patch\n)\n\n'
-    sidinitstr = '(:init \n'+init['egobot-adjacent']+init['sidekick-adjacent']+init['sid']+init['dropped']+init['panel-at']+'\n;inspectrequests\n\n;welderrequests\n\n;patchrequests\n\n(deadline-open)\n\n(= (score) 0)\n)\n'
+    sidinitstr = '(:init \n'+init['egobot-adjacent']+init['sidekick-adjacent']+init['sid']+init['dropped']+init['panel-at']+init['pick-up-valid']+'\n;inspectrequests\n\n;welderrequests\n\n;patchrequests\n\n(deadline-open)\n\n(= (score) 0)\n)\n'
     sidgoalstr = '(:goal (and\n;goalstart\n(> (score) 0)\n;goalend\n))\n'
     sidendstr = '\n(:metric maximize (score))\n\n)'
 
