@@ -40,6 +40,7 @@ def generate(egobots, goals, locations, sidekicks, shape):
         'panel-at': '',
         'sid': '',
         'ego': [],
+        'not-handled': [],
         'dropped': ';welderstart\n'
     }
 
@@ -105,6 +106,16 @@ def generate(egobots, goals, locations, sidekicks, shape):
         egolist.append(str(i))
         tempegostr = '(at ego'+str(i)+' '+locationlist[(i-1)*numlocations+1]+')\n(camera-free ego'+str(i)+')\n(hands-free ego'+str(i)+')\n'
         init['ego'].append(tempegostr)
+        temphandledstr = ''
+        for j in range(1,patchcount+1):
+            temphandledstr = temphandledstr + '(not-handled ego'+str(i)+' pa'+str(j)+')\n'
+            for k in range(1,numsidekicks+1):
+                temphandledstr = temphandledstr + '(not-handled sid'+str(k)+' pa'+str(j)+')\n'
+        for j in range(1,numegobots):
+            temphandledstr = temphandledstr + '(not-handled ego'+str(i)+' w'+str(j)+')\n'
+            for k in range(1,numsidekicks+1):
+                temphandledstr = temphandledstr + '(not handled sid'+str(k)+' w'+str(j)+')\n'
+        init['not-handled'].append(temphandledstr)
 
     for i in range(numegobots-1):
         objects['welders'] = objects['welders'] + 'w'+str(i+1)+' '
@@ -160,7 +171,7 @@ def generate(egobots, goals, locations, sidekicks, shape):
 
     for i, goal in enumerate(goals):
         egoobjectstr = '(:objects \n'+objects['locations']+'- location\n'+objects['sidekicks']+'- sidekick\nego'+str(i+1)+' - egobot\n'+objects['panels']+'- panel\n'+objects['welders']+'- welder\n'+objects['patches']+'- patch\n)\n\n'
-        egoinitstr = '(:init \n'+init['egobot-adjacent']+init['sidekick-adjacent']+init['sid']+init['ego'][i]+init['dropped']+init['panel-at']+'\n(deadline-open)\n)\n\n'
+        egoinitstr = '(:init \n'+init['egobot-adjacent']+init['sidekick-adjacent']+init['sid']+init['ego'][i]+init['not-handled'][i]+init['dropped']+init['panel-at']+'\n(deadline-open)\n)\n\n'
         egogoalstr = '(:goal (and\n;goalstart\n'+goal+';goalend\n))\n\n'
         egoendstr = ')'
         f = open(egofiles[i],'x')

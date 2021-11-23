@@ -313,7 +313,7 @@ def egobotsidekick(filecode, egolist):
     f.close()
 
     # Here the domains are named.
-    egodomain = 'maintenance-domain-2.pddl'
+    egodomain = 'egobot-domain.pddl'
     siddomain = 'sidekick-domain-3.pddl'
 
     # Here the planner is named.
