@@ -114,7 +114,7 @@ def generate(egobots, goals, locations, sidekicks, shape):
         for j in range(1,numegobots):
             temphandledstr = temphandledstr + '(not-handled ego'+str(i)+' w'+str(j)+')\n'
             for k in range(1,numsidekicks+1):
-                temphandledstr = temphandledstr + '(not handled sid'+str(k)+' w'+str(j)+')\n'
+                temphandledstr = temphandledstr + '(not-handled sid'+str(k)+' w'+str(j)+')\n'
         init['not-handled'].append(temphandledstr)
 
     for i in range(numegobots-1):
