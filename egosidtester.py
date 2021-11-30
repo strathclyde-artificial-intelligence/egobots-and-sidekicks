@@ -17,11 +17,11 @@ def runtest(egobots,goals,locations,sidekicks,shape):
     return
 
 #experimentalsetup = []
-egobotsrange = ['02','01']
-goalsrange = ['004','008','016'] #if the differences between any of these are smaller than the largest value in locations, bugs will appear
+egobotsrange = ['04','05','06','07','08','09','10']
+goalsrange = ['016'] #if the differences between any of these are smaller than the largest value in locations, bugs will appear
 locationsrange = ['04']
 sidekicksrange = ['1']
-shaperange = ['ring']
+shaperange = ['star']
 for egobots in egobotsrange:
     for goals in goalsrange:
         for locations in locationsrange:
