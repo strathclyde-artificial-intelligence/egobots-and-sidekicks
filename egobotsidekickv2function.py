@@ -200,16 +200,15 @@ def modifysidekickgoal(file, minscore): # minscore must be a string
 # These are the parser functions
 
 def outputparser(file): # this function extracts a plan from a planner's output log
-    splitbyplan = file.split('0.000:')
+    splitbyplan = file.split('; Time ')
     lastplan = '0.000:' + splitbyplan[-1]
     lastplanlines = lastplan.splitlines()
     plan = ''
     for line in lastplanlines:
         if ': (' in line:
             plan = plan + '\n' + line
-    timesep1 = splitbyplan[-2].partition('; Time ')
-    timesep2 = timesep1[2].partition('\n')
-    planningtime = float(timesep2[0])
+    timesep1 = splitbyplan[-1].partition('\n')
+    planningtime = float(timesep1[0])
     return plan, planningtime
 
 def planparser(plan, action): # this function parses a plan string for information contained in the parsing pairs on lines identified by identifiers
@@ -309,7 +308,7 @@ def egobotsidekick(filecode, egolist):
 
     fullproblemfile = filecode+'full-problem.pddl'
 
-    fullplanfile = filecode+'Single-Agent-Plan.pddl'
+    fullplanfile = filecode+'Single-Agent-Plan.txt'
 
     finalplanfile = filecode+'Final-Plan.txt'
 
@@ -570,7 +569,7 @@ def egobotsidekick(filecode, egolist):
     f.write(sidplancompile+'\n\n'+egobotplancompile+'\n\n'+str(planningtimetotal))
 
     # Here the planner is run for a single agent problem with up to twice the planning time total (I can compare to 100%, 110%, 120%, 150%, etc)
-    singleagenttimeout = round(2*planningtimetotal)
+    singleagenttimeout = str(round(2*planningtimetotal))
     singleagentplan = callplanner(planner, fulldomain, fullproblemfile, fullplanfile, singleagenttimeout)
 
     return finalplanfile, planningtimetotal
