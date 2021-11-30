@@ -13,7 +13,7 @@ def runtest(egobots,goals,locations,sidekicks,shape):
     #shape = settings[4]
 
     filecode, egolist = egosidproblemgenerator.generate(egobots,goals,locations,sidekicks,shape)
-    egobotsidekickv2function.egobotsidekick(filecode, egolist)
+    finalplanfile, egosidplanningtime = egobotsidekickv2function.egobotsidekick(filecode, egolist)
     return
 
 #experimentalsetup = []

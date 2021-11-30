@@ -207,7 +207,10 @@ def outputparser(file): # this function extracts a plan from a planner's output 
     for line in lastplanlines:
         if ': (' in line:
             plan = plan + '\n' + line
-    return plan
+    timesep1 = splitbyplan[-2].partition('; Time ')
+    timesep2 = timesep1[2].partition('\n')
+    planningtime = float(timesep2[0])
+    return plan, planningtime
 
 def planparser(plan, action): # this function parses a plan string for information contained in the parsing pairs on lines identified by identifiers
     planlines = plan.splitlines()
@@ -304,6 +307,10 @@ def egobotsidekick(filecode, egolist):
     sidpt1 = filecode+'sidekick-problem-'
     sidpt2 = filecode+'Sidekick-Iteration-'
 
+    fullproblemfile = filecode+'full-problem.pddl'
+
+    fullplanfile = filecode+'Single-Agent-Plan.pddl'
+
     finalplanfile = filecode+'Final-Plan.txt'
 
     # Here the empty sidekick problem is named.
@@ -315,6 +322,7 @@ def egobotsidekick(filecode, egolist):
     # Here the domains are named.
     egodomain = 'egobot-domain.pddl'
     siddomain = 'sidekick-domain-3.pddl'
+    fulldomain = 'maintenance-domain-2.pddl'
 
     # Here the planner is named.
     planner = 'optic-cplex -n'
@@ -329,6 +337,8 @@ def egobotsidekick(filecode, egolist):
     print(str(egosuccess))
 
     timeoffset = 0.0
+
+    planningtimetotal = 0.0
 
     # Here the egobot input file names are found.
     egobotproblemfiles = []
@@ -386,7 +396,9 @@ def egobotsidekick(filecode, egolist):
     # Here the first set of egobot plans are parsed.
     egobotplancompile = ''
     for i, output in enumerate(egoplan):
-        egoplan[i] = outputparser(output)
+        egoplan[i], tempplanningtime = outputparser(output)
+        planningtimetotal = planningtimetotal + tempplanningtime
+        tempplanningtime = 0.0
         egobotplancompile = egobotplancompile + 'Egobot ' + egolist[i] + ' Plan:\n' + egoplan[i] + '\n\n'
 
     newsidproblem = sidempty
@@ -472,7 +484,9 @@ def egobotsidekick(filecode, egolist):
         iterstr = str(iter)
 
         # Here the sidekick problem is parsed
-        sidplan = outputparser(sidplan)
+        sidplan, tempplanningtime = outputparser(sidplan)
+        planningtimetotal = planningtimetotal + tempplanningtime
+        tempplanningtime = 0.0
         sidplancompile = sidplancompile + sidplan + '\n'
         sidtime, sidloc = endlocationparser(sidplan)
         timeoffsetold = timeoffset
@@ -509,7 +523,9 @@ def egobotsidekick(filecode, egolist):
         egobotplancompile = ''
         for i, output in enumerate(egoplan):
             if egosuccess[i] == 0:
-                egoplan[i] = outputparser(output)
+                egoplan[i], tempplanningtime = outputparser(output)
+                planningtimetotal = planningtimetotal + tempplanningtime
+                tempplanningtime = 0.0
             egobotplancompile = egobotplancompile + 'Egobot ' + egolist[i] + ' Plan:\n' + egoplan[i] + '\n\n'
 
         newsidproblem = sidempty
@@ -551,8 +567,13 @@ def egobotsidekick(filecode, egolist):
 
     # Here a final output file is generated
     f = open(finalplanfile, 'x')
-    f.write(sidplancompile+'\n\n'+egobotplancompile)
-    return finalplanfile
+    f.write(sidplancompile+'\n\n'+egobotplancompile+'\n\n'+str(planningtimetotal))
+
+    # Here the planner is run for a single agent problem with up to twice the planning time total (I can compare to 100%, 110%, 120%, 150%, etc)
+    singleagenttimeout = round(2*planningtimetotal)
+    singleagentplan = callplanner(planner, fulldomain, fullproblemfile, fullplanfile, singleagenttimeout)
+
+    return finalplanfile, planningtimetotal
 
 #egolist = ['1', '2', '3', '4']
 #egobotsidekick('04009031ring',egolist)
