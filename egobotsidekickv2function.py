@@ -106,17 +106,17 @@ def addegowelderdrop(file, welders, locations, times):
     return newfile
 
 def removepatch(file, parsedinfo, placeholder):
-    patches = parsedinfo[0]
+    #patches = parsedinfo[0]
     sep1 = file.partition(';patchstart')
     sep2 = sep1[2].partition(';patchend')
-    sep3 = sep2[0].splitlines()
-    newpatches = ''
-    for line in sep3:
-        if any(patch in line for patch in patches) and not ';patchbodge' in line:
-            newpatches = newpatches + '\n;' + line
-        else:
-            newpatches = newpatches + '\n' + line
-    newfile = sep1[0]+sep1[1]+newpatches+'\n'+sep2[1]+sep2[2]
+    #sep3 = sep2[0].splitlines()
+    #newpatches = ''
+    #for line in sep3:
+    #    if any(patch in line for patch in patches) and not ';patchbodge' in line:
+    #        newpatches = newpatches + '\n;' + line
+    #    else:
+    #        newpatches = newpatches + '\n' + line
+    newfile = sep1[0]+sep1[1]+patchset+'\n'+sep2[1]+sep2[2]
     score = 0
     return newfile, score
 
@@ -166,11 +166,17 @@ def addpatchdrop(file, parsedinfo, droptimes):
     egobotsep1 = sep1[0].partition(' - egobot')
     egobotsep2 = egobotsep1[0].partition('ego')
     egobotnum = egobotsep2[2]
+    global patchset
     for i, patch in enumerate(patches):
         for j, line in enumerate(sep3):
             if patch in line:
                 if locations[i][1] in egobotnum:
                     sep3[j] = '(at '+droptimes[i]+' (dropped '+patch+' '+locations[i]+')'
+                    patchsetlines = patchset.splitlines()
+                    for k, setline in enumerate(patchsetlines):
+                        if patch in setline:
+                            patchsetlines[k] = ';'
+                    patchset = '\n'.join(patchsetlines)
                 else:
                     sep3[j] = ''
     newpatches = ''
@@ -385,6 +391,12 @@ def egobotsidekick(filecode, egolist):
         sidtoego[i].actions[2].set_identifiers('sid','drop-patch')
         sidtoego[i].actions[2].set_parsing([[' l',' '],[' pa', ' ']])
         sidtoego[i].actions[2].set_function('addpatchdrop')
+
+
+    # Here the sidekick's patch list is parsed so that it can be updated correctly at each iteration.
+    global patchset
+    sep1 = sidempty.partition(';patchstart')
+    patchset = sep1[2].partition(';patchend')
 
     # Here the egobot problems are run for the first time.
     egoplan = []
