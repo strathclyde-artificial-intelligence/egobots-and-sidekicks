@@ -170,7 +170,7 @@ def addpatchdrop(file, parsedinfo, droptimes):
     for i, patch in enumerate(patches):
         for j, line in enumerate(sep3):
             if patch in line:
-                if locations[i][1] in egobotnum:
+                if locations[i][1] in egobotnum: # this would delete patches dropped in previous iterations if not for the for i, patch in enumerate(patches) line
                     sep3[j] = '(at '+droptimes[i]+' (dropped '+patch+' '+locations[i]+')'
                     patchsetlines = patchset.splitlines()
                     for k, setline in enumerate(patchsetlines):
@@ -183,6 +183,18 @@ def addpatchdrop(file, parsedinfo, droptimes):
     for line in sep3:
         newpatches = newpatches + line + '\n'
     newfile = sep1[0]+sep1[1]+newpatches+sep2[1]+sep2[2]
+    #this next bit of the function corrects the sidekick's knowledge of the world in cases of the egobot requesting too many patches
+    patchavailablecount = 0
+    for line in sep3:
+        if '(at ' in line:
+            patchavailablecount = patchavailablecount + 1
+    goalsep1 = file.partition(';goalstart')
+    goalsep2 = goalsep1[2].partition(';goalend')
+    patchrequiredcount = goalsep2[0].count('is-patched')
+    patchfixer = 0
+    while patchavailablecount > patchrequiredcount:
+        patchset = patchset + '\n(dropped '+patches[patchfixer]+' '+locations[patchfixer]+')'
+        patchfixer = patchfixer + 1 #if this exceeded the index of patches, something has gone terribly wrong
     return newfile
 
 def modifysidekicklocation(file, sidloc, sidtime):
