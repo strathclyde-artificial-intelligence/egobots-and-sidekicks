@@ -193,8 +193,9 @@ def addpatchdrop(file, parsedinfo, droptimes):
     patchrequiredcount = goalsep2[0].count('is-patched')
     patchfixer = 0
     while patchavailablecount > patchrequiredcount:
-        patchset = patchset + '\n(dropped '+patches[patchfixer]+' '+locations[patchfixer]+')'
+        patchset = patchset + '\n(dropped '+patches[patchfixer]+' '+locations[patchfixer] # the last ')' is contained in the locations string for not a very good reason
         patchfixer = patchfixer + 1 #if this exceeded the index of patches, something has gone terribly wrong
+        patchavailablecount = patchavailablecount - 1
     return newfile
 
 def modifysidekicklocation(file, sidloc, sidtime):
@@ -408,7 +409,8 @@ def egobotsidekick(filecode, egolist):
     # Here the sidekick's patch list is parsed so that it can be updated correctly at each iteration.
     global patchset
     sep1 = sidempty.partition(';patchstart')
-    patchset = sep1[2].partition(';patchend')
+    sep2 = sep1[2].partition(';patchend')
+    patchset = sep2[0]
 
     # Here the egobot problems are run for the first time.
     egoplan = []
