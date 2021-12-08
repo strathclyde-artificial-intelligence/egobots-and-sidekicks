@@ -316,7 +316,7 @@ def callplanner(planner,domain,problem,planfile,timeout): # all as strings, give
     return outputlog
 
 # Here strings are defined which are used to find and create files.
-def egobotsidekick(filecode, egolist):
+def egobotsidekick(filecode, egolist, timeoutint):
     egopt1 = filecode+'egobot-'
     egopt2 = '-problem-'
     egopt3 = filecode+'Egobot-'
@@ -414,7 +414,7 @@ def egobotsidekick(filecode, egolist):
 
     # Here the egobot problems are run for the first time.
     egoplan = []
-    timeout = '15'
+    timeout = str(timeoutint)
     for i, problem in enumerate(egobotproblemfiles):
         egoplan.append(callplanner(planner,egodomain,problem,egobotplanfiles[i],timeout))
 
@@ -501,7 +501,7 @@ def egobotsidekick(filecode, egolist):
 
         # Here the sidekick problem is run
         sidplanfile = sidpt2+iterstr+'.txt'
-        timeout = '60'
+        timeout = str(timeoutint*4)
         sidplan = callplanner(planner,siddomain,sidproblemfile,sidplanfile,timeout)
 
         # Here the iteration number is increased
@@ -537,7 +537,7 @@ def egobotsidekick(filecode, egolist):
             f.close()
     
         # Here the egobot problems are run.
-        timeout = '15'
+        timeout = str(timeoutint)
         for i, problem in enumerate(egobotproblemfiles):
             if egosuccess[i] == 0:
                 egoplan[i] = callplanner(planner,egodomain,problem,egobotplanfiles[i],timeout)
