@@ -170,7 +170,7 @@ def addpatchdrop(file, parsedinfo, droptimes):
     for i, patch in enumerate(patches):
         for j, line in enumerate(sep3):
             if patch in line:
-                if locations[i][1] in egobotnum: # this would delete patches dropped in previous iterations if not for the for i, patch in enumerate(patches) line
+                if locations[i][1]+locations[i][2] in egobotnum: # this would delete patches dropped in previous iterations if not for the for i, patch in enumerate(patches) line
                     sep3[j] = '(at '+droptimes[i]+' (dropped '+patch+' '+locations[i]+')'
                     patchsetlines = patchset.splitlines()
                     for k, setline in enumerate(patchsetlines):
@@ -595,7 +595,7 @@ def egobotsidekick(filecode, egolist, timeoutint):
     f.write(sidplancompile+'\n\n'+egobotplancompile+'\n\n'+str(planningtimetotal))
 
     # Here the planner is run for a single agent problem with up to twice the planning time total (I can compare to 100%, 110%, 120%, 150%, etc)
-    singleagenttimeout = str(round(2*planningtimetotal))
+    singleagenttimeout = str(round(10*planningtimetotal))
     singleagentplan = callplanner(planner, fulldomain, fullproblemfile, fullplanfile, singleagenttimeout)
 
     return finalplanfile, planningtimetotal

@@ -49,24 +49,33 @@ def generate(egobots, goals, locations, sidekicks, shape):
     
     locationlist = []
     for i in range(1,numegobots+1):
+        stri = str(i)
+        if len(stri) == 1:
+            stri = '0'+stri
         goals.append('')
         temploclist = []
         goalcountdown = numgoals
         complexgoalcountdown = numcomplexgoals
         for j in range(1,numlocations+1):
-            templocation = 'l'+str(i)+str(j)
+            strj = str(j)
+            if len(strj) == 1:
+                strj = '0'+strj
+            templocation = 'l'+stri+strj
             for k in range(1,goalsperloc+1):
-                objects['panels'] = objects['panels'] + 'pn'+str(i)+str(j)+str(k)+' '
-                init['panel-at'] = init['panel-at'] + '(panel-at pn'+str(i)+str(j)+str(k)+' '+templocation+')\n'
+                strk = str(k)
+                if len(strk) == 1:
+                    strk = '0'+strk
+                objects['panels'] = objects['panels'] + 'pn'+stri+strj+strk+' '
+                init['panel-at'] = init['panel-at'] + '(panel-at pn'+stri+strj+strk+' '+templocation+')\n'
                 if random.randint(1,goalcountdown+1) <= complexgoalcountdown:
                     if random.randint(0,2):
-                        goals[i-1] = goals[i-1] + '(is-welded pn'+str(i)+str(j)+str(k)+')\n'
+                        goals[i-1] = goals[i-1] + '(is-welded pn'+stri+strj+strk+')\n'
                     else:
-                        goals[i-1] = goals[i-1] + '(is-patched pn'+str(i)+str(j)+str(k)+')\n'
+                        goals[i-1] = goals[i-1] + '(is-patched pn'+stri+strj+strk+')\n'
                         patchcount = patchcount+1
                     complexgoalcountdown = complexgoalcountdown-1
                 else:
-                    goals[i-1] = goals[i-1] + '(is-inspected pn'+str(i)+str(j)+str(k)+')\n'
+                    goals[i-1] = goals[i-1] + '(is-inspected pn'+stri+strj+strk+')\n'
                 goalcountdown = goalcountdown-1
             locationlist.append(templocation)
             objects['locations'] = objects['locations']+templocation+' '
@@ -103,29 +112,44 @@ def generate(egobots, goals, locations, sidekicks, shape):
 
     egolist = []
     for i in range(1, numegobots+1):
-        egolist.append(str(i))
-        tempegostr = '(at ego'+str(i)+' '+locationlist[(i-1)*numlocations+1]+')\n(camera-free ego'+str(i)+')\n(hands-free ego'+str(i)+')\n'
+        stri = str(i)
+        if len(stri) == 1:
+            stri = '0'+stri
+        egolist.append(stri)
+        tempegostr = '(at ego'+stri+' '+locationlist[(i-1)*numlocations+1]+')\n(camera-free ego'+stri+')\n(hands-free ego'+stri+')\n'
         init['ego'].append(tempegostr)
         temphandledstr = ''
         for j in range(1,patchcount+1):
-            temphandledstr = temphandledstr + '(not-handled ego'+str(i)+' pa'+str(j)+')\n'
+            strj = str(j)
+            if len(strj) == 1:
+                strj = '0'+strj
+            temphandledstr = temphandledstr + '(not-handled ego'+stri+' pa'+strj+')\n'
             for k in range(1,numsidekicks+1):
-                temphandledstr = temphandledstr + '(not-handled sid'+str(k)+' pa'+str(j)+')\n'
+                temphandledstr = temphandledstr + '(not-handled sid'+str(k)+' pa'+strj+')\n'
         for j in range(1,numegobots):
-            temphandledstr = temphandledstr + '(not-handled ego'+str(i)+' w'+str(j)+')\n'
+            strj = str(j)
+            if len(strj) == 1:
+                strj = '0'+strj
+            temphandledstr = temphandledstr + '(not-handled ego'+stri+' w'+strj+')\n'
             for k in range(1,numsidekicks+1):
-                temphandledstr = temphandledstr + '(not-handled sid'+str(k)+' w'+str(j)+')\n'
+                temphandledstr = temphandledstr + '(not-handled sid'+str(k)+' w'+strj+')\n'
         init['not-handled'].append(temphandledstr)
 
     for i in range(numegobots-1):
-        objects['welders'] = objects['welders'] + 'w'+str(i+1)+' '
-        init['dropped'] = init['dropped'] + '(dropped w'+str(i+1)+' lsid)\n'
+        stri = str(i+1)
+        if len(stri) == 1:
+            stri = '0'+stri
+        objects['welders'] = objects['welders'] + 'w'+stri+' '
+        init['dropped'] = init['dropped'] + '(dropped w'+stri+' lsid)\n'
     
     init['dropped'] = init['dropped']+';welderend\n;patchstart\n'
 
     for i in range(patchcount):
-        objects['patches'] = objects['patches'] + 'pa'+str(i+1)+' '
-        init['dropped'] = init['dropped'] + '(dropped pa'+str(i+1)+' lsid)\n'
+        stri = str(i+1)
+        if len(stri) == 1:
+            stri = '0'+stri
+        objects['patches'] = objects['patches'] + 'pa'+stri+' '
+        init['dropped'] = init['dropped'] + '(dropped pa'+stri+' lsid)\n'
     
     init['dropped'] = init['dropped']+';patchend\n'
     
@@ -170,7 +194,10 @@ def generate(egobots, goals, locations, sidekicks, shape):
     f.close
 
     for i, goal in enumerate(goals):
-        egoobjectstr = '(:objects \n'+objects['locations']+'- location\n'+objects['sidekicks']+'- sidekick\nego'+str(i+1)+' - egobot\n'+objects['panels']+'- panel\n'+objects['welders']+'- welder\n'+objects['patches']+'- patch\n)\n\n'
+        stri = str(i+1)
+        if len(stri) == 1:
+            stri = '0'+stri
+        egoobjectstr = '(:objects \n'+objects['locations']+'- location\n'+objects['sidekicks']+'- sidekick\nego'+stri+' - egobot\n'+objects['panels']+'- panel\n'+objects['welders']+'- welder\n'+objects['patches']+'- patch\n)\n\n'
         egoinitstr = '(:init \n'+init['egobot-adjacent']+init['sidekick-adjacent']+init['sid']+init['ego'][i]+init['not-handled'][i]+init['dropped']+init['panel-at']+'\n(deadline-open)\n)\n\n'
         egogoalstr = '(:goal (and\n;goalstart\n'+goal+';goalend\n))\n\n'
         egoendstr = ')'
