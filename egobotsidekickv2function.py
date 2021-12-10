@@ -308,7 +308,11 @@ def egowelderdropparser(plan):
 def callplanner(planner,domain,problem,planfile,timeout): # all as strings, give full file names for domain, problem, and planfile. include modifiers like -n in planner
     f = open(planfile,'x')
     f.close()
-    arg = 'timeout '+timeout+' '+'./'+planner+' '+domain+' '+problem+' > '+planfile
+    if timeout == 'null':
+        arg = ''
+    else:
+        arg = 'timeout '+timeout+' '
+    arg = arg+'./'+planner+' '+domain+' '+problem+' > '+planfile
     os.system(arg)
     f = open(planfile,'r')
     outputlog = f.read()
@@ -343,7 +347,13 @@ def egobotsidekick(filecode, egolist, timeoutint):
     fulldomain = 'maintenance-domain-2.pddl'
 
     # Here the planner is named.
-    planner = 'optic-cplex -n'
+    egoplannersetup = 'optic-cplex -N'
+    sidplannersetup = 'optic-cplex'
+    singleplannersetup = sidplannersetup
+
+    # Here the timeouts for planning iterations are defined
+    egotimeout = 'null'
+    sidtimeout = str(timeoutint*4)
 
     # Here the iteration counting variable and the success variable are made.
     iter = 1
@@ -414,9 +424,8 @@ def egobotsidekick(filecode, egolist, timeoutint):
 
     # Here the egobot problems are run for the first time.
     egoplan = []
-    timeout = str(timeoutint)
     for i, problem in enumerate(egobotproblemfiles):
-        egoplan.append(callplanner(planner,egodomain,problem,egobotplanfiles[i],timeout))
+        egoplan.append(callplanner(egoplannersetup,egodomain,problem,egobotplanfiles[i],egotimeout))
 
     # Here the first set of egobot plans are parsed.
     egobotplancompile = ''
@@ -501,8 +510,7 @@ def egobotsidekick(filecode, egolist, timeoutint):
 
         # Here the sidekick problem is run
         sidplanfile = sidpt2+iterstr+'.txt'
-        timeout = str(timeoutint*4)
-        sidplan = callplanner(planner,siddomain,sidproblemfile,sidplanfile,timeout)
+        sidplan = callplanner(sidplannersetup,siddomain,sidproblemfile,sidplanfile,sidtimeout)
 
         # Here the iteration number is increased
         iter = iter+1
@@ -537,10 +545,9 @@ def egobotsidekick(filecode, egolist, timeoutint):
             f.close()
     
         # Here the egobot problems are run.
-        timeout = str(timeoutint)
         for i, problem in enumerate(egobotproblemfiles):
             if egosuccess[i] == 0:
-                egoplan[i] = callplanner(planner,egodomain,problem,egobotplanfiles[i],timeout)
+                egoplan[i] = callplanner(egoplannersetup,egodomain,problem,egobotplanfiles[i],egotimeout)
             #else:
                 #egoplan[i] = [] #removed because egosuccess is always(?) checked later down the line and this line messes with compilation
     
@@ -596,7 +603,7 @@ def egobotsidekick(filecode, egolist, timeoutint):
 
     # Here the planner is run for a single agent problem with up to twice the planning time total (I can compare to 100%, 110%, 120%, 150%, etc)
     singleagenttimeout = str(round(10*planningtimetotal))
-    singleagentplan = callplanner(planner, fulldomain, fullproblemfile, fullplanfile, singleagenttimeout)
+    singleagentplan = callplanner(singleplannersetup, fulldomain, fullproblemfile, fullplanfile, singleagenttimeout)
 
     return finalplanfile, planningtimetotal
 
