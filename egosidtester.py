@@ -13,20 +13,23 @@ def runtest(egobots,goals,locations,sidekicks,shape):
     #shape = settings[4]
 
     filecode, egolist = egosidproblemgenerator.generate(egobots,goals,locations,sidekicks,shape)
-    timeout = int(egobots)*5
+    timeout = int(egobots)*1.25*int(locations)
     finalplanfile, egosidplanningtime = egobotsidekickv2function.egobotsidekick(filecode, egolist,timeout)
     return
 
 #experimentalsetup = []
-egobotsrange = ['04','05','06','07','08','09','10']
-goalsrange = ['016'] #if the differences between any of these are smaller than the largest value in locations, bugs will appear
-locationsrange = ['04']
+egobotsrange = ['04']
+#goalsrange = ['016'] #if the differences between any of these are smaller than the largest value in locations, bugs will appear
+locationsrange = ['05','06','07','08']
 sidekicksrange = ['1']
 shaperange = ['star']
 for egobots in egobotsrange:
-    for goals in goalsrange:
-        for locations in locationsrange:
-            for sidekicks in sidekicksrange:
-                for shape in shaperange:
-                    runtest(egobots,goals,locations,sidekicks,shape)
+    #for goals in goalsrange:
+    for locations in locationsrange:
+        goals = str(int(locations)*4)
+        if len(goals) == 2:
+            goals = '0'+goals
+        for sidekicks in sidekicksrange:
+            for shape in shaperange:
+                runtest(egobots,goals,locations,sidekicks,shape)
 
