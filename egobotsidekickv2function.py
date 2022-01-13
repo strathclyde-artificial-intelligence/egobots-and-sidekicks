@@ -6,6 +6,7 @@
 # This file uses separate functions for each modification to or addition of a line to a problem file.
 
 import os
+from threading import Thread
 
 class Agent:
     def __init__(self, name = 'undefined', *listactions):
@@ -305,7 +306,7 @@ def egowelderdropparser(plan):
 
 # This function calls a planner
 
-def callplanner(planner,domain,problem,planfile,timeout): # all as strings, give full file names for domain, problem, and planfile. include modifiers like -n in planner
+def callplanner(planner,domain,problem,planfile,timeout,egoindex=0,egoplans=[None]): # all as strings, give full file names for domain, problem, and planfile. include modifiers like -n in planner
     f = open(planfile,'x')
     f.close()
     if timeout == 'null':
@@ -317,6 +318,7 @@ def callplanner(planner,domain,problem,planfile,timeout): # all as strings, give
     f = open(planfile,'r')
     outputlog = f.read()
     f.close()
+    egoplans[egoindex] = outputlog
     return outputlog
 
 # Here strings are defined which are used to find and create files.
@@ -353,7 +355,7 @@ def egobotsidekick(filecode, egolist, timeoutint):
 
     # Here the timeouts for planning iterations are defined
     egotimeout = 'null'
-    sidtimeout = str(timeoutint*4)
+    sidtimeout = str(timeoutint)
 
     # Here the iteration counting variable and the success variable are made.
     iter = 1
@@ -423,9 +425,16 @@ def egobotsidekick(filecode, egolist, timeoutint):
     patchset = sep2[0]
 
     # Here the egobot problems are run for the first time.
-    egoplan = []
+    egoplan = [None]*len(egobotproblemfiles)
+    ego_threads = []
     for i, problem in enumerate(egobotproblemfiles):
-        egoplan.append(callplanner(egoplannersetup,egodomain,problem,egobotplanfiles[i],egotimeout))
+        ego_thread = Thread(target=callplanner, args=(egoplannersetup,egodomain,problem,egobotplanfiles[i],egotimeout,i,egoplan))
+        ego_threads.append(ego_thread)
+        ego_thread.start()
+
+    for thread in ego_threads:
+        thread.join()
+        #callplanner(egoplannersetup,egodomain,problem,egobotplanfiles[i],egotimeout,i,egoplan)
 
     # Here the first set of egobot plans are parsed.
     egobotplancompile = ''
@@ -545,9 +554,15 @@ def egobotsidekick(filecode, egolist, timeoutint):
             f.close()
     
         # Here the egobot problems are run.
+        ego_threads = []
         for i, problem in enumerate(egobotproblemfiles):
             if egosuccess[i] == 0:
-                egoplan[i] = callplanner(egoplannersetup,egodomain,problem,egobotplanfiles[i],egotimeout)
+                ego_thread = Thread(target=callplanner, args=(egoplannersetup,egodomain,problem,egobotplanfiles[i],egotimeout,i,egoplan))
+                ego_threads.append(ego_thread)
+                ego_thread.start()
+
+        for thread in ego_threads:
+            thread.join()
             #else:
                 #egoplan[i] = [] #removed because egosuccess is always(?) checked later down the line and this line messes with compilation
     

@@ -4,6 +4,11 @@
 import os
 import egobotsidekickv2function
 import egosidproblemgenerator
+import sys
+
+if len(sys.argv)<3:
+    print ("USAGE: python3"+str(sys.argv[0])+" no_egobots no_goals")
+    sys.exit(0)
 
 def runtest(egobots,goals,locations,sidekicks,shape):
     #egobots = settings[0]
@@ -13,19 +18,24 @@ def runtest(egobots,goals,locations,sidekicks,shape):
     #shape = settings[4]
 
     filecode, egolist = egosidproblemgenerator.generate(egobots,goals,locations,sidekicks,shape)
-    timeout = int(egobots)*1.25*int(locations)
+    timeout = int(egobots)*5*int(locations)
     finalplanfile, egosidplanningtime = egobotsidekickv2function.egobotsidekick(filecode, egolist,timeout)
     return
 
 #experimentalsetup = []
-egobotsrange = ['04']
+egobotsrange = str(sys.argv[1])
+if int(sys.argv[1]) < 10: egobotsrange = "0"+egobotsrange
+
+locationsrange = str(sys.argv[2])
+if int(sys.argv[2]) < 10: locationsrange = "0"+locationsrange
+
 #goalsrange = ['016'] #if the differences between any of these are smaller than the largest value in locations, bugs will appear
-locationsrange = ['05','06','07','08']
+#locationsrange = ['04']
 sidekicksrange = ['1']
 shaperange = ['star']
-for egobots in egobotsrange:
+for egobots in [egobotsrange]:
     #for goals in goalsrange:
-    for locations in locationsrange:
+    for locations in [locationsrange]:
         goals = str(int(locations)*4)
         if len(goals) == 2:
             goals = '0'+goals
