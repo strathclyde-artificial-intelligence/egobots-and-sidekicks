@@ -169,8 +169,10 @@ def addpatchdrop(file, parsedinfo, droptimes):
     egobotnum = egobotsep2[2]
     global patchset
     for i, patch in enumerate(patches):
+        patchinline = 0
         for j, line in enumerate(sep3):
             if patch in line:
+                patchinline = 1
                 if locations[i][1]+locations[i][2] in egobotnum: # this would delete patches dropped in previous iterations if not for the for i, patch in enumerate(patches) line
                     sep3[j] = '(at '+droptimes[i]+' (dropped '+patch+' '+locations[i]+')'
                     patchsetlines = patchset.splitlines()
@@ -180,6 +182,15 @@ def addpatchdrop(file, parsedinfo, droptimes):
                     patchset = '\n'.join(patchsetlines)
                 else:
                     sep3[j] = ''
+        if patchinline == 0: #this allows forgotten patches to be remembered, ie if egobot 3 asked for too many patches so sidekick later delivers a patch from egobot 3 to egobot 2
+            if locations[i][1]+locations[i][2] in egobotnum:
+                newpatch = '(at '+droptimes[i]+' (dropped '+patch+' '+locations[i]+')' 
+                sep3.append(newpatch)
+                patchsetlines = patchset.splitlines()
+                for k, setline in enumerate(patchsetlines):
+                    if patch in setline:
+                        patchsetlines[k] = ';'
+                patchset = '\n'.join(patchsetlines)
     newpatches = ''
     for line in sep3:
         newpatches = newpatches + line + '\n'
