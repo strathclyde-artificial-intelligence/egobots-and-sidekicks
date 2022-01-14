@@ -628,7 +628,7 @@ def egobotsidekick(filecode, egolist, timeoutint):
     f.write(sidplancompile+'\n\n'+egobotplancompile+'\n\n'+str(planningtimetotal))
 
     # Here the planner is run for a single agent problem with up to twice the planning time total (I can compare to 100%, 110%, 120%, 150%, etc)
-    singleagenttimeout = str(round(10*planningtimetotal))
+    singleagenttimeout = '1800'
     singleagentplan = callplanner(singleplannersetup, fulldomain, fullproblemfile, fullplanfile, singleagenttimeout)
 
     return finalplanfile, planningtimetotal
