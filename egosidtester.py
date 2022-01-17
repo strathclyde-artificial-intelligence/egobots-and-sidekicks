@@ -29,6 +29,10 @@ if len(sys.argv[1]) < 2: egobotsrange = "0"+egobotsrange
 locationsrange = str(sys.argv[2])
 if len(sys.argv[2]) < 2: locationsrange = "0"+locationsrange
 
+key = ''
+if len(sys.argv) > 3:
+    key = str(sys.argv[3])
+
 #goalsrange = ['016'] #if the differences between any of these are smaller than the largest value in locations, bugs will appear
 #locationsrange = ['04']
 sidekicksrange = ['1']
@@ -41,5 +45,5 @@ for egobots in [egobotsrange]:
             goals = '0'+goals
         for sidekicks in sidekicksrange:
             for shape in shaperange:
-                runtest(egobots,goals,locations,sidekicks,shape)
+                runtest(egobots,goals,locations,sidekicks,shape,key)
 

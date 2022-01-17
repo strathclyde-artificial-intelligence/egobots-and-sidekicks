@@ -4,7 +4,7 @@
 import math
 import random
 
-def generate(egobots, goals, locations, sidekicks, shape):
+def generate(egobots, goals, locations, sidekicks, shape, key=''):
     if shape != 'star':
         shape = 'ring'
 
@@ -21,7 +21,7 @@ def generate(egobots, goals, locations, sidekicks, shape):
         goals = '0'+goals
     if len(goals) == 2:
         goals = '0'+goals
-    filecode = egobots+goals+locations+sidekicks+shape
+    filecode = key+egobots+goals+locations+sidekicks+shape
     numcomplexgoals = math.floor(numgoals/5)
 
     objects = {
@@ -207,4 +207,4 @@ def generate(egobots, goals, locations, sidekicks, shape):
 
     return filecode, egolist
 
-#generate('04','016','04','1','ring')
+#generate('04','016','04','1','ring','v2')
