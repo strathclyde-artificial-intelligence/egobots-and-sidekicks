@@ -442,10 +442,11 @@ def egobotsidekick(filecode, egolist, timeoutint):
         ego_thread = Thread(target=callplanner, args=(egoplannersetup,egodomain,problem,egobotplanfiles[i],egotimeout,i,egoplan))
         ego_threads.append(ego_thread)
         #ego_thread.start()
-
-    for thread in ego_threads:
-        #thread.join()
         callplanner(egoplannersetup,egodomain,problem,egobotplanfiles[i],egotimeout,i,egoplan)
+
+    #for thread in ego_threads:
+        #thread.join()
+        #callplanner(egoplannersetup,egodomain,problem,egobotplanfiles[i],egotimeout,i,egoplan)
 
     # Here the first set of egobot plans are parsed.
     egobotplancompile = ''
@@ -571,10 +572,11 @@ def egobotsidekick(filecode, egolist, timeoutint):
                 ego_thread = Thread(target=callplanner, args=(egoplannersetup,egodomain,problem,egobotplanfiles[i],egotimeout,i,egoplan))
                 ego_threads.append(ego_thread)
                 #ego_thread.start()
+                callplanner(egoplannersetup,egodomain,problem,egobotplanfiles[i],egotimeout,i,egoplan)
 
-        for thread in ego_threads:
+        #for thread in ego_threads:
             #thread.join()
-            callplanner(egoplannersetup,egodomain,problem,egobotplanfiles[i],egotimeout,i,egoplan)
+            #callplanner(egoplannersetup,egodomain,problem,egobotplanfiles[i],egotimeout,i,egoplan)
             #else:
                 #egoplan[i] = [] #removed because egosuccess is always(?) checked later down the line and this line messes with compilation
     
