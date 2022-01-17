@@ -5,8 +5,8 @@ import math
 import random
 
 def generate(egobots, goals, locations, sidekicks, shape, key=''):
-    if shape != 'star':
-        shape = 'ring'
+    if shape != 'ring':
+        shape = 'star'
 
     numegobots = int(egobots)
     numgoals = int(goals)
@@ -21,7 +21,10 @@ def generate(egobots, goals, locations, sidekicks, shape, key=''):
         goals = '0'+goals
     if len(goals) == 2:
         goals = '0'+goals
-    filecode = key+egobots+goals+locations+sidekicks+shape
+    if key == '':
+        filecode = key+egobots+goals+locations+sidekicks+shape
+    else:
+        filecode = key+egobots+goals+locations+sidekicks+'sttar' #This is so that a currently running test ignores these, please remove later
     numcomplexgoals = math.floor(numgoals/5)
 
     objects = {
