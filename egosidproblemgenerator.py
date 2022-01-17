@@ -21,10 +21,7 @@ def generate(egobots, goals, locations, sidekicks, shape, key=''):
         goals = '0'+goals
     if len(goals) == 2:
         goals = '0'+goals
-    if key == '':
-        filecode = key+egobots+goals+locations+sidekicks+shape
-    else:
-        filecode = key+egobots+goals+locations+sidekicks+'sttar' #This is so that a currently running test ignores these, please remove later
+    filecode = key+egobots+goals+locations+sidekicks+shape
     numcomplexgoals = math.floor(numgoals/5)
 
     objects = {
