@@ -24,10 +24,10 @@ def runtest(egobots,goals,locations,sidekicks,shape):
 
 #experimentalsetup = []
 egobotsrange = str(sys.argv[1])
-if int(sys.argv[1]) < 10: egobotsrange = "0"+egobotsrange
+if len(sys.argv[1]) < 2: egobotsrange = "0"+egobotsrange
 
 locationsrange = str(sys.argv[2])
-if int(sys.argv[2]) < 10: locationsrange = "0"+locationsrange
+if len(sys.argv[2]) < 2: locationsrange = "0"+locationsrange
 
 #goalsrange = ['016'] #if the differences between any of these are smaller than the largest value in locations, bugs will appear
 #locationsrange = ['04']
