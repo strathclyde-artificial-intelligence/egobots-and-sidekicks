@@ -10,14 +10,14 @@ if len(sys.argv)<3:
     print ("USAGE: python3"+str(sys.argv[0])+" no_egobots no_goals")
     sys.exit(0)
 
-def runtest(egobots,goals,locations,sidekicks,shape):
+def runtest(egobots,goals,locations,sidekicks,shape,key=''):
     #egobots = settings[0]
     #goals = settings[1]
     #locations = settings[2]
     #sidekicks = settings[3]
     #shape = settings[4]
 
-    filecode, egolist = egosidproblemgenerator.generate(egobots,goals,locations,sidekicks,shape)
+    filecode, egolist = egosidproblemgenerator.generate(egobots,goals,locations,sidekicks,shape,key)
     timeout = int(egobots)*5*int(locations)
     finalplanfile, egosidplanningtime = egobotsidekickv2function.egobotsidekick(filecode, egolist,timeout)
     return
