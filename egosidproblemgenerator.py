@@ -68,11 +68,11 @@ def generate(egobots, goals, locations, sidekicks, shape):
                 objects['panels'] = objects['panels'] + 'pn'+stri+strj+strk+' '
                 init['panel-at'] = init['panel-at'] + '(panel-at pn'+stri+strj+strk+' '+templocation+')\n'
                 if random.randint(1,goalcountdown+1) <= complexgoalcountdown:
-                    if random.randint(0,2):
-                        goals[i-1] = goals[i-1] + '(is-welded pn'+stri+strj+strk+')\n'
-                    else:
-                        goals[i-1] = goals[i-1] + '(is-patched pn'+stri+strj+strk+')\n'
-                        patchcount = patchcount+1
+                    #if random.randint(0,2):
+                    #    goals[i-1] = goals[i-1] + '(is-welded pn'+stri+strj+strk+')\n'
+                    #else:
+                    goals[i-1] = goals[i-1] + '(is-patched pn'+stri+strj+strk+')\n'
+                    patchcount = patchcount+1
                     complexgoalcountdown = complexgoalcountdown-1
                 else:
                     goals[i-1] = goals[i-1] + '(is-inspected pn'+stri+strj+strk+')\n'
