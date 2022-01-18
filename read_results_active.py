@@ -38,8 +38,16 @@ for dir in dirs:
 
     if testcomplete == 1:
         print (dir, end=",")
-        single_agent_file = [f for f in listdir(dir) if "Single" in f][0]
-        final_plan = [f for f in listdir(dir) if "Final" in f][0]
+        single_agent_file_list = [f for f in listdir(dir) if "Single" in f]
+        if len(single_agent_file_list) > 0:
+            single_agent_file = single_agent_file_list[0]
+        else:
+            single_agent_file = ''
+        final_plan_list = [f for f in listdir(dir) if "Final" in f]
+        if len(final_plan_list) > 0:
+            final_plan = final_plan_list[0]
+        else:
+            final_plan = ''
 
         tokens = dir.split("_")
         variant = tokens[1][1:]
@@ -52,44 +60,50 @@ for dir in dirs:
         # framework
         cost = "-"
         time = "-"
-        with open(dir+"/"+final_plan) as ff:
-            lines = ff.readlines()
-            state = 0 # reading sidekick plan
-            plan_offset = 0.0
-            for line in lines:
-                if "Egobot" in line: state = 1 # reading egobot plans
-
-                if state==0:
-                    if "(" in line:
-                        start = line.split(":")[0]
-                        duration = line.split("[")[1][:-2]
-                        if line.split(":")[0]=="0.000" and cost!="-":
-                            plan_offset = float(cost)
-                        c = plan_offset + float(start) + float(duration)
-                        if cost=="-" or float(cost) < c:
-                            cost = str(c)
-                else:
-                    if "(" in line:
-                        start = line.split(":")[0]
-                        duration = line.split("[")[1][:-2]
-                        c = float(start)+float(duration)
-                        if cost=="-" or float(cost) < c:
-                            cost = str(c)
-
-            time = line
+        if final_plan == '':
             print(time+","+cost,end=",")
+        else:
+            with open(dir+"/"+final_plan) as ff:
+                lines = ff.readlines()
+                state = 0 # reading sidekick plan
+                plan_offset = 0.0
+                for line in lines:
+                    if "Egobot" in line: state = 1 # reading egobot plans
+
+                    if state==0:
+                        if "(" in line:
+                            start = line.split(":")[0]
+                            duration = line.split("[")[1][:-2]
+                            if line.split(":")[0]=="0.000" and cost!="-":
+                                plan_offset = float(cost)
+                            c = plan_offset + float(start) + float(duration)
+                            if cost=="-" or float(cost) < c:
+                                cost = str(c)
+                    else:
+                        if "(" in line:
+                            start = line.split(":")[0]
+                            duration = line.split("[")[1][:-2]
+                            c = float(start)+float(duration)
+                            if cost=="-" or float(cost) < c:
+                                cost = str(c)
+
+                time = line
+                print(time+","+cost,end=",")
 
         # single agent
         cost = "-"
         time = "-"
-        with open(dir+"/"+single_agent_file) as saf:
-            lines = saf.readlines()
-            for line in lines:
-                if "; Plan found with metric " in line:
-                    cost = line[len("; Plan found with metric "):].strip()
-                if "; Time " in line:
-                    time = line[len("; Time "):].strip()
+        if single_agent_file == '':
             print(time+","+cost,end="")
+        else:
+            with open(dir+"/"+single_agent_file) as saf:
+                lines = saf.readlines()
+                for line in lines:
+                    if "; Plan found with metric " in line:
+                        cost = line[len("; Plan found with metric "):].strip()
+                    if "; Time " in line:
+                        time = line[len("; Time "):].strip()
+                print(time+","+cost,end="")
         print("")
     
     
