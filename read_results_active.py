@@ -94,6 +94,8 @@ for dir in dirs:
         cost = "-"
         time = "-"
         if single_agent_file == '':
+            time = 'no single agent plan'
+            cost = 'no single agent plan'
             print(time+","+cost,end="")
         else:
             with open(dir+"/"+single_agent_file) as saf:
