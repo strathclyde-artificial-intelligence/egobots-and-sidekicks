@@ -101,7 +101,7 @@ for dir in dirs:
         if single_agent_file == '':
             time = 'no single agent plan'
             cost = 'no single agent plan'
-            print(time+","+cost,end="")
+            print(time+","+cost,end=",")
         else:
             with open(dir+"/"+single_agent_file) as saf:
                 lines = saf.readlines()
@@ -110,7 +110,7 @@ for dir in dirs:
                         cost = line[len("; Plan found with metric "):].strip()
                     if "; Time " in line:
                         time = line[len("; Time "):].strip()
-                print(time+","+cost,end="")
+                print(time+","+cost,end=",")
 
         # single agent welderless
         cost = "-"
