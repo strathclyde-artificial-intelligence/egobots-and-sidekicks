@@ -123,6 +123,8 @@ for dir in dirs:
             with open(dir+"/"+welderless_agent_file) as saf:
                 lines = saf.readlines()
                 for line in lines:
+                    if "; Cost: " in line:
+                        cost = line[len("; Cost: "):].strip()
                     if "; Plan found with metric " in line:
                         cost = line[len("; Plan found with metric "):].strip()
                     if "; Time " in line:
