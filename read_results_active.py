@@ -1,6 +1,6 @@
 from os import listdir
 
-print("setup,variant,egobot,locations,goals,framework_time,framework_plan_duration,single_agent_time,single_agent_duration")
+print("setup,variant,egobot,locations,goals,framework_time,framework_plan_duration,single_agent_time,single_agent_duration","welderless_agent_time","welderless_agent_duration")
 
 experimentfiles = [f for f in listdir() if "run_experiment" in f]
 experimentfiles.remove("run_experiment_v1-5_e3-20_l3-15_pruned")
@@ -48,6 +48,11 @@ for dir in dirs:
             final_plan = final_plan_list[0]
         else:
             final_plan = ''
+        welderless_agent_file_list = [f for f in listdir(dir) if "Welderless" in f]
+        if len(welderless_agent_file_list) > 0:
+            welderless_agent_file = welderless_agent_file_list[0]
+        else:
+            welderless_agent_file = ''
 
         tokens = dir.split("_")
         variant = tokens[1][1:]
@@ -106,7 +111,21 @@ for dir in dirs:
                     if "; Time " in line:
                         time = line[len("; Time "):].strip()
                 print(time+","+cost,end="")
-        print("")
-    
-    
 
+        # single agent welderless
+        cost = "-"
+        time = "-"
+        if welderless_agent_file == '':
+            time = 'no welderless agent plan'
+            cost = 'no welderless agent plan'
+            print(time+","+cost,end="")
+        else:
+            with open(dir+"/"+welderless_agent_file) as saf:
+                lines = saf.readlines()
+                for line in lines:
+                    if "; Plan found with metric " in line:
+                        cost = line[len("; Plan found with metric "):].strip()
+                    if "; Time " in line:
+                        time = line[len("; Time "):].strip()
+                print(time+","+cost,end="")
+        print("")

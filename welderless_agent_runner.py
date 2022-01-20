@@ -26,6 +26,8 @@ def hardness(results_directory):
 dirs.sort(key=hardness)
 
 for dir in dirs:
+    if hardness(dir) > 10:
+        break
     print(dir)
     orderchecker = [ [] for _ in range(len(experimentstr)) ]
     filefound = 0
