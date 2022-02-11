@@ -1,0 +1,548 @@
+setup,variant,egobot,locations,goals,framework_time,framework_plan_duration,single_agent_time,single_agent_duration welderless_agent_time welderless_agent_duration
+results_v4_e07_l06,4,07,06,24,2178.54,155.049,-,-,no welderless agent plan,no welderless agent plan
+results_v9_e03_l08,9,03,08,32,361.30999999999995,148.063,-,-,-,-
+results_v01_e10_l03,01,10,03,12,334.08000000000004,97.026,-,-,no welderless agent plan,no welderless agent plan
+results_v4_e03_l09,4,03,09,36,-,-,-,-,-,-
+results_v4_e20_l03,4,20,03,12,7329.590000000005,177.039,-,-,no welderless agent plan,no welderless agent plan
+results_v6_e06_l07,6,06,07,28,3632.36,155.046,-,-,no welderless agent plan,no welderless agent plan
+results_v3_e06_l04,3,06,04,16,197.60999999999999,94.031,-,-,-,-
+results_v2_e03_l08,2,03,08,32,526.2299999999999,152.074,-,-,no welderless agent plan,no welderless agent plan
+results_v4_e04_l06,4,04,06,24,-,-,no single agent plan,no single agent plan,-,-
+results_v2_e04_l04,2,04,04,16,46.06000000000001,73.029,1024.55,81.019,978.21,81.019
+results_v9_e08_l06,9,08,06,24,2718.81,168.054,-,-,no welderless agent plan,no welderless agent plan
+results_v9_e06_l04,9,06,04,16,105.29000000000002,86.03,-,-,-,-
+results_v5_e04_l06,5,04,06,24,182.27000000000004,102.041,-,-,-,-
+results_v3_e06_l06,3,06,06,24,1084.3000000000002,139.047,-,-,-,-
+results_v2_e08_l03,2,08,03,12,123.63000000000001,74.016,-,-,-,-
+results_v01_e06_l07,01,06,07,28,4166.940000000001,171.066,-,-,no welderless agent plan,no welderless agent plan
+results_v3_e04_l08,3,04,08,32,1722.2200000000003,188.096,-,-,no welderless agent plan,no welderless agent plan
+results_v10_e03_l11,10,03,11,44,2917.5800000000004,245.127,-,-,no welderless agent plan,no welderless agent plan
+results_v6_e10_l05,6,10,05,20,6771.450000000001,184.055,-,-,no welderless agent plan,no welderless agent plan
+results_v4_e04_l13,4,04,13,52,-,-,no single agent plan,no single agent plan,no welderless agent plan,no welderless agent plan
+results_v4_e04_l03,4,04,03,12,17.38,43.015,12.77,47.005,11.46,47.005
+results_v5_e08_l04,5,08,04,16,429.92,107.023,-,-,-,-
+results_v01_e13_l03,01,13,03,12,715.3000000000001,101.02,-,-,no welderless agent plan,no welderless agent plan
+results_v5_e09_l05,5,09,05,20,3617.349999999999,179.043,-,-,no welderless agent plan,no welderless agent plan
+results_v6_e07_l03,6,07,03,12,70.98999999999998,69.018,-,-,-,-
+results_v4_e06_l04,4,06,04,16,184.18,92.025,-,-,-,-
+results_v4_e10_l03,4,10,03,12,306.69000000000005,93.025,-,-,no welderless agent plan,no welderless agent plan
+results_v10_e04_l07,10,04,07,28,384.1499999999999,125.05,-,-,no welderless agent plan,no welderless agent plan
+results_v4_e16_l03,4,16,03,12,1811.1700000000008,134.035,-,-,no welderless agent plan,no welderless agent plan
+results_v10_e11_l04,10,11,04,16,3025.430000000002,159.038,-,-,no welderless agent plan,no welderless agent plan
+results_v7_e19_l03,7,19,03,12,5064.0800000000045,164.037,-,-,no welderless agent plan,no welderless agent plan
+results_v10_e06_l04,10,06,04,16,182.25999999999993,86.022,-,-,-,-
+results_v7_e05_l08,7,05,08,32,3002.6799999999985,170.06,-,-,no welderless agent plan,no welderless agent plan
+results_v5_e04_l11,5,04,11,44,9599.349999999999,246.118,-,-,no welderless agent plan,no welderless agent plan
+results_v9_e05_l03,9,05,03,12,26.230000000000004,52.017,133.79,62.006,126.07,62.006
+results_v9_e06_l05,9,06,05,20,645.0099999999998,120.036,-,-,no welderless agent plan,no welderless agent plan
+results_v3_e03_l03,3,03,03,12,32.67000000000001,40.013000000000005,299.14,46.012,24.17,47.008
+results_v3_e10_l05,3,10,05,20,5916.419999999997,192.042,-,-,no welderless agent plan,no welderless agent plan
+results_v2_e07_l03,2,07,03,12,69.28000000000003,71.017,-,-,-,-
+results_v9_e06_l03,9,06,03,12,31.410000000000004,64.018,474.50,63.007,404.68,63.007
+results_v7_e06_l04,7,06,04,16,151.7700000000001,96.031,-,-,-,-
+results_v2_e03_l05,2,03,05,20,47.64,92.037,-,-,-,-
+results_v6_e08_l06,6,08,06,24,-,-,no single agent plan,no single agent plan,no welderless agent plan,no welderless agent plan
+results_v01_e04_l09,01,04,09,36,3450.2100000000023,231.109,-,-,no welderless agent plan,no welderless agent plan
+results_v9_e10_l04,9,10,04,16,1783.3500000000001,145.04,-,-,no welderless agent plan,no welderless agent plan
+results_v01_e04_l13,01,04,13,52,-,-,no single agent plan,no single agent plan,no welderless agent plan,no welderless agent plan
+results_v5_e03_l06,5,03,06,24,80.05,89.044,-,-,-,-
+results_v01_e05_l04,01,05,04,16,43.320000000000014,69.01400000000001,603.76,75.006,517.62,75.006
+results_v5_e04_l05,5,04,05,20,96.51999999999998,90.031,-,-,-,-
+results_v10_e08_l04,10,08,04,16,929.7999999999998,127.027,-,-,no welderless agent plan,no welderless agent plan
+results_v3_e04_l03,3,04,03,12,9.590000000000003,49.014,26.60,50.004,27.40,50.004
+results_v6_e09_l04,6,09,04,16,1171.5699999999997,132.03300000000002,-,-,no welderless agent plan,no welderless agent plan
+results_v10_e17_l03,10,17,03,12,2917.21,151.039,-,-,no welderless agent plan,no welderless agent plan
+results_v6_e12_l04,6,12,04,16,2308.519999999999,151.035,-,-,no welderless agent plan,no welderless agent plan
+results_v3_e03_l10,3,03,10,40,1742.0900000000001,185.098,-,-,no welderless agent plan,no welderless agent plan
+results_v10_e13_l03,10,13,03,12,1065.9299999999998,119.033,-,-,no welderless agent plan,no welderless agent plan
+results_v7_e08_l05,7,08,05,20,2220.3200000000006,149.033,-,-,no welderless agent plan,no welderless agent plan
+results_v3_e11_l03,3,11,03,12,399.56000000000034,94.019,-,-,no welderless agent plan,no welderless agent plan
+results_v7_e03_l10,7,03,10,40,2592.5000000000005,225.137,-,-,no welderless agent plan,no welderless agent plan
+results_v01_e04_l03,01,04,03,12,16.54,46.014,11.67,49.005,9.94,49.005
+results_v2_e06_l06,2,06,06,24,1444.2599999999998,145.049,-,-,no welderless agent plan,no welderless agent plan
+results_v3_e06_l05,3,06,05,20,585.3899999999998,118.032,-,-,-,-
+results_v2_e06_l03,2,06,03,12,25.460000000000004,55.016,247.97,62.008,210.69,62.008
+results_v10_e10_l04,10,10,04,16,1546.5600000000009,153.03,-,-,no welderless agent plan,no welderless agent plan
+results_v10_e04_l10,10,04,10,40,7021.679999999999,248.128,-,-,no welderless agent plan,no welderless agent plan
+results_v4_e04_l09,4,04,09,36,5037.869999999999,188.078,-,-,no welderless agent plan,no welderless agent plan
+results_v2_e03_l10,2,03,10,40,2397.580000000001,208.11,-,-,no welderless agent plan,no welderless agent plan
+results_v9_e09_l05,9,09,05,20,5144.240000000002,182.047,-,-,no welderless agent plan,no welderless agent plan
+results_v3_e10_l04,3,10,04,16,1254.8299999999997,130.035,-,-,no welderless agent plan,no welderless agent plan
+results_v6_e03_l06,6,03,06,24,-,-,no single agent plan,no single agent plan,-,-
+results_v01_e07_l06,01,07,06,24,2465.599999999999,153.038,-,-,no welderless agent plan,no welderless agent plan
+results_v3_e04_l04,3,04,04,16,35.61000000000001,69.021,285.67,84.013,270.42,84.013
+results_v01_e04_l06,01,04,06,24,229.60000000000005,112.049,-,-,-,-
+results_v4_e07_l05,4,07,05,20,1208.46,139.026,-,-,no welderless agent plan,no welderless agent plan
+results_v4_e09_l04,4,09,04,16,959.0399999999997,126.031,-,-,no welderless agent plan,no welderless agent plan
+results_v6_e04_l12,6,04,12,48,14419.950000000006,305.137,-,-,no welderless agent plan,no welderless agent plan
+results_v2_e08_l04,2,08,04,16,789.5899999999999,112.021,-,-,no welderless agent plan,no welderless agent plan
+results_v2_e04_l07,2,04,07,28,492.70000000000005,135.061,-,-,no welderless agent plan,no welderless agent plan
+results_v6_e03_l10,6,03,10,40,2388.4300000000007,214.115,-,-,no welderless agent plan,no welderless agent plan
+results_v9_e04_l09,9,04,09,36,2552.3699999999985,192.092,-,-,no welderless agent plan,no welderless agent plan
+results_v4_e06_l05,4,06,05,20,696.8500000000001,127.036,-,-,no welderless agent plan,no welderless agent plan
+results_v5_e04_l04,5,04,04,16,35.980000000000004,73.024,-,-,-,-
+results_v3_e03_l05,3,03,05,20,41.22000000000002,93.035,-,-,-,-
+results_v2_e08_l06,2,08,06,24,3320.9400000000014,170.049,-,-,no welderless agent plan,no welderless agent plan
+results_v9_e03_l12,9,03,12,48,6076.650000000003,253.139,-,-,no welderless agent plan,no welderless agent plan
+results_v7_e12_l03,7,12,03,12,590.9000000000001,104.026,-,-,no welderless agent plan,no welderless agent plan
+results_v3_e15_l03,3,15,03,12,1492.0400000000013,130.03199999999998,-,-,no welderless agent plan,no welderless agent plan
+results_v9_e04_l05,9,04,05,20,141.54000000000002,89.026,-,-,-,-
+results_v2_e04_l09,2,04,09,36,-,-,no single agent plan,no single agent plan,no welderless agent plan,no welderless agent plan
+results_v5_e11_l04,5,11,04,16,2099.120000000001,156.041,-,-,no welderless agent plan,no welderless agent plan
+results_v9_e05_l07,9,05,07,28,1232.9000000000003,148.053,-,-,no welderless agent plan,no welderless agent plan
+results_v9_e11_l03,9,11,03,12,537.0799999999999,107.027,-,-,no welderless agent plan,no welderless agent plan
+results_v9_e03_l10,9,03,10,40,1923.2699999999998,212.114,-,-,no welderless agent plan,no welderless agent plan
+results_v01_e15_l03,01,15,03,12,1578.2399999999996,124.029,-,-,no welderless agent plan,no welderless agent plan
+results_v2_e05_l04,2,05,04,16,107.9,79.022,-,-,-,-
+results_v8_e10_l05,8,10,05,20,5751.980000000002,181.051,-,-,no welderless agent plan,no welderless agent plan
+results_v6_e05_l03,6,05,03,12,65.1,54.016,86.89,62.006,77.45,62.006
+results_v8_e04_l06,8,04,06,24,176.47000000000006,100.039,-,-,-,-
+results_v9_e08_l04,9,08,04,16,653.6200000000003,108.021,-,-,no welderless agent plan,no welderless agent plan
+results_v9_e09_l03,9,09,03,12,201.71000000000004,79.017,-,-,no welderless agent plan,no welderless agent plan
+results_v9_e13_l04,9,13,04,16,4958.4299999999985,181.039,-,-,no welderless agent plan,no welderless agent plan
+results_v6_e04_l13,6,04,13,52,28613.869999999988,321.154,-,-,no welderless agent plan,no welderless agent plan
+results_v2_e04_l03,2,04,03,12,26.05,45.016,8.90,49.005,8.01,49.005
+results_v4_e04_l11,4,04,11,44,7314.550000000003,243.111,-,-,no welderless agent plan,no welderless agent plan
+results_v7_e12_l04,7,12,04,16,3368.640000000001,160.04,-,-,no welderless agent plan,no welderless agent plan
+results_v1_e17_l03,1,17,03,12,4029.250000000001,153.035,-,-,no welderless agent plan,no welderless agent plan
+results_v6_e03_l05,6,03,05,20,63.339999999999996,81.024,-,-,1357.75,83.022
+results_v7_e03_l08,7,03,08,32,534.2500000000002,162.082,-,-,-,-
+results_v2_e13_l04,2,13,04,16,6157.740000000006,181.045,-,-,no welderless agent plan,no welderless agent plan
+results_v9_e05_l06,9,05,06,24,-,-,no single agent plan,no single agent plan,no welderless agent plan,no welderless agent plan
+results_v10_e20_l03,10,20,03,12,5528.770000000001,162.038,-,-,no welderless agent plan,no welderless agent plan
+results_v01_e07_l05,01,07,05,20,1239.27,142.033,-,-,no welderless agent plan,no welderless agent plan
+results_v7_e13_l03,7,13,03,12,758.7999999999995,113.025,-,-,no welderless agent plan,no welderless agent plan
+results_v6_e03_l11,6,03,11,44,3348.429999999999,211.113,-,-,no welderless agent plan,no welderless agent plan
+results_v4_e10_l05,4,10,05,20,5049.700000000003,200.061,-,-,no welderless agent plan,no welderless agent plan
+results_v01_e03_l05,01,03,05,20,29.900000000000002,74.023,-,-,-,-
+results_v9_e04_l13,9,04,13,52,43507.15000000001,357.185,-,-,no welderless agent plan,no welderless agent plan
+results_v7_e03_l06,7,03,06,24,86.75000000000001,86.02,-,-,-,-
+results_v10_e15_l03,10,15,03,12,1382.8200000000002,125.029,-,-,no welderless agent plan,no welderless agent plan
+results_v4_e12_l04,4,12,04,16,3370.670000000002,168.04,-,-,no welderless agent plan,no welderless agent plan
+results_v7_e07_l05,7,07,05,20,-,-,-,-,-,-
+results_v01_e08_l04,01,08,04,16,588.7600000000002,109.023,-,-,no welderless agent plan,no welderless agent plan
+results_v2_e04_l11,2,04,11,44,7385.569999999999,235.115,-,-,no welderless agent plan,no welderless agent plan
+results_v3_e06_l07,3,06,07,28,4497.589999999999,160.043,-,-,no welderless agent plan,no welderless agent plan
+results_v2_e16_l03,2,16,03,12,2383.130000000004,142.031,-,-,no welderless agent plan,no welderless agent plan
+results_v9_e10_l03,9,10,03,12,384.42999999999995,96.028,-,-,no welderless agent plan,no welderless agent plan
+results_v10_e07_l05,10,07,05,20,1269.2899999999997,147.027,-,-,no welderless agent plan,no welderless agent plan
+results_v6_e05_l08,6,05,08,32,3232.340000000001,185.074,-,-,no welderless agent plan,no welderless agent plan
+results_v9_e05_l08,9,05,08,32,3314.4700000000007,178.065,-,-,no welderless agent plan,no welderless agent plan
+results_v7_e06_l07,7,06,07,28,-,-,-,-,no welderless agent plan,no welderless agent plan
+results_v3_e07_l06,3,07,06,24,1709.819999999999,134.034,-,-,no welderless agent plan,no welderless agent plan
+results_v7_e04_l04,7,04,04,16,40.35,72.027,1263.95,76.014,842.10,76.014
+results_v01_e06_l05,01,06,05,20,563.5200000000001,127.038,-,-,no welderless agent plan,no welderless agent plan
+results_v10_e11_l03,10,11,03,12,468.7899999999999,111.025,-,-,no welderless agent plan,no welderless agent plan
+results_v9_e07_l03,9,07,03,12,49.54999999999998,66.01599999999999,1198.31,65.005,990.96,65.005
+results_v6_e17_l03,6,17,03,12,2262.880000000001,135.029,-,-,no welderless agent plan,no welderless agent plan
+results_v7_e11_l03,7,11,03,12,794.98,103.025,-,-,no welderless agent plan,no welderless agent plan
+results_v9_e09_l04,9,09,04,16,1216.4799999999998,125.027,-,-,no welderless agent plan,no welderless agent plan
+results_v6_e06_l06,6,06,06,24,1508.01,136.043,-,-,no welderless agent plan,no welderless agent plan
+results_v4_e08_l04,4,08,04,16,694.4499999999997,121.024,-,-,no welderless agent plan,no welderless agent plan
+results_v3_e12_l03,3,12,03,12,863.6299999999998,112.028,-,-,no welderless agent plan,no welderless agent plan
+results_v4_e18_l03,4,18,03,12,3277.5000000000014,148.034,-,-,no welderless agent plan,no welderless agent plan
+results_v9_e16_l03,9,16,03,12,1691.38,130.031,-,-,no welderless agent plan,no welderless agent plan
+results_v2_e04_l08,2,04,08,32,1308.9799999999996,169.075,-,-,no welderless agent plan,no welderless agent plan
+results_v10_e06_l06,10,06,06,24,872.8799999999999,115.03,-,-,no welderless agent plan,no welderless agent plan
+results_v4_e15_l03,4,15,03,12,1419.6600000000008,126.03,-,-,no welderless agent plan,no welderless agent plan
+results_v6_e05_l04,6,05,04,16,68.58,76.023,1533.32,85.010,-,-
+results_v7_e07_l04,7,07,04,16,241.53,102.022,-,-,no welderless agent plan,no welderless agent plan
+results_v7_e11_l04,7,11,04,16,2481.17,160.041,-,-,no welderless agent plan,no welderless agent plan
+results_v6_e04_l10,6,04,10,40,6944.899999999999,239.106,-,-,no welderless agent plan,no welderless agent plan
+results_v9_e03_l06,9,03,06,24,82.00999999999999,95.045,-,-,-,-
+results_v10_e12_l03,10,12,03,12,793.0799999999999,116.028,-,-,no welderless agent plan,no welderless agent plan
+results_v4_e04_l12,4,04,12,48,20085.120000000003,376.177,-,-,no welderless agent plan,no welderless agent plan
+results_v6_e08_l04,6,08,04,16,476.3799999999999,110.02,-,-,no welderless agent plan,no welderless agent plan
+results_v6_e16_l03,6,16,03,12,1896.2400000000007,139.035,-,-,no welderless agent plan,no welderless agent plan
+results_v01_e05_l07,01,05,07,28,1158.2200000000005,158.06,-,-,no welderless agent plan,no welderless agent plan
+results_v7_e10_l04,7,10,04,16,1295.1700000000003,147.033,-,-,no welderless agent plan,no welderless agent plan
+results_v2_e07_l05,2,07,05,20,1314.8999999999999,153.029,-,-,no welderless agent plan,no welderless agent plan
+results_v5_e07_l05,5,07,05,20,1551.6500000000003,148.036,-,-,no welderless agent plan,no welderless agent plan
+results_v6_e09_l03,6,09,03,12,228.33,88.021,-,-,no welderless agent plan,no welderless agent plan
+results_v7_e16_l03,7,16,03,12,2058.4900000000007,136.03199999999998,-,-,no welderless agent plan,no welderless agent plan
+results_v8_e08_l05,8,08,05,20,2407.830000000002,161.047,-,-,no welderless agent plan,no welderless agent plan
+results_v7_e03_l04,7,03,04,16,17.25,68.02199999999999,1267.22,66.021,877.86,66.021
+results_v4_e03_l04,4,03,04,16,12.189999999999998,59.023,117.52,64.014,130.07,64.014
+results_v01_e09_l03,01,09,03,12,258.02000000000004,85.019,-,-,no welderless agent plan,no welderless agent plan
+results_v7_e04_l08,7,04,08,32,1808.1299999999994,164.071,-,-,no welderless agent plan,no welderless agent plan
+results_v2_e17_l03,2,17,03,12,2935.4700000000025,151.038,-,-,no welderless agent plan,no welderless agent plan
+results_v9_e04_l08,9,04,08,32,1355.6200000000001,169.078,-,-,no welderless agent plan,no welderless agent plan
+results_v2_e03_l07,2,03,07,28,204.29000000000002,139.062,-,-,-,-
+results_v01_e04_l12,01,04,12,48,27907.069999999996,310.168,-,-,no welderless agent plan,no welderless agent plan
+results_v10_e19_l03,10,19,03,12,4695.2,161.043,-,-,no welderless agent plan,no welderless agent plan
+results_v9_e07_l05,9,07,05,20,1077.6999999999998,138.038,-,-,no welderless agent plan,no welderless agent plan
+results_v4_e11_l04,4,11,04,16,1782.25,151.03,-,-,no welderless agent plan,no welderless agent plan
+results_v5_e03_l09,5,03,09,36,1180.3399999999997,161.083,-,-,no welderless agent plan,no welderless agent plan
+results_v2_e09_l04,2,09,04,16,1105.9100000000003,133.041,-,-,no welderless agent plan,no welderless agent plan
+results_v10_e04_l08,10,04,08,32,1200.69,198.083,-,-,no welderless agent plan,no welderless agent plan
+results_v5_e12_l04,5,12,04,16,3743.320000000001,168.042,-,-,no welderless agent plan,no welderless agent plan
+results_v7_e03_l07,7,03,07,28,-,-,-,-,-,-
+results_v01_e07_l03,01,07,03,12,88.82000000000001,65.018,-,-,1014.07,74.006
+results_v3_e03_l12,3,03,12,48,6180.770000000003,273.171,-,-,no welderless agent plan,no welderless agent plan
+results_v4_e03_l13,4,03,13,52,12246.800000000001,294.177,-,-,no welderless agent plan,no welderless agent plan
+results_v9_e03_l04,9,03,04,16,13.72,59.029,560.87,59.015,549.86,59.015
+results_v3_e04_l10,3,04,10,40,6753.900000000002,219.086,-,-,no welderless agent plan,no welderless agent plan
+results_v6_e06_l03,6,06,03,12,43.63000000000002,65.017,885.09,71.007,705.66,71.007
+results_v2_e12_l03,2,12,03,12,796.5800000000002,113.029,-,-,no welderless agent plan,no welderless agent plan
+results_v6_e03_l04,6,03,04,16,17.78,62.028,101.06,69.019,94.88,69.019
+results_v7_e06_l06,7,06,06,24,1168.5299999999997,130.04399999999998,-,-,no welderless agent plan,no welderless agent plan
+results_v3_e18_l03,3,18,03,12,3716.5300000000034,155.035,-,-,no welderless agent plan,no welderless agent plan
+results_v3_e09_l03,3,09,03,12,134.24000000000004,82.015,-,-,no welderless agent plan,no welderless agent plan
+results_v4_e08_l05,4,08,05,20,2201.290000000001,153.041,-,-,no welderless agent plan,no welderless agent plan
+results_v01_e07_l04,01,07,04,16,370.68,100.023,-,-,no welderless agent plan,no welderless agent plan
+results_v7_e05_l06,7,05,06,24,565.3899999999999,123.043,-,-,-,-
+results_v3_e03_l11,3,03,11,44,2759.380000000001,207.117,-,-,no welderless agent plan,no welderless agent plan
+results_v7_e03_l09,7,03,09,36,1087.3700000000001,182.101,-,-,no welderless agent plan,no welderless agent plan
+results_v9_e03_l11,9,03,11,44,3548.0799999999995,241.144,-,-,no welderless agent plan,no welderless agent plan
+results_v10_e04_l03,10,04,03,12,20.05,48.016,22.33,49.009,16.82,49.009
+results_v7_e03_l03,7,03,03,12,15.37,37.013000000000005,1.95,44.011,2.09,44.011
+results_v4_e05_l07,4,05,07,28,1691.6900000000003,146.05,-,-,no welderless agent plan,no welderless agent plan
+results_v2_e09_l03,2,09,03,12,186.41,87.017,-,-,no welderless agent plan,no welderless agent plan
+results_v5_e04_l13,5,04,13,52,35967.409999999996,313.174,-,-,no welderless agent plan,no welderless agent plan
+results_v10_e05_l04,10,05,04,16,53.61000000000001,71.021,-,-,-,-
+results_v2_e13_l03,2,13,03,12,1139.1300000000003,125.031,-,-,no welderless agent plan,no welderless agent plan
+results_v01_e20_l03,01,20,03,12,10404.050000000005,171.041,-,-,no welderless agent plan,no welderless agent plan
+results_v2_e03_l04,2,03,04,16,11.180000000000001,62.018,552.50,67.014,551.88,67.014
+results_v9_e12_l03,9,12,03,12,917.3100000000002,107.021,-,-,no welderless agent plan,no welderless agent plan
+results_v5_e07_l06,5,07,06,24,2080.7300000000005,150.047,-,-,no welderless agent plan,no welderless agent plan
+results_v9_e04_l07,9,04,07,28,542.03,138.056,-,-,no welderless agent plan,no welderless agent plan
+results_v10_e05_l07,10,05,07,28,1229.2299999999998,133.049,-,-,no welderless agent plan,no welderless agent plan
+results_v9_e03_l07,9,03,07,28,198.35000000000008,110.035,-,-,-,-
+results_v7_e04_l11,7,04,11,44,7889.27,220.108,-,-,no welderless agent plan,no welderless agent plan
+results_v01_e16_l03,01,16,03,12,2005.7799999999993,136.031,-,-,no welderless agent plan,no welderless agent plan
+results_v9_e17_l03,9,17,03,12,2465.379999999998,144.036,-,-,no welderless agent plan,no welderless agent plan
+results_v6_e11_l03,6,11,03,12,419.26000000000016,101.027,-,-,no welderless agent plan,no welderless agent plan
+results_v3_e03_l09,3,03,09,36,1243.0000000000005,170.078,-,-,no welderless agent plan,no welderless agent plan
+results_v5_e10_l04,5,10,04,16,1787.0000000000005,143.043,-,-,no welderless agent plan,no welderless agent plan
+results_v8_e03_l06,8,03,06,24,57.96000000000002,97.043,-,-,-,-
+results_v2_e11_l03,2,11,03,12,603.3199999999996,108.029,-,-,no welderless agent plan,no welderless agent plan
+results_v7_e15_l03,7,15,03,12,1422.91,121.025,-,-,no welderless agent plan,no welderless agent plan
+results_v4_e03_l03,4,03,03,12,28.879999999999995,34.007000000000005,1.12,36.011,1.21,36.011
+results_v4_e07_l04,4,07,04,16,389.6799999999999,105.025,-,-,no welderless agent plan,no welderless agent plan
+results_v4_e05_l08,4,05,08,32,3691.4600000000014,176.068,-,-,no welderless agent plan,no welderless agent plan
+results_v9_e05_l04,9,05,04,16,88.05999999999999,85.019,-,-,-,-
+results_v2_e06_l05,2,06,05,20,723.3399999999996,126.041,-,-,no welderless agent plan,no welderless agent plan
+results_v9_e13_l03,9,13,03,12,989.0599999999997,116.029,-,-,no welderless agent plan,no welderless agent plan
+results_v10_e09_l04,10,09,04,16,1083.2599999999998,132.029,-,-,no welderless agent plan,no welderless agent plan
+results_v7_e18_l03,7,18,03,12,4431.420000000005,161.042,-,-,no welderless agent plan,no welderless agent plan
+results_v5_e16_l03,5,16,03,12,2760.4800000000014,143.034,-,-,no welderless agent plan,no welderless agent plan
+results_v01_e08_l06,01,08,06,24,3659.5200000000004,177.06,-,-,no welderless agent plan,no welderless agent plan
+results_v3_e07_l04,3,07,04,16,328.28999999999996,105.024,-,-,-,-
+results_v10_e08_l05,10,08,05,20,2194.010000000001,146.036,-,-,no welderless agent plan,no welderless agent plan
+results_v10_e04_l06,10,04,06,24,204.42000000000002,109.043,-,-,-,-
+results_v8_e09_l05,8,09,05,20,3954.3499999999995,172.046,-,-,no welderless agent plan,no welderless agent plan
+results_v10_e18_l03,10,18,03,12,3801.8900000000017,157.04,-,-,no welderless agent plan,no welderless agent plan
+results_v6_e04_l05,6,04,05,20,120.94,91.029,-,-,-,-
+results_v7_e09_l05,7,09,05,20,4329.910000000006,188.06,-,-,no welderless agent plan,no welderless agent plan
+results_v6_e05_l05,6,05,05,20,224.85999999999999,110.036,-,-,-,-
+results_v2_e08_l05,2,08,05,20,2257.03,159.048,-,-,no welderless agent plan,no welderless agent plan
+results_v01_e05_l06,01,05,06,24,558.6800000000001,134.037,-,-,no welderless agent plan,no welderless agent plan
+results_v5_e10_l03,5,10,03,12,256.6700000000001,84.02,-,-,no welderless agent plan,no welderless agent plan
+results_v6_e03_l03,6,03,03,12,15.709999999999996,43.015,19.57,43.006,19.72,43.006
+results_v2_e05_l06,2,05,06,24,604.5299999999997,126.046,-,-,no welderless agent plan,no welderless agent plan
+results_v5_e05_l06,5,05,06,24,667.2699999999994,120.042,-,-,no welderless agent plan,no welderless agent plan
+results_v3_e11_l04,3,11,04,16,2054.5300000000007,165.035,-,-,no welderless agent plan,no welderless agent plan
+results_v9_e03_l13,9,03,13,52,7217.7300000000005,278.153,-,-,no welderless agent plan,no welderless agent plan
+results_v2_e19_l03,2,19,03,12,7013.510000000004,172.04,-,-,no welderless agent plan,no welderless agent plan
+results_v10_e03_l08,10,03,08,32,-,-,no single agent plan,no single agent plan,no welderless agent plan,no welderless agent plan
+results_v5_e20_l03,5,20,03,12,5636.960000000002,158.043,-,-,no welderless agent plan,no welderless agent plan
+results_v6_e03_l08,6,03,08,32,525.1199999999999,145.054,-,-,no welderless agent plan,no welderless agent plan
+results_v3_e09_l05,3,09,05,20,5539.76,178.052,-,-,no welderless agent plan,no welderless agent plan
+results_v7_e05_l07,7,05,07,28,1585.1100000000006,162.056,-,-,no welderless agent plan,no welderless agent plan
+results_v9_e04_l04,9,04,04,16,74.31999999999998,60.018,758.12,71.008,696.23,71.008
+results_v10_e09_l05,10,09,05,20,2624.8199999999997,150.032,-,-,no welderless agent plan,no welderless agent plan
+results_v5_e13_l03,5,13,03,12,727.4700000000003,109.024,-,-,no welderless agent plan,no welderless agent plan
+results_v2_e07_l06,2,07,06,24,2437.5100000000007,142.034,-,-,no welderless agent plan,no welderless agent plan
+results_v3_e04_l06,3,04,06,24,186.00999999999996,111.04,-,-,-,-
+results_v3_e03_l08,3,03,08,32,588.89,151.065,-,-,no welderless agent plan,no welderless agent plan
+results_v7_e07_l03,7,07,03,12,152.76000000000005,71.019,-,-,-,-
+results_v10_e04_l12,10,04,12,48,-,-,-,-,no welderless agent plan,no welderless agent plan
+results_v5_e15_l03,5,15,03,12,1701.4199999999994,135.029,-,-,no welderless agent plan,no welderless agent plan
+results_v10_e04_l04,10,04,04,16,85.29,56.021,-,-,-,-
+results_v5_e03_l10,5,03,10,40,2117.2400000000002,253.115,-,-,no welderless agent plan,no welderless agent plan
+results_v3_e05_l04,3,05,04,16,72.36,83.028,-,-,-,-
+results_v01_e09_l04,01,09,04,16,905.51,128.023,-,-,no welderless agent plan,no welderless agent plan
+results_v4_e05_l06,4,05,06,24,356.4699999999999,120.042,-,-,no welderless agent plan,no welderless agent plan
+results_v3_e03_l04,3,03,04,16,10.360000000000001,59.026,60.62,66.014,54.78,66.014
+results_v10_e09_l03,10,09,03,12,201.95,88.018,-,-,no welderless agent plan,no welderless agent plan
+results_v7_e04_l10,7,04,10,40,8976.550000000001,274.14,-,-,no welderless agent plan,no welderless agent plan
+results_v7_e09_l03,7,09,03,12,135.47999999999996,83.023,-,-,no welderless agent plan,no welderless agent plan
+results_v7_e17_l03,7,17,03,12,2818.5500000000006,148.032,-,-,no welderless agent plan,no welderless agent plan
+results_v01_e12_l04,01,12,04,16,2990.6200000000017,158.04,-,-,no welderless agent plan,no welderless agent plan
+results_v5_e06_l04,5,06,04,16,154.3,94.021,-,-,-,-
+results_v6_e08_l05,6,08,05,20,2713.1100000000024,162.048,-,-,no welderless agent plan,no welderless agent plan
+results_v7_e07_l06,7,07,06,24,2409.1799999999994,146.043,-,-,no welderless agent plan,no welderless agent plan
+results_v01_e05_l08,01,05,08,32,3177.030000000002,167.054,-,-,no welderless agent plan,no welderless agent plan
+results_v9_e15_l03,9,15,03,12,1661.5600000000004,140.033,-,-,no welderless agent plan,no welderless agent plan
+results_v4_e17_l03,4,17,03,12,3138.810000000002,155.04,-,-,no welderless agent plan,no welderless agent plan
+results_v2_e03_l03,2,03,03,12,23.37,38.009,8.88,47.008,9.17,47.008
+results_v7_e04_l06,7,04,06,24,216.95,104.036,-,-,-,-
+results_v3_e09_l04,3,09,04,16,979.0399999999995,129.025,-,-,no welderless agent plan,no welderless agent plan
+results_v10_e05_l06,10,05,06,24,611.6699999999998,126.045,-,-,no welderless agent plan,no welderless agent plan
+results_v4_e04_l07,4,04,07,28,646.1699999999998,135.05700000000002,-,-,-,-
+results_v2_e05_l07,2,05,07,28,1248.0200000000004,156.066,-,-,no welderless agent plan,no welderless agent plan
+results_v5_e06_l07,5,06,07,28,3482.8100000000013,169.053,-,-,no welderless agent plan,no welderless agent plan
+results_v3_e03_l13,3,03,13,52,11178.039999999999,292.156,-,-,no welderless agent plan,no welderless agent plan
+results_v3_e16_l03,3,16,03,12,2064.040000000001,142.032,-,-,no welderless agent plan,no welderless agent plan
+results_v6_e07_l05,6,07,05,20,1159.71,142.042,-,-,no welderless agent plan,no welderless agent plan
+results_v3_e06_l03,3,06,03,12,16.84,54.016,101.63,59.005,84.99,59.005
+results_v6_e04_l08,6,04,08,32,1102.4,146.068,-,-,no welderless agent plan,no welderless agent plan
+results_v4_e07_l03,4,07,03,12,52.300000000000004,71.02000000000001,-,-,-,-
+results_v5_e07_l04,5,07,04,16,404.2699999999998,104.024,-,-,-,-
+results_v4_e12_l03,4,12,03,12,596.2999999999995,107.024,-,-,no welderless agent plan,no welderless agent plan
+results_v10_e04_l13,10,04,13,52,38857.37999999999,312.16,-,-,no welderless agent plan,no welderless agent plan
+results_v5_e09_l04,5,09,04,16,726.5000000000002,118.027,-,-,no welderless agent plan,no welderless agent plan
+results_v9_e04_l06,9,04,06,24,312.1699999999999,116.055,-,-,-,-
+results_v01_e05_l03,01,05,03,12,22.830000000000002,51.017,293.30,57.009,260.18,57.009
+results_v01_e03_l10,01,03,10,40,1946.7600000000007,232.094,-,-,no welderless agent plan,no welderless agent plan
+results_v01_e04_l05,01,04,05,20,146.01,105.046,-,-,-,-
+results_v6_e04_l04,6,04,04,16,21.84,62.021,336.02,63.008,305.83,63.008
+results_v01_e04_l10,01,04,10,40,4704.999999999998,242.102,-,-,no welderless agent plan,no welderless agent plan
+results_v5_e03_l05,5,03,05,20,35.080000000000005,85.041,-,-,-,-
+results_v4_e03_l12,4,03,12,48,6565.369999999999,249.13,-,-,no welderless agent plan,no welderless agent plan
+results_v5_e06_l05,5,06,05,20,552.8799999999999,119.027,-,-,no welderless agent plan,no welderless agent plan
+results_v2_e05_l08,2,05,08,32,3535.6300000000006,200.077,-,-,no welderless agent plan,no welderless agent plan
+results_v5_e03_l11,5,03,11,44,3139.530000000001,259.124,-,-,no welderless agent plan,no welderless agent plan
+results_v5_e03_l13,5,03,13,52,8172.760000000002,269.146,-,-,no welderless agent plan,no welderless agent plan
+results_v6_e07_l06,6,07,06,24,2951.6299999999997,151.041,-,-,no welderless agent plan,no welderless agent plan
+results_v01_e04_l04,01,04,04,16,51.01,70.029,1594.91,76.017,-,-
+results_v01_e09_l05,01,09,05,20,3591.8799999999983,181.053,-,-,no welderless agent plan,no welderless agent plan
+results_v6_e07_l04,6,07,04,16,339.84999999999997,99.025,-,-,-,-
+results_v6_e03_l12,6,03,12,48,6446.139999999999,340.173,-,-,no welderless agent plan,no welderless agent plan
+results_v7_e03_l12,7,03,12,48,6445.530000000002,298.174,-,-,no welderless agent plan,no welderless agent plan
+results_v3_e20_l03,3,20,03,12,5340.680000000003,171.04,-,-,no welderless agent plan,no welderless agent plan
+results_v2_e03_l13,2,03,13,52,9937.289999999999,329.207,-,-,no welderless agent plan,no welderless agent plan
+results_v7_e20_l03,7,20,03,12,7168.639999999999,173.044,-,-,no welderless agent plan,no welderless agent plan
+results_v10_e08_l06,10,08,06,24,4113.349999999999,165.048,-,-,no welderless agent plan,no welderless agent plan
+results_v6_e15_l03,6,15,03,12,1478.7200000000007,136.029,-,-,no welderless agent plan,no welderless agent plan
+results_v4_e09_l05,4,09,05,20,3607.5500000000015,166.035,-,-,no welderless agent plan,no welderless agent plan
+results_v10_e07_l04,10,07,04,16,531.53,106.025,-,-,no welderless agent plan,no welderless agent plan
+results_v2_e15_l03,2,15,03,12,1760.8900000000003,131.02800000000002,-,-,no welderless agent plan,no welderless agent plan
+results_v10_e03_l05,10,03,05,20,53.92000000000001,82.036,1280.46,83.026,1302.22,83.026
+results_v3_e03_l07,3,03,07,28,166.73000000000002,116.055,-,-,-,-
+results_v4_e13_l03,4,13,03,12,780.07,112.029,-,-,no welderless agent plan,no welderless agent plan
+results_v9_e20_l03,9,20,03,12,9442.809999999994,171.038,-,-,no welderless agent plan,no welderless agent plan
+results_v6_e10_l04,6,10,04,16,1776.6399999999994,151.037,-,-,no welderless agent plan,no welderless agent plan
+results_v4_e03_l10,4,03,10,40,1973.3099999999997,282.11,-,-,no welderless agent plan,no welderless agent plan
+results_v9_e04_l11,9,04,11,44,8722.409999999998,243.121,-,-,no welderless agent plan,no welderless agent plan
+results_v4_e03_l08,4,03,08,32,407.71999999999997,150.08,-,-,-,-
+results_v5_e12_l03,5,12,03,12,624.8700000000003,100.023,-,-,no welderless agent plan,no welderless agent plan
+results_v3_e07_l03,3,07,03,12,84.50000000000001,77.015,-,-,-,-
+results_v7_e05_l03,7,05,03,12,17.500000000000004,52.017,181.82,62.006,160.88,62.006
+results_v9_e04_l10,9,04,10,40,8508.83,235.098,-,-,no welderless agent plan,no welderless agent plan
+results_v3_e08_l03,3,08,03,12,121.88000000000007,80.02,-,-,no welderless agent plan,no welderless agent plan
+results_v6_e12_l03,6,12,03,12,464.08000000000015,103.024,-,-,no welderless agent plan,no welderless agent plan
+results_v9_e14_l03,9,14,03,12,1414.8499999999995,129.027,-,-,no welderless agent plan,no welderless agent plan
+results_v3_e13_l04,3,13,04,16,4173.050000000002,174.04,-,-,no welderless agent plan,no welderless agent plan
+results_v10_e03_l03,10,03,03,12,9.569999999999999,36.013000000000005,3.55,36.011,2.73,36.011
+results_v6_e05_l06,6,05,06,24,597.5100000000001,111.04,-,-,no welderless agent plan,no welderless agent plan
+results_v2_e20_l03,2,20,03,12,8300.400000000003,174.042,-,-,no welderless agent plan,no welderless agent plan
+results_v3_e05_l06,3,05,06,24,393.1999999999999,114.043,-,-,-,-
+results_v6_e04_l03,6,04,03,12,46.89000000000001,52.022,49.48,52.008,44.61,52.008
+results_v2_e11_l04,2,11,04,16,2582.0900000000024,161.041,-,-,no welderless agent plan,no welderless agent plan
+results_v9_e07_l06,9,07,06,24,2091.6600000000008,153.049,-,-,no welderless agent plan,no welderless agent plan
+results_v5_e05_l04,5,05,04,16,104.53000000000002,76.02,-,-,-,-
+results_v5_e07_l03,5,07,03,12,93.95,79.024,-,-,-,-
+results_v1_e08_l05,1,08,05,20,2623.740000000001,164.042,-,-,no welderless agent plan,no welderless agent plan
+results_v01_e03_l07,01,03,07,28,188.98999999999995,117.054,-,-,-,-
+results_v4_e04_l10,4,04,10,40,7198.470000000002,243.11,-,-,no welderless agent plan,no welderless agent plan
+results_v9_e12_l04,9,12,04,16,2916.05,163.035,-,-,no welderless agent plan,no welderless agent plan
+results_v3_e03_l06,3,03,06,24,75.45000000000002,94.051,-,-,-,-
+results_v9_e06_l06,9,06,06,24,900.8799999999998,117.03,-,-,no welderless agent plan,no welderless agent plan
+results_v7_e08_l06,7,08,06,24,3500.6499999999996,168.055,-,-,no welderless agent plan,no welderless agent plan
+results_v5_e10_l05,5,10,05,20,6196.5700000000015,193.048,-,-,no welderless agent plan,no welderless agent plan
+results_v7_e10_l05,7,10,05,20,6093.640000000005,191.055,-,-,no welderless agent plan,no welderless agent plan
+results_v10_e08_l03,10,08,03,12,103.43,76.023,-,-,no welderless agent plan,no welderless agent plan
+results_v3_e04_l11,3,04,11,44,9920.469999999998,284.157,-,-,no welderless agent plan,no welderless agent plan
+results_v3_e04_l12,3,04,12,48,14065.649999999994,377.222,-,-,no welderless agent plan,no welderless agent plan
+results_v8_e06_l06,8,06,06,24,1007.2199999999996,135.04000000000002,-,-,no welderless agent plan,no welderless agent plan
+results_v6_e03_l13,6,03,13,52,8456.32,364.176,-,-,no welderless agent plan,no welderless agent plan
+results_v7_e05_l05,7,05,05,20,283.53000000000003,105.034,-,-,-,-
+results_v5_e08_l06,5,08,06,24,3158.8099999999986,149.041,-,-,no welderless agent plan,no welderless agent plan
+results_v4_e10_l04,4,10,04,16,1576.73,144.031,-,-,no welderless agent plan,no welderless agent plan
+results_v5_e04_l10,5,04,10,40,6970.100000000002,271.127,-,-,no welderless agent plan,no welderless agent plan
+results_v2_e03_l09,2,03,09,36,1009.2800000000001,202.113,-,-,no welderless agent plan,no welderless agent plan
+results_v9_e18_l03,9,18,03,12,4036.4699999999993,160.037,-,-,no welderless agent plan,no welderless agent plan
+results_v2_e03_l06,2,03,06,24,78.11999999999999,94.048,-,-,-,-
+results_v5_e09_l03,5,09,03,12,327.9899999999999,90.025,-,-,no welderless agent plan,no welderless agent plan
+results_v8_e07_l05,8,07,05,20,1526.5900000000004,137.031,-,-,no welderless agent plan,no welderless agent plan
+results_v4_e03_l05,4,03,05,20,32.19,81.04,-,-,-,-
+results_v10_e03_l09,10,03,09,36,763.51,179.102,-,-,no welderless agent plan,no welderless agent plan
+results_v9_e19_l03,9,19,03,12,4847.870000000002,169.039,-,-,no welderless agent plan,no welderless agent plan
+results_v01_e03_l06,01,03,06,24,57.290000000000006,99.045,-,-,-,-
+results_v01_e03_l04,01,03,04,16,39.08,59.019,82.01,62.011,91.95,62.011
+results_v6_e20_l03,6,20,03,12,6980.919999999997,167.037,-,-,no welderless agent plan,no welderless agent plan
+results_v4_e04_l05,4,04,05,20,93.36999999999996,101.037,-,-,-,-
+results_v2_e10_l04,2,10,04,16,1441.2799999999995,138.026,-,-,no welderless agent plan,no welderless agent plan
+results_v10_e10_l05,10,10,05,20,6924.7599999999975,193.051,-,-,no welderless agent plan,no welderless agent plan
+results_v01_e11_l03,01,11,03,12,588.3500000000001,102.025,-,-,no welderless agent plan,no welderless agent plan
+results_v6_e04_l06,6,04,06,24,323.23,108.044,-,-,-,-
+results_v2_e04_l13,2,04,13,52,32573.91000000002,332.172,-,-,no welderless agent plan,no welderless agent plan
+results_v2_e03_l12,2,03,12,48,4095.76,233.124,-,-,no welderless agent plan,no welderless agent plan
+results_v10_e05_l08,10,05,08,32,3783.710000000001,178.054,-,-,no welderless agent plan,no welderless agent plan
+results_v01_e08_l03,01,08,03,12,113.83999999999999,86.019,-,-,no welderless agent plan,no welderless agent plan
+results_v2_e14_l03,2,14,03,12,1283.7400000000002,123.032,-,-,no welderless agent plan,no welderless agent plan
+results_v2_e04_l06,2,04,06,24,229.69,112.048,-,-,-,-
+results_v6_e04_l11,6,04,11,44,10846.650000000001,267.149,-,-,no welderless agent plan,no welderless agent plan
+results_v4_e06_l07,4,06,07,28,3756.27,162.048,-,-,no welderless agent plan,no welderless agent plan
+results_v9_e06_l07,9,06,07,28,2612.5800000000004,170.064,-,-,no welderless agent plan,no welderless agent plan
+results_v5_e03_l03,5,03,03,12,11.549999999999999,36.010999999999996,0.89,38.007,0.68,38.007
+results_v3_e05_l05,3,05,05,20,340.68,109.03,-,-,-,-
+results_v5_e19_l03,5,19,03,12,4406.1399999999985,162.035,-,-,no welderless agent plan,no welderless agent plan
+results_v4_e04_l08,4,04,08,32,1562.1399999999999,173.062,-,-,no welderless agent plan,no welderless agent plan
+results_v9_e05_l05,9,05,05,20,265.90000000000015,105.038,-,-,-,-
+results_v01_e06_l04,01,06,04,16,184.48999999999995,92.027,-,-,-,-
+results_v01_e13_l04,01,13,04,16,4221.349999999999,168.044,-,-,no welderless agent plan,no welderless agent plan
+results_v6_e09_l05,6,09,05,20,3663.680000000001,176.04,-,-,no welderless agent plan,no welderless agent plan
+results_v4_e11_l03,4,11,03,12,566.0099999999996,101.024,-,-,no welderless agent plan,no welderless agent plan
+results_v01_e12_l03,01,12,03,12,842.1900000000002,109.026,-,-,no welderless agent plan,no welderless agent plan
+results_v10_e06_l03,10,06,03,12,28.799999999999997,57.013,170.95,59.005,125.42,59.005
+results_v01_e19_l03,01,19,03,12,4161.15,154.035,-,-,no welderless agent plan,no welderless agent plan
+results_v3_e04_l13,3,04,13,52,31530.80000000001,375.2,-,-,no welderless agent plan,no welderless agent plan
+results_v3_e19_l03,3,19,03,12,4917.119999999998,169.042,-,-,no welderless agent plan,no welderless agent plan
+results_v7_e08_l04,7,08,04,16,657.6300000000001,131.025,-,-,no welderless agent plan,no welderless agent plan
+results_v01_e03_l13,01,03,13,52,8773.85,286.152,-,-,no welderless agent plan,no welderless agent plan
+results_v6_e11_l04,6,11,04,16,2039.9199999999994,142.034,-,-,no welderless agent plan,no welderless agent plan
+results_v01_e03_l03,01,03,03,12,10.319999999999999,42.02,19.98,45.008,19.32,45.008
+results_v6_e03_l09,6,03,09,36,1055.6699999999998,168.076,-,-,no welderless agent plan,no welderless agent plan
+results_v7_e04_l09,7,04,09,36,4587.700000000002,241.091,-,-,no welderless agent plan,no welderless agent plan
+results_v3_e14_l03,3,14,03,12,1091.8899999999999,123.025,-,-,no welderless agent plan,no welderless agent plan
+results_v5_e05_l07,5,05,07,28,-,-,no single agent plan,no single agent plan,no welderless agent plan,no welderless agent plan
+results_v10_e03_l12,10,03,12,48,6460.430000000005,268.161,-,-,no welderless agent plan,no welderless agent plan
+results_v6_e14_l03,6,14,03,12,1563.39,134.03199999999998,-,-,no welderless agent plan,no welderless agent plan
+results_v01_e04_l07,01,04,07,28,694.0300000000002,134.058,-,-,no welderless agent plan,no welderless agent plan
+results_v2_e06_l04,2,06,04,16,142.88999999999996,86.018,-,-,-,-
+results_v4_e08_l06,4,08,06,24,-,-,-,-,no welderless agent plan,no welderless agent plan
+results_v4_e04_l04,4,04,04,16,49.61,67.023,281.55,70.010,260.80,70.010
+results_v01_e04_l11,01,04,11,44,9781.3,322.132,-,-,no welderless agent plan,no welderless agent plan
+results_v5_e08_l05,5,08,05,20,2889.5600000000018,162.041,-,-,no welderless agent plan,no welderless agent plan
+results_v01_e18_l03,01,18,03,12,3752.1500000000005,156.035,-,-,no welderless agent plan,no welderless agent plan
+results_v10_e04_l09,10,04,09,36,2077.419999999999,210.093,-,-,no welderless agent plan,no welderless agent plan
+results_v7_e04_l12,7,04,12,48,16564.410000000007,261.12,-,-,no welderless agent plan,no welderless agent plan
+results_v9_e10_l05,9,10,05,20,6931.150000000004,194.046,-,-,no welderless agent plan,no welderless agent plan
+results_v2_e06_l07,2,06,07,28,3395.7500000000023,157.05,-,-,no welderless agent plan,no welderless agent plan
+results_v2_e04_l12,2,04,12,48,14481.500000000002,265.121,-,-,no welderless agent plan,no welderless agent plan
+results_v4_e05_l05,4,05,05,20,390.65999999999985,115.042,-,-,-,-
+results_v5_e06_l06,5,06,06,24,850.55,118.03,-,-,no welderless agent plan,no welderless agent plan
+results_v4_e19_l03,4,19,03,12,4233.209999999998,161.04,-,-,no welderless agent plan,no welderless agent plan
+results_v7_e10_l03,7,10,03,12,282.96000000000004,93.027,-,-,no welderless agent plan,no welderless agent plan
+results_v7_e04_l03,7,04,03,12,8.489999999999998,45.018,24.53,52.011,24.69,52.011
+results_v9_e03_l03,9,03,03,12,21.580000000000002,38.010999999999996,3.09,41.008,2.83,41.008
+results_v4_e05_l03,4,05,03,12,35.91,53.012,197.54,59.011,176.68,59.011
+results_v5_e08_l03,5,08,03,12,167.48999999999995,83.023,-,-,no welderless agent plan,no welderless agent plan
+results_v7_e04_l05,7,04,05,20,130.46000000000004,92.034,-,-,-,-
+results_v2_e10_l03,2,10,03,12,330.82,90.021,-,-,no welderless agent plan,no welderless agent plan
+results_v4_e09_l03,4,09,03,12,161.11999999999998,81.021,-,-,no welderless agent plan,no welderless agent plan
+results_v01_e10_l05,01,10,05,20,5308.920000000004,185.049,-,-,no welderless agent plan,no welderless agent plan
+results_v2_e09_l05,2,09,05,20,3230.189999999999,171.034,-,-,no welderless agent plan,no welderless agent plan
+results_v2_e18_l03,2,18,03,12,3573.6000000000013,153.036,-,-,no welderless agent plan,no welderless agent plan
+results_v9_e08_l03,9,08,03,12,138.18000000000004,80.02,-,-,no welderless agent plan,no welderless agent plan
+results_v4_e06_l06,4,06,06,24,828.1100000000001,129.038,-,-,no welderless agent plan,no welderless agent plan
+results_v10_e03_l10,10,03,10,40,1718.4900000000007,197.098,-,-,no welderless agent plan,no welderless agent plan
+results_v7_e14_l03,7,14,03,12,1285.1799999999996,132.03,-,-,no welderless agent plan,no welderless agent plan
+results_v7_e03_l11,7,03,11,44,2341.5200000000004,208.116,-,-,no welderless agent plan,no welderless agent plan
+results_v4_e03_l07,4,03,07,28,-,-,-,-,-,-
+results_v4_e08_l03,4,08,03,12,66.17000000000002,72.023,421.08,68.008,no welderless agent plan,no welderless agent plan
+results_v5_e14_l03,5,14,03,12,1260.3899999999987,122.029,-,-,no welderless agent plan,no welderless agent plan
+results_v6_e18_l03,6,18,03,12,3719.0499999999997,157.04,-,-,no welderless agent plan,no welderless agent plan
+results_v5_e05_l08,5,05,08,32,3099.98,192.081,-,-,no welderless agent plan,no welderless agent plan
+results_v3_e04_l07,3,04,07,28,456.3300000000002,135.058,-,-,no welderless agent plan,no welderless agent plan
+results_v3_e10_l03,3,10,03,12,171.31,84.023,-,-,no welderless agent plan,no welderless agent plan
+results_v2_e04_l10,2,04,10,40,6017.390000000002,237.116,-,-,no welderless agent plan,no welderless agent plan
+results_v3_e05_l03,3,05,03,12,56.13,50.016,431.59,57.009,375.84,57.009
+results_v01_e03_l08,01,03,08,32,367.3399999999999,159.079,-,-,no welderless agent plan,no welderless agent plan
+results_v10_e12_l04,10,12,04,16,2827.9300000000007,155.031,-,-,no welderless agent plan,no welderless agent plan
+results_v2_e12_l04,2,12,04,16,3482.1600000000017,168.049,-,-,no welderless agent plan,no welderless agent plan
+results_v5_e05_l03,5,05,03,12,19.91,59.019,454.87,62.008,282.73,62.008
+results_v4_e06_l03,4,06,03,12,81.02999999999999,60.015,387.94,64.006,341.62,64.006
+results_v7_e05_l04,7,05,04,16,75.97000000000001,78.028,723.25,86.013,491.80,86.013
+results_v4_e13_l04,4,13,04,16,5454.239999999998,180.042,-,-,no welderless agent plan,no welderless agent plan
+results_v3_e12_l04,3,12,04,16,2596.4499999999994,153.035,-,-,no welderless agent plan,no welderless agent plan
+results_v7_e09_l04,7,09,04,16,1058.39,132.026,-,-,no welderless agent plan,no welderless agent plan
+results_v10_e06_l07,10,06,07,28,3158.0300000000016,159.038,-,-,no welderless agent plan,no welderless agent plan
+results_v3_e08_l05,3,08,05,20,2840.1800000000003,160.045,-,-,no welderless agent plan,no welderless agent plan
+results_v7_e06_l03,7,06,03,12,33.33,58.015,239.65,64.006,197.64,64.006
+results_v7_e06_l05,7,06,05,20,683.7299999999998,123.038,-,-,-,-
+results_v9_e03_l09,9,03,09,36,708.79,165.083,-,-,no welderless agent plan,no welderless agent plan
+results_v6_e08_l03,6,08,03,12,151.9799999999999,80.02,-,-,no welderless agent plan,no welderless agent plan
+results_v5_e11_l03,5,11,03,12,527.01,96.021,-,-,no welderless agent plan,no welderless agent plan
+results_v1_e11_l04,1,11,04,16,2182.3,153.036,-,-,no welderless agent plan,no welderless agent plan
+results_v10_e07_l06,10,07,06,24,1981.5500000000002,164.062,-,-,no welderless agent plan,no welderless agent plan
+results_v5_e03_l07,5,03,07,28,276.1899999999999,124.06,-,-,-,-
+results_v5_e04_l08,5,04,08,32,1334.3800000000003,166.078,-,-,no welderless agent plan,no welderless agent plan
+results_v6_e06_l04,6,06,04,16,153.18,99.03,-,-,-,-
+results_v6_e19_l03,6,19,03,12,3678.3900000000035,149.038,-,-,no welderless agent plan,no welderless agent plan
+results_v6_e03_l07,6,03,07,28,204.55,127.056,-,-,-,-
+results_v3_e04_l09,3,04,09,36,-,-,no single agent plan,no single agent plan,no welderless agent plan,no welderless agent plan
+results_v7_e03_l13,7,03,13,52,9136.330000000004,253.124,-,-,no welderless agent plan,no welderless agent plan
+results_v2_e07_l04,2,07,04,16,437.71000000000004,108.023,-,-,-,-
+results_v5_e04_l12,5,04,12,48,20858.940000000006,281.126,-,-,no welderless agent plan,no welderless agent plan
+results_v5_e17_l03,5,17,03,12,2794.3900000000017,149.036,-,-,no welderless agent plan,no welderless agent plan
+results_v4_e14_l03,4,14,03,12,1098.1799999999998,125.034,-,-,no welderless agent plan,no welderless agent plan
+results_v3_e07_l05,3,07,05,20,1328.7600000000007,139.028,-,-,no welderless agent plan,no welderless agent plan
+results_v01_e04_l08,01,04,08,32,1469.9599999999994,185.088,-,-,no welderless agent plan,no welderless agent plan
+results_v6_e10_l03,6,10,03,12,281.99000000000007,95.02,-,-,no welderless agent plan,no welderless agent plan
+results_v10_e07_l03,10,07,03,12,99.71000000000005,69.021,-,-,-,-
+results_v8_e06_l05,8,06,05,20,704.9000000000001,129.041,-,-,-,-
+results_v6_e13_l04,6,13,04,16,5806.740000000001,186.05,-,-,no welderless agent plan,no welderless agent plan
+results_v10_e03_l04,10,03,04,16,64.61999999999999,60.02,512.39,71.013,550.91,71.013
+results_v3_e04_l05,3,04,05,20,128.4,96.035,-,-,-,-
+results_v3_e13_l03,3,13,03,12,828.2099999999996,113.03,-,-,no welderless agent plan,no welderless agent plan
+results_v5_e18_l03,5,18,03,12,3626.5500000000015,160.041,-,-,no welderless agent plan,no welderless agent plan
+results_v7_e04_l07,7,04,07,28,-,-,-,-,-,-
+results_v5_e13_l04,5,13,04,16,4491.220000000002,168.042,-,-,no welderless agent plan,no welderless agent plan
+results_v10_e04_l05,10,04,05,20,122.12000000000002,94.041,-,-,-,-
+results_v6_e05_l07,6,05,07,28,1817.5500000000004,148.052,-,-,no welderless agent plan,no welderless agent plan
+results_v01_e03_l09,01,03,09,36,1033.7199999999998,193.112,-,-,no welderless agent plan,no welderless agent plan
+results_v5_e06_l03,5,06,03,12,29.330000000000002,56.014,202.84,63.009,122.67,63.009
+results_v5_e05_l05,5,05,05,20,331.43,98.024,-,-,-,-
+results_v6_e04_l07,6,04,07,28,648.74,144.059,-,-,no welderless agent plan,no welderless agent plan
+results_v01_e14_l03,01,14,03,12,1219.3600000000001,124.032,-,-,no welderless agent plan,no welderless agent plan
+results_v6_e06_l05,6,06,05,20,570.9700000000001,112.033,-,-,-,-
+results_v5_e04_l07,5,04,07,28,619.7700000000001,136.05,-,-,no welderless agent plan,no welderless agent plan
+results_v5_e03_l04,5,03,04,16,15.189999999999998,61.028,304.23,65.016,225.26,65.016
+results_v7_e04_l13,7,04,13,52,34286.04000000001,294.144,-,-,no welderless agent plan,no welderless agent plan
+results_v2_e10_l05,2,10,05,20,6834.2300000000005,198.045,-,-,no welderless agent plan,no welderless agent plan
+results_v10_e13_l04,10,13,04,16,4717.150000000006,178.04,-,-,no welderless agent plan,no welderless agent plan
+results_v3_e05_l07,3,05,07,28,1203.0900000000006,135.038,-,-,no welderless agent plan,no welderless agent plan
+results_v01_e05_l05,01,05,05,20,344.2299999999998,113.035,-,-,-,-
+results_v01_e06_l03,01,06,03,12,41.3,59.019,574.15,70.006,499.58,70.006
+results_v9_e07_l04,9,07,04,16,411.30999999999995,100.027,-,-,no welderless agent plan,no welderless agent plan
+results_v4_e05_l04,4,05,04,16,177.71999999999997,85.028,1668.07,83.011,1514.30,83.011
+results_v01_e10_l04,01,10,04,16,1091.4399999999998,128.029,-,-,no welderless agent plan,no welderless agent plan
+results_v6_e04_l09,6,04,09,36,2587.95,184.065,-,-,no welderless agent plan,no welderless agent plan
+results_v10_e16_l03,10,16,03,12,2043.19,139.035,-,-,no welderless agent plan,no welderless agent plan
+results_v10_e10_l03,10,10,03,12,278.34999999999985,95.028,-,-,no welderless agent plan,no welderless agent plan
+results_v9_e08_l05,9,08,05,20,2735.750000000002,165.038,-,-,no welderless agent plan,no welderless agent plan
+results_v10_e05_l05,10,05,05,20,186.74000000000004,94.023,-,-,-,-
+results_v9_e03_l05,9,03,05,20,56.27000000000001,82.025,-,-,1533.79,89.024
+results_v01_e06_l06,01,06,06,24,1135.3999999999994,129.037,-,-,no welderless agent plan,no welderless agent plan
+results_v4_e03_l06,4,03,06,24,48.230000000000004,84.038,-,-,-,-
+results_v8_e05_l06,8,05,06,24,434.70000000000005,114.041,-,-,-,-
+results_v3_e17_l03,3,17,03,12,2765.5300000000016,147.033,-,-,no welderless agent plan,no welderless agent plan
+results_v6_e13_l03,6,13,03,12,1123.62,119.028,-,-,no welderless agent plan,no welderless agent plan
+results_v5_e04_l09,5,04,09,36,3005.07,210.099,-,-,no welderless agent plan,no welderless agent plan
+results_v9_e04_l03,9,04,03,12,13.31,45.013,18.98,50.008,16.63,50.008
+results_v4_e03_l11,4,03,11,44,3604.87,233.136,-,-,no welderless agent plan,no welderless agent plan
+results_v7_e08_l03,7,08,03,12,123.25,79.02,-,-,no welderless agent plan,no welderless agent plan
+results_v5_e03_l08,5,03,08,32,439.23,144.071,-,-,no welderless agent plan,no welderless agent plan
+results_v10_e14_l03,10,14,03,12,1081.1100000000006,123.031,-,-,no welderless agent plan,no welderless agent plan
+results_v5_e03_l12,5,03,12,48,5988.33,304.161,-,-,no welderless agent plan,no welderless agent plan
+results_v2_e04_l05,2,04,05,20,134.1,98.03,-,-,-,-
+results_v9_e11_l04,9,11,04,16,2109.179999999999,159.031,-,-,no welderless agent plan,no welderless agent plan
+results_v10_e04_l11,10,04,11,44,9448.830000000002,243.107,-,-,no welderless agent plan,no welderless agent plan
+results_v01_e03_l11,01,03,11,44,2509.2200000000003,208.11,-,-,no welderless agent plan,no welderless agent plan
+results_v2_e05_l05,2,05,05,20,418.82000000000005,108.036,-,-,-,-
+results_v3_e08_l06,3,08,06,24,3354.840000000001,159.043,-,-,no welderless agent plan,no welderless agent plan
+results_v5_e04_l03,5,04,03,12,62.06000000000001,52.012,24.44,50.006,16.44,50.006
+results_v10_e06_l05,10,06,05,20,626.11,114.03,-,-,no welderless agent plan,no welderless agent plan
+results_v10_e03_l13,10,03,13,52,11377.600000000002,285.162,-,-,no welderless agent plan,no welderless agent plan
+results_v9_e04_l12,9,04,12,48,20840.010000000002,277.131,-,-,no welderless agent plan,no welderless agent plan
+results_v10_e03_l06,10,03,06,24,71.25999999999998,88.041,-,-,1459.65,96.035
+results_v10_e05_l03,10,05,03,12,14.249999999999998,52.019,36.52,47.003,26.84,47.003
+results_v01_e03_l12,01,03,12,48,5464.129999999998,268.142,-,-,no welderless agent plan,no welderless agent plan
+results_v3_e08_l04,3,08,04,16,539.2899999999998,115.024,-,-,no welderless agent plan,no welderless agent plan
+results_v2_e03_l11,2,03,11,44,2597.830000000001,220.125,-,-,no welderless agent plan,no welderless agent plan
+results_v3_e05_l08,3,05,08,32,4797.520000000002,166.063,-,-,no welderless agent plan,no welderless agent plan
+results_v2_e05_l03,2,05,03,12,61.44000000000001,53.016,39.14,53.009,33.63,53.009
+results_v10_e03_l07,10,03,07,28,153.68000000000004,114.054,-,-,-,-

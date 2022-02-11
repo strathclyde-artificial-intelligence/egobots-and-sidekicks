@@ -1,6 +1,6 @@
 from os import listdir
 
-print("setup,variant,egobot,locations,goals,framework_time,framework_plan_duration,single_agent_time,single_agent_duration","welderless_agent_time","welderless_agent_duration")
+print("setup,variant,egobot,locations,goals,framework_time,framework_plan_duration,single_agent_time,single_agent_duration,welderless_agent_time,welderless_agent_duration")
 
 experimentfiles = [f for f in listdir() if "run_experiment" in f]
 experimentfiles.remove("run_experiment_v1-5_e3-20_l3-15_pruned")
